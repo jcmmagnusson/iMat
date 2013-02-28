@@ -245,10 +245,6 @@ public class MainView extends JFrame {
 		getContentPane().add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblStartsida = new JLabel("Startsida");
-		lblStartsida.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
-		panel_4.add(lblStartsida, BorderLayout.NORTH);
-		
 		JPanel panel_5 = new JPanel();
 		panel_5.setOpaque(false);
 		panel_5.setBackground(UIManager.getColor("List.background"));
@@ -263,7 +259,14 @@ public class MainView extends JFrame {
 			panel_5.add(new ShoppingProductView(p));
 		}
 		
+		JPanel panel_24 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panel_24.setBackground(UIManager.getColor("List.background"));
+		scrollPane_2.setColumnHeaderView(panel_24);
 		
+		JLabel lblStartsida = new JLabel("Startsida");
+		lblStartsida.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		panel_24.add(lblStartsida);
+		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
 		JPanel panel_28 = new JPanel();
 		getContentPane().add(panel_28, BorderLayout.WEST);
