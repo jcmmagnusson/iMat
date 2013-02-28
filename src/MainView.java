@@ -26,6 +26,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
+import javax.swing.ListSelectionModel;
 
 public class MainView extends JFrame {
 	
@@ -87,21 +88,9 @@ public class MainView extends JFrame {
 		JButton btnNewButton_1 = new JButton("Logga ut");
 		panel_27.add(btnNewButton_1);
 		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Favoriter", "F\u00E4rdiga kassar", "Tidigare k\u00F6p", " ", "Gr\u00F6nsaker", "K\u00F6tt", "Br\u00F6d", "Drycker"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
 		JPanel panel_25 = new JPanel();
 		panel_1.add(panel_25, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane(list);
-		getContentPane().add(scrollPane, BorderLayout.WEST);
 		JTextField txtSk = new JTextField();
 		panel_25.add(txtSk);
 		txtSk.setText("S\u00F6k...");
@@ -278,7 +267,22 @@ public class MainView extends JFrame {
 		
 		
 		
+		JPanel panel_28 = new JPanel();
+		getContentPane().add(panel_28, BorderLayout.WEST);
+		panel_28.setLayout(new BorderLayout(0, 0));
 		
+		JList list = new JList();
+		panel_28.add(new JScrollPane(list));
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"Favoriter", "F\u00E4rdiga kassar", "Tidigare k\u00F6p", " ", "S\u00F6tsaker", "Dryck >", " - Varma", " - Kalla", "Mejeri", "K\u00F6tt", "Fisk", "Br\u00F6d", "Skafferi >", " - Potatis & ris", " - Pasta", " - Mj\u00F6l, socker & salt", " - Kryddor", "Frukt >", " - Citrusfrukter", " - Exotiska frukter", " - Meloner", " - B\u00E4r", " - Stenfrukter", "Gr\u00F6nsaker >", " - Baljv\u00E4xter", " - Gr\u00F6nsaksfrukter", " - K\u00E5l", " - Rotfrukter", " - N\u00F6tter & fr\u00F6n"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		
 	}
 
