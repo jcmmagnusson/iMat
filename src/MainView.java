@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -23,6 +25,7 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Color;
 
 public class MainView extends JFrame {
 	private JTextField txtSk;
@@ -105,12 +108,17 @@ public class MainView extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8, BorderLayout.SOUTH);
-		panel_8.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_8.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK));
+		panel_8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_22 = new JPanel();
+		panel_8.add(panel_22);
+		panel_22.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JPanel panel_14 = new JPanel();
+		panel_22.add(panel_14);
 		FlowLayout flowLayout_2 = (FlowLayout) panel_14.getLayout();
 		flowLayout_2.setAlignment(FlowLayout.LEFT);
-		panel_8.add(panel_14);
 		
 		JLabel lblTotalt = new JLabel("Totalt: ");
 		lblTotalt.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -120,9 +128,9 @@ public class MainView extends JFrame {
 		panel_14.add(lblKr);
 		
 		JPanel panel_15 = new JPanel();
+		panel_22.add(panel_15);
 		FlowLayout flowLayout_3 = (FlowLayout) panel_15.getLayout();
 		flowLayout_3.setAlignment(FlowLayout.LEFT);
-		panel_8.add(panel_15);
 		
 		JLabel lblAntalVaror = new JLabel("Antal varor: ");
 		lblAntalVaror.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -134,20 +142,34 @@ public class MainView extends JFrame {
 		JPanel panel_16 = new JPanel();
 		panel_8.add(panel_16);
 		
-		JButton btnTmKundvagnen = new JButton("T\u00F6m kundvagnen");
+		JButton btnTmKundvagnen = new JButton("T\u00F6m");
 		panel_16.add(btnTmKundvagnen);
 		
 		JPanel panel_9 = new JPanel();
 		panel_6.add(panel_9, BorderLayout.CENTER);
-		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_9.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_9.add(scrollPane_1);
 		
 		JPanel panel_18 = new JPanel();
+		panel_18.setBackground(Color.WHITE);
+		scrollPane_1.setViewportView(panel_18);
 		panel_18.setSize(new Dimension(200, 16));
-		panel_9.add(panel_18);
-		panel_18.setLayout(new BorderLayout(0, 0));
+		panel_18.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_20 = new JPanel();
+		panel_20.setOpaque(false);
+		panel_20.setPreferredSize(new Dimension(225, 37));
+		panel_20.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		panel_18.add(panel_20);
+		panel_20.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_17 = new JPanel();
-		panel_18.add(panel_17, BorderLayout.CENTER);
+		FlowLayout flowLayout_4 = (FlowLayout) panel_17.getLayout();
+		flowLayout_4.setAlignment(FlowLayout.LEFT);
+		panel_17.setOpaque(false);
+		panel_20.add(panel_17, BorderLayout.CENTER);
 		
 		JSpinner spinner = new JSpinner();
 		panel_17.add(spinner);
@@ -155,14 +177,21 @@ public class MainView extends JFrame {
 		JLabel lblSt_1 = new JLabel("st");
 		panel_17.add(lblSt_1);
 		
-		Component rigidArea = Box.createRigidArea(new Dimension(7, 20));
+		Component rigidArea = Box.createRigidArea(new Dimension(7, 28));
 		panel_17.add(rigidArea);
 		
 		JLabel lblMjlk = new JLabel("Mj\u00F6lk");
 		panel_17.add(lblMjlk);
 		
+		JPanel panel_21 = new JPanel();
+		panel_21.setOpaque(false);
+		panel_20.add(panel_21, BorderLayout.EAST);
+		
 		JLabel lblKr_1 = new JLabel("0 kr");
-		panel_18.add(lblKr_1, BorderLayout.EAST);
+		panel_21.add(lblKr_1);
+		
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(5, 28));
+		panel_21.add(rigidArea_1);
 		
 		JPanel panel_10 = new JPanel();
 		splitPane.setRightComponent(panel_10);
