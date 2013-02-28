@@ -67,10 +67,9 @@ public class MainView extends JFrame {
 		panel_23.add(button_1);
 		
 		JPanel panel_3 = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
 		panel_1.add(panel_3, BorderLayout.EAST);
 		
-		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 48));
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 60));
 		panel_3.add(rigidArea_2);
 		
 		JPanel panel_26 = new JPanel();
