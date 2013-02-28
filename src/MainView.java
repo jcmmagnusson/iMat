@@ -75,18 +75,23 @@ public class MainView extends JFrame {
 		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
 		panel_1.add(panel_3, BorderLayout.EAST);
 		
-		JButton btnNewButton = new JButton("Konto");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
 		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 48));
 		panel_3.add(rigidArea_2);
-		panel_3.add(btnNewButton);
+		
+		JPanel panel_26 = new JPanel();
+		panel_3.add(panel_26);
+		
+		JButton btnBliMedlem = new JButton("Bli medlem");
+		panel_26.add(btnBliMedlem);
+		
+		JPanel panel_27 = new JPanel();
+		panel_3.add(panel_27);
+		
+		JButton btnNewButton = new JButton("Konto");
+		panel_27.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Logga ut");
-		panel_3.add(btnNewButton_1);
+		panel_27.add(btnNewButton_1);
 		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
