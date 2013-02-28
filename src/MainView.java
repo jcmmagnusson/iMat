@@ -112,13 +112,18 @@ public class MainView extends JFrame {
 		
 		JPanel panel_7 = new JPanel();
 		panel_6.add(panel_7, BorderLayout.NORTH);
+		panel_7.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblKundvagn = new JLabel("Kundvagn");
 		lblKundvagn.setFont(new Font("Lucida Grande", Font.BOLD, 15));
-		panel_7.add(lblKundvagn);
+		panel_7.add(lblKundvagn, BorderLayout.CENTER);
 		
-		JButton btnGTillKassan = new JButton("G\u00E5 till kassan >");
-		panel_7.add(btnGTillKassan);
+		JButton btnGTillKassan = new JButton("G\u00E5 till kassan");
+		panel_7.add(btnGTillKassan, BorderLayout.EAST);
+		btnGTillKassan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8, BorderLayout.SOUTH);
