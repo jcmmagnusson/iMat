@@ -47,11 +47,19 @@ public class MainView extends JFrame {
 		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		panel_2.add(lblImat);
 		
+		JPanel panel_23 = new JPanel();
+		panel_23.setSize(new Dimension(74, 40));
+		panel_23.setPreferredSize(new Dimension(74, 40));
+		panel_2.add(panel_23);
+		panel_23.setLayout(null);
+		
 		JButton button = new JButton("<");
-		panel_2.add(button);
+		button.setBounds(6, 5, 29, 29);
+		panel_23.add(button);
 		
 		JButton button_1 = new JButton(">");
-		panel_2.add(button_1);
+		button_1.setBounds(39, 5, 29, 29);
+		panel_23.add(button_1);
 		
 		txtSk = new JTextField();
 		panel_2.add(txtSk);
@@ -67,6 +75,9 @@ public class MainView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 48));
+		panel_3.add(rigidArea_2);
 		panel_3.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Logga ut");
