@@ -101,7 +101,7 @@ public class MainView extends JFrame {
 		panel_25.add(rigidArea_3);
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setBorder(null);
+		splitPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 		splitPane.setDividerLocation(400);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.EAST);
@@ -244,6 +244,7 @@ public class MainView extends JFrame {
 		JPanel panel_4 = new JPanel();
 		getContentPane().add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new BorderLayout(0, 0));
+		panel_4.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setOpaque(false);
@@ -269,6 +270,7 @@ public class MainView extends JFrame {
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
 		JPanel panel_28 = new JPanel();
+		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 		getContentPane().add(panel_28, BorderLayout.WEST);
 		panel_28.setLayout(new BorderLayout(0, 0));
 		
