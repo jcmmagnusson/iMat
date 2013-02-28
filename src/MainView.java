@@ -26,6 +26,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
+import javax.swing.UIManager;
 import javax.swing.ListSelectionModel;
 
 public class MainView extends JFrame {
@@ -162,12 +163,9 @@ public class MainView extends JFrame {
 		panel_6.add(panel_9, BorderLayout.CENTER);
 		panel_9.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		panel_9.add(scrollPane_1);
-		
 		JPanel panel_18 = new JPanel();
-		panel_18.setBackground(Color.WHITE);
-		scrollPane_1.setViewportView(panel_18);
+		panel_9.add(new JScrollPane(panel_18));
+		panel_18.setBackground(UIManager.getColor("List.background"));
 		panel_18.setSize(new Dimension(200, 16));
 		panel_18.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -178,9 +176,7 @@ public class MainView extends JFrame {
 		panel_18.add(panel_20);
 		panel_20.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_17 = new JPanel();
-		FlowLayout flowLayout_4 = (FlowLayout) panel_17.getLayout();
-		flowLayout_4.setAlignment(FlowLayout.LEFT);
+		JPanel panel_17 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panel_17.setOpaque(false);
 		panel_20.add(panel_17, BorderLayout.CENTER);
 		
@@ -230,10 +226,12 @@ public class MainView extends JFrame {
 		panel_12.add(btnRedigera);
 		
 		JPanel panel_13 = new JPanel();
-		panel_10.add(panel_13, BorderLayout.CENTER);
+		panel_13.setBackground(UIManager.getColor("List.background"));
+		panel_10.add(new JScrollPane(panel_13), BorderLayout.CENTER);
 		panel_13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JPanel panel_19 = new JPanel();
+		panel_19.setOpaque(false);
 		panel_13.add(panel_19);
 		panel_19.setLayout(new BorderLayout(0, 0));
 		
