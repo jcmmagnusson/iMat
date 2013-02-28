@@ -215,20 +215,26 @@ public class MainView extends JFrame {
 		panel_10.add(panel_11, BorderLayout.NORTH);
 		panel_11.setLayout(new BorderLayout(0, 0));
 		
-		JButton button_2 = new JButton("+");
-		panel_11.add(button_2, BorderLayout.EAST);
-		
 		JLabel lblListor = new JLabel("Listor");
 		lblListor.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		panel_11.add(lblListor, BorderLayout.WEST);
 		
+		JPanel panel_29 = new JPanel();
+		panel_29.setPreferredSize(new Dimension(30, 30));
+		panel_29.setSize(new Dimension(30, 30));
+		panel_11.add(panel_29, BorderLayout.EAST);
+		panel_29.setLayout(null);
+		
+		JButton button_2 = new JButton("+");
+		button_2.setBounds(5, 5, 19, 19);
+		panel_29.add(button_2);
+		
 		JPanel panel_12 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_12.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
 		panel_10.add(panel_12, BorderLayout.SOUTH);
+		panel_12.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnRedigera = new JButton("Redigera");
-		panel_12.add(btnRedigera);
+		panel_12.add(btnRedigera, BorderLayout.EAST);
 		
 		JPanel panel_13 = new JPanel();
 		panel_13.setBackground(UIManager.getColor("List.background"));
