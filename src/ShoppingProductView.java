@@ -182,6 +182,7 @@ public class ShoppingProductView extends JPanel {
 		};
 		iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		iconLabel.setBounds(0, 0, 155, 153);
+		iconLabel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		panel_1.add(iconLabel);
 
 	}
