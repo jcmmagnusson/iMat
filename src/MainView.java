@@ -211,7 +211,7 @@ public class MainView extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		panel_4.add(panel_5, BorderLayout.CENTER);
-		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_5.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
 		ShoppingProductView shoppingProductView = new ShoppingProductView();
 		panel_5.add(shoppingProductView);
