@@ -263,32 +263,15 @@ public class MainView extends JFrame {
 		panel_4.add(panel_5, BorderLayout.CENTER);
 		panel_5.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
-		ShoppingProductView shoppingProductView = new ShoppingProductView();
-		panel_5.add(shoppingProductView);
 		
-		ShoppingProductView shoppingProductView_1 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_1);
+		for(int i=1; i<=12; i++){
+			Product p = IMatDataHandler.getInstance().getProduct(i);
+			panel_5.add(new ShoppingProductView(p));
+		}
 		
-		ShoppingProductView shoppingProductView_6 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_6);
 		
-		ShoppingProductView shoppingProductView_2 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_2);
 		
-		ShoppingProductView shoppingProductView_3 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_3);
 		
-		ShoppingProductView shoppingProductView_7 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_7);
-		
-		ShoppingProductView shoppingProductView_4 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_4);
-		
-		ShoppingProductView shoppingProductView_5 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_5);
-		
-		ShoppingProductView shoppingProductView_8 = new ShoppingProductView();
-		panel_5.add(shoppingProductView_8);
 		
 	}
 
