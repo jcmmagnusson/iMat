@@ -28,7 +28,7 @@ import java.awt.Insets;
 import java.awt.Color;
 
 public class MainView extends JFrame {
-	private JTextField txtSk;
+	
 	public MainView() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -66,11 +66,6 @@ public class MainView extends JFrame {
 		button_1.setBounds(39, 5, 29, 29);
 		panel_23.add(button_1);
 		
-		txtSk = new JTextField();
-		panel_2.add(txtSk);
-		txtSk.setText("S\u00F6k...");
-		txtSk.setColumns(10);
-		
 		JPanel panel_3 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
 		panel_1.add(panel_3, BorderLayout.EAST);
@@ -103,9 +98,18 @@ public class MainView extends JFrame {
 				return values[index];
 			}
 		});
+		JPanel panel_25 = new JPanel();
+		panel_1.add(panel_25, BorderLayout.CENTER);
 		
 		JScrollPane scrollPane = new JScrollPane(list);
 		getContentPane().add(scrollPane, BorderLayout.WEST);
+		JTextField txtSk = new JTextField();
+		panel_25.add(txtSk);
+		txtSk.setText("S\u00F6k...");
+		txtSk.setColumns(15);
+		
+		Component rigidArea_3 = Box.createRigidArea(new Dimension(1, 60));
+		panel_25.add(rigidArea_3);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBorder(null);
