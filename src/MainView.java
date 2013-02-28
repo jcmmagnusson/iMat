@@ -47,17 +47,22 @@ public class MainView extends JFrame {
 		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 50));
 		panel_2.add(lblImat);
 		
+		Component rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
+		panel_2.add(rigidArea_4);
+		
 		JPanel panel_23 = new JPanel();
 		panel_23.setSize(new Dimension(74, 40));
 		panel_23.setPreferredSize(new Dimension(74, 40));
 		panel_2.add(panel_23);
 		panel_23.setLayout(null);
 		
-		JButton button = new JButton("<");
+		JButton button = new JButton("\u21FD");
+		button.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		button.setBounds(6, 5, 29, 29);
 		panel_23.add(button);
 		
-		JButton button_1 = new JButton(">");
+		JButton button_1 = new JButton("\u21FE");
+		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		button_1.setBounds(39, 5, 29, 29);
 		panel_23.add(button_1);
 		
