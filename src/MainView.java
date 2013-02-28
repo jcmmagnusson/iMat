@@ -43,8 +43,8 @@ public class MainView extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.WEST);
 		
-		JLabel lblImat = new JLabel("<html><font color=\"lightgreen\">i</font>Mat");
-		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 40));
+		JLabel lblImat = new JLabel("<html><font color=\"#33CC33\">i</font>Mat");
+		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 50));
 		panel_2.add(lblImat);
 		
 		JPanel panel_23 = new JPanel();
