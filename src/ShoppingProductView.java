@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -93,6 +94,17 @@ public class ShoppingProductView extends JPanel {
 				super.paintComponent(g);
 			}
 		};
+		detailsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				JDialog dialog = new JDialog(Main.getMainFrame());
+				dialog.setTitle("Detailjer");
+				dialog.setModal(true);
+				dialog.add(new ShoppingProductDetailView(product));
+				dialog.pack();
+				dialog.setLocationRelativeTo(Main.getMainFrame());
+				dialog.setVisible(true);
+			}
+		});
 		detailsButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent event) {
