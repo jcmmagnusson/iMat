@@ -22,6 +22,7 @@ import javax.swing.JSpinner;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -92,9 +93,17 @@ public class MainView extends JFrame {
 		JPanel panel_25 = new JPanel();
 		panel_1.add(panel_25, BorderLayout.CENTER);
 		
-		JTextField txtSk = new JTextField();
+		JTextField txtSk = new JTextField(){
+			public void paint(Graphics g){
+			    super.paint(g);
+				if(super.getText().length() == 0){
+			        g.setColor(Color.GRAY);
+			        g.setFont(getFont().deriveFont(Font.ITALIC));
+			        g.drawString("S\u00F6k...", 7, 19);
+			    }
+			}
+		};
 		panel_25.add(txtSk);
-		txtSk.setText("S\u00F6k...");
 		txtSk.setColumns(15);
 		
 		Component rigidArea_3 = Box.createRigidArea(new Dimension(1, 60));
