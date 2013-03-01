@@ -44,7 +44,7 @@ public class ShoppingProductView extends JPanel {
 		
 		setPreferredSize(new Dimension(170, 230));
 		setLayout(new BorderLayout(0, 0));
-		setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
 		JButton addButton = new JButton("L\u00E4gg till");
 		add(addButton, BorderLayout.SOUTH);
@@ -183,7 +183,7 @@ public class ShoppingProductView extends JPanel {
 		};
 		iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		iconLabel.setBounds(0, 0, 155, 153);
-		iconLabel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		iconLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		panel_1.add(iconLabel);
 
 	}
