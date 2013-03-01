@@ -11,6 +11,8 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
 public class Main {
 	
 	private static PrintStream defaultSystemOut = System.out;
+	
+	private static JFrame mainView;
 
 	/**
 	 * @param args
@@ -29,11 +31,15 @@ public class Main {
 	        }
 	    }));
 		
-		MainView mainView = new MainView();
+		mainView = new MainView();
 		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainView.pack();
 		mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);
+	}
+	
+	protected static JFrame getMainFrame(){
+		return mainView;
 	}
 	
 	private static void disableIMatDataHandlerOutput(){
