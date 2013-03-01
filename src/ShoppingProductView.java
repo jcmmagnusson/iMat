@@ -149,9 +149,14 @@ public class ShoppingProductView extends JPanel {
 				button.setBorder(null);
 			}
 		});
+		favoriteToggleButton.setForeground(FAVORITE_INACTIVE_COLOR);
+		if(IMatDataHandler.getInstance().isFavorite(product)){
+			favoriteToggleButton.setToolTipText("Ta bort favorisering");
+			favoriteToggleButton.setText(FAVORITE_STAR_CHARACTER_FILLED);
+			favoriteToggleButton.setForeground(Color.YELLOW);
+		}
 		favoriteToggleButton.setOpaque(false);
 		favoriteToggleButton.setBorder(null);
-		favoriteToggleButton.setForeground(FAVORITE_INACTIVE_COLOR);
 		favoriteToggleButton.setBounds(126, 125, 29, 29);
 		panel_1.add(favoriteToggleButton);
 		
