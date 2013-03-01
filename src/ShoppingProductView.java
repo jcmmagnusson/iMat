@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 
 public class ShoppingProductView extends JPanel {
@@ -116,6 +118,17 @@ public class ShoppingProductView extends JPanel {
 		detailsButton.setBorderPainted(false);
 		
 		JButton favoriteToggleButton = new JButton(FAVORITE_STAR_CHARACTER_HOLLOW);
+		favoriteToggleButton.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				((JButton)e.getSource()).setForeground(Color.YELLOW);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(!IMatDataHandler.getInstance().isFavorite(product))
+					((JButton)e.getSource()).setForeground(FAVORITE_INACTIVE_COLOR);
+			}
+		});
 		favoriteToggleButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
