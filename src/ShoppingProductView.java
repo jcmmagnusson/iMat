@@ -38,12 +38,14 @@ public class ShoppingProductView extends JPanel {
 	public static final String FAVORITE_STAR_CHARACTER_HOLLOW = "\u2606";
 	
 	public static final Color FAVORITE_INACTIVE_COLOR = new Color(255, 255, 0, 150);
+	
+	public static final Dimension SIZE = new Dimension(170, 230);
 
 
 	public ShoppingProductView(final Product product) {
 		this.product = product;
 		
-		setPreferredSize(new Dimension(170, 230));
+		setPreferredSize(SIZE);
 		setLayout(new BorderLayout(0, 0));
 		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		

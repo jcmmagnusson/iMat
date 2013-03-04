@@ -271,7 +271,7 @@ public class MainView extends JFrame {
 		panel_5.setOpaque(false);
 		panel_5.setBackground(UIManager.getColor("List.background"));
 		panel_5.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		panel_5.setPreferredSize(new Dimension((170+10)*4+10, (230+10)*3+10));
+		panel_5.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10, (ShoppingProductView.SIZE.height+10)*3+10));
 
 		JScrollPane scrollPane_2 = new JScrollPane(panel_5);
 		panel_4.add(scrollPane_2, BorderLayout.CENTER);
