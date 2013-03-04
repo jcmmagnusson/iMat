@@ -10,10 +10,15 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.UIManager;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -27,17 +32,19 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
 
 public class NewUserFrame extends JFrame {
-
-  private JPanel contentPane;
+	
+	private JPanel contentPane;
 	
 	private LoginFrame loginFrame;
 	private JTextField emailTextField;
 	private JPasswordField passwordTextField;
 	private JPasswordField repeatPasswordTextField;
 	private JTextField adressTextField;
-	private JTextField postalCodeTextfield;
+	private JTextField postalCodeTextField;
 	private JTextField cityTextField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField cardNumberTextField;
@@ -53,7 +60,7 @@ public class NewUserFrame extends JFrame {
 		this.loginFrame = loginFrame;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 370, 340);
+		setBounds(100, 100, 391, 340);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("Panel.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -62,7 +69,7 @@ public class NewUserFrame extends JFrame {
 		
 		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setEnabled(false);
-		tabbedPane.setBounds(12, 0, 344, 292);
+		tabbedPane.setBounds(12, 0, 365, 292);
 		contentPane.add(tabbedPane);
 		
 		JPanel accountAndDeliveryPanel = new JPanel();
@@ -129,22 +136,17 @@ public class NewUserFrame extends JFrame {
 		accountAndDeliveryPanel.add(adressTextField);
 		adressTextField.setColumns(10);
 		
-		postalCodeTextfield = new JTextField();
-		postalCodeTextfield.setBounds(156, 174, 171, 19);
-		accountAndDeliveryPanel.add(postalCodeTextfield);
-		postalCodeTextfield.setColumns(10);
+		postalCodeTextField = new JTextField();
+		postalCodeTextField.setBounds(156, 174, 171, 19);
+		accountAndDeliveryPanel.add(postalCodeTextField);
+		postalCodeTextField.setColumns(10);
 		
 		cityTextField = new JTextField();
 		cityTextField.setBounds(156, 201, 171, 19);
 		accountAndDeliveryPanel.add(cityTextField);
 		cityTextField.setColumns(10);
 		
-		JButton nextButton = new JButton("Nästa");
-		nextButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedIndex(1);
-			}
-		});
+		final JButton nextButton = new JButton("Nästa");
 		nextButton.setBounds(210, 233, 117, 25);
 		accountAndDeliveryPanel.add(nextButton);
 		
@@ -155,6 +157,42 @@ public class NewUserFrame extends JFrame {
 		});
 		firstCancelButton.setBounds(12, 233, 117, 25);
 		accountAndDeliveryPanel.add(firstCancelButton);
+		
+		final JLabel emailErrorLabel = new JLabel("*");
+		emailErrorLabel.setForeground(Color.RED);
+		emailErrorLabel.setVisible(false);
+		emailErrorLabel.setBounds(333, 41, 15, 15);
+		accountAndDeliveryPanel.add(emailErrorLabel);
+		
+		final JLabel passwordErrorLabel = new JLabel("*");
+		passwordErrorLabel.setForeground(Color.RED);
+		passwordErrorLabel.setVisible(false);
+		passwordErrorLabel.setBounds(333, 68, 15, 15);
+		accountAndDeliveryPanel.add(passwordErrorLabel);
+		
+		final JLabel repeatPasswordErrorLabel = new JLabel("*");
+		repeatPasswordErrorLabel.setForeground(Color.RED);
+		repeatPasswordErrorLabel.setVisible(false);
+		repeatPasswordErrorLabel.setBounds(333, 95, 15, 15);
+		accountAndDeliveryPanel.add(repeatPasswordErrorLabel);
+		
+		final JLabel adressErrorLabel = new JLabel("*");
+		adressErrorLabel.setForeground(Color.RED);
+		adressErrorLabel.setVisible(false);
+		adressErrorLabel.setBounds(333, 149, 15, 15);
+		accountAndDeliveryPanel.add(adressErrorLabel);
+		
+		final JLabel postalCodeErrorLabel = new JLabel("*");
+		postalCodeErrorLabel.setForeground(Color.RED);
+		postalCodeErrorLabel.setVisible(false);
+		postalCodeErrorLabel.setBounds(333, 176, 15, 15);
+		accountAndDeliveryPanel.add(postalCodeErrorLabel);
+		
+		final JLabel cityErrorLabel = new JLabel("*");
+		cityErrorLabel.setForeground(Color.RED);
+		cityErrorLabel.setVisible(false);
+		cityErrorLabel.setBounds(333, 203, 15, 15);
+		accountAndDeliveryPanel.add(cityErrorLabel);
 		
 		JPanel paymentPanel = new JPanel();
 		tabbedPane.addTab("Betalning", null, paymentPanel, null);
@@ -169,10 +207,10 @@ public class NewUserFrame extends JFrame {
 		paymentOptionLabel.setBounds(69, 39, 101, 15);
 		paymentPanel.add(paymentOptionLabel);
 		
-		final JRadioButton cardPaymentRadioButton = new JRadioButton("Kortbetalning");
-		buttonGroup.add(cardPaymentRadioButton);
-		cardPaymentRadioButton.setBounds(19, 62, 123, 23);
-		paymentPanel.add(cardPaymentRadioButton);
+		final JRadioButton cardRadioButton = new JRadioButton("Kortbetalning");
+		buttonGroup.add(cardRadioButton);
+		cardRadioButton.setBounds(19, 62, 123, 23);
+		paymentPanel.add(cardRadioButton);
 		
 		JRadioButton internetBankRadioButton = new JRadioButton("Internetbank");
 		buttonGroup.add(internetBankRadioButton);
@@ -198,13 +236,7 @@ public class NewUserFrame extends JFrame {
 		previousButton.setBounds(12, 228, 130, 25);
 		paymentPanel.add(previousButton);
 		
-		JButton doneButton = new JButton("Klar");
-		doneButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				NewUserFrame.this.dispose();
-				loginFrame.createAccount();
-			}
-		});
+		final JButton doneButton = new JButton("Klar");
 		doneButton.setBounds(210, 228, 117, 25);
 		paymentPanel.add(doneButton);
 		
@@ -214,67 +246,106 @@ public class NewUserFrame extends JFrame {
 		
 		final JPanel cardPaymentPanel = new JPanel();
 		cardPaymentPanel.setVisible(false);
-		cardPaymentPanel.setBounds(154, 66, 173, 150);
+		cardPaymentPanel.setBounds(154, 66, 194, 150);
 		paymentPanel.add(cardPaymentPanel);
 		cardPaymentPanel.setLayout(null);
 		
 		JLabel cardNumberLabel = new JLabel("Kortnummer");
-		cardNumberLabel.setBounds(0, 0, 173, 15);
+		cardNumberLabel.setBounds(12, 0, 161, 15);
 		cardPaymentPanel.add(cardNumberLabel);
 		
 		cardNumberTextField = new JTextField();
-		cardNumberTextField.setBounds(0, 22, 173, 19);
+		cardNumberTextField.setBounds(12, 22, 170, 19);
 		cardPaymentPanel.add(cardNumberTextField);
 		cardNumberTextField.setColumns(10);
 		
 		JLabel expireLabel = new JLabel("Utgångsdatum");
-		expireLabel.setBounds(0, 53, 115, 15);
+		expireLabel.setBounds(10, 53, 115, 15);
 		cardPaymentPanel.add(expireLabel);
 		
 		JLabel cvcLabel = new JLabel("CVC");
 		cvcLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		cvcLabel.setBounds(127, 53, 34, 15);
+		cvcLabel.setBounds(148, 53, 34, 15);
 		cardPaymentPanel.add(cvcLabel);
 		
-		JComboBox monthComboBox = new JComboBox();
-		monthComboBox.setBounds(0, 80, 43, 24);
+		final JComboBox monthComboBox = new JComboBox();
+		monthComboBox.setModel(new DefaultComboBoxModel(new String[] {"m", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		monthComboBox.setSelectedIndex(0);
+		monthComboBox.setBounds(10, 80, 43, 24);
 		cardPaymentPanel.add(monthComboBox);
 		
 		JLabel dividerLabel = new JLabel("/");
-		dividerLabel.setBounds(45, 85, 11, 15);
+		dividerLabel.setBounds(55, 85, 11, 15);
 		cardPaymentPanel.add(dividerLabel);
 		
-		JComboBox yearComboBox = new JComboBox();
-		yearComboBox.setBounds(55, 80, 43, 24);
+		final JComboBox yearComboBox = new JComboBox();
+		yearComboBox.setModel(new DefaultComboBoxModel(new String[] {"y", "13", "14", "15", "16", "17", "18"}));
+		yearComboBox.setSelectedIndex(0);
+		yearComboBox.setBounds(65, 80, 43, 24);
 		cardPaymentPanel.add(yearComboBox);
 		
 		cvcTextField = new JTextField();
-		cvcTextField.setBounds(118, 80, 43, 19);
+		cvcTextField.setBounds(139, 80, 43, 19);
 		cardPaymentPanel.add(cvcTextField);
 		cvcTextField.setColumns(10);
 		
 		JLabel nameLabel = new JLabel("Namn");
-		nameLabel.setBounds(0, 116, 70, 15);
+		nameLabel.setBounds(12, 116, 58, 15);
 		cardPaymentPanel.add(nameLabel);
 		
 		nameTextField = new JTextField();
-		nameTextField.setBounds(1, 131, 172, 19);
+		nameTextField.setBounds(12, 131, 170, 19);
 		cardPaymentPanel.add(nameTextField);
 		nameTextField.setColumns(10);
+		
+		final JLabel cardErrorLabel = new JLabel("*");
+		cardErrorLabel.setForeground(Color.RED);
+		cardErrorLabel.setVisible(false);
+		cardErrorLabel.setBounds(12, 66, 11, 15);
+		paymentPanel.add(cardErrorLabel);
+		
+		final JLabel internetBankErrorLabel = new JLabel("*");
+		internetBankErrorLabel.setForeground(Color.RED);
+		internetBankErrorLabel.setVisible(false);
+		internetBankErrorLabel.setBounds(12, 93, 11, 15);
+		paymentPanel.add(internetBankErrorLabel);
+		
+		final JLabel inoviceErrorLabel = new JLabel("*");
+		inoviceErrorLabel.setForeground(Color.RED);
+		inoviceErrorLabel.setVisible(false);
+		inoviceErrorLabel.setBounds(12, 120, 11, 15);
+		paymentPanel.add(inoviceErrorLabel);
+		
+		final JLabel paypalErrorLabel = new JLabel("*");
+		paypalErrorLabel.setForeground(Color.RED);
+		paypalErrorLabel.setVisible(false);
+		paypalErrorLabel.setBounds(12, 147, 11, 15);
+		paymentPanel.add(paypalErrorLabel);
+		
+		final JTextField[] accountDeliveryInputs = { 	emailTextField,
+														passwordTextField,
+														repeatPasswordTextField,
+														adressTextField,
+														postalCodeTextField,
+														cityTextField };
+		final JRadioButton[] paymentInputs = {	cardRadioButton,
+												internetBankRadioButton,
+												inoviceRadioButton,
+												paypalRadioButton };
 		
 		ActionListener radioButtonListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JRadioButton radioButton = (JRadioButton) e.getSource();
-				if (radioButton == cardPaymentRadioButton)
+				if (radioButton == cardRadioButton)
 					cardPaymentPanel.setVisible(true);
 				else
 					cardPaymentPanel.setVisible(false);
 			}
 			
 		};
-		cardPaymentRadioButton.addActionListener(radioButtonListener);
+		cardRadioButton.addActionListener(radioButtonListener);
 		internetBankRadioButton.addActionListener(radioButtonListener);
 		inoviceRadioButton.addActionListener(radioButtonListener);
 		paypalRadioButton.addActionListener(radioButtonListener);
@@ -283,13 +354,115 @@ public class NewUserFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				NewUserFrame.this.dispose();
 			}
 			
 		};
 		firstCancelButton.addActionListener(cancelButtonListener);
 		secondCancelButton.addActionListener(cancelButtonListener);
+		
+		nextButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean invalidInputFlag = false;
+				
+				if (emailTextField.getText().equals("") )
+					emailErrorLabel.setVisible(true);
+				else
+					emailErrorLabel.setVisible(false);
+				if ( passwordTextField.getText().equals("") || 
+						!passwordTextField.getText().equals(repeatPasswordTextField.getText())) {
+					passwordErrorLabel.setVisible(true);
+					invalidInputFlag = true;
+				} else
+					passwordErrorLabel.setVisible(false);
+				if ( repeatPasswordTextField.getText().equals("") || 
+						!passwordTextField.getText().equals(repeatPasswordTextField.getText())) {
+					repeatPasswordErrorLabel.setVisible(true);
+					invalidInputFlag = true;
+				} else
+					repeatPasswordErrorLabel.setVisible(false);
+				if ( adressTextField.getText().equals("") )
+					adressErrorLabel.setVisible(true);
+				else
+					adressErrorLabel.setVisible(false);
+				if ( postalCodeTextField.getText().equals("") )
+					postalCodeErrorLabel.setVisible(true);
+				else
+					postalCodeErrorLabel.setVisible(false);
+				if ( cityTextField.getText().equals("") )
+					cityErrorLabel.setVisible(true);
+				else
+					cityErrorLabel.setVisible(false);
+				
+				for(JTextField input : accountDeliveryInputs) {
+					if (input.getText().equals(""))
+						invalidInputFlag = true;
+				}
+				if (!invalidInputFlag)
+					tabbedPane.setSelectedIndex(1);
+			}
+		});
+		
+		doneButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean invalidInputFlag = false;
+				
+				if ( buttonGroup.getSelection() == null ) {
+					invalidInputFlag = true;
+					cardErrorLabel.setVisible(true);
+					internetBankErrorLabel.setVisible(true);
+					inoviceErrorLabel.setVisible(true);
+					paypalErrorLabel.setVisible(true);
+				} else if ( 	cardRadioButton.isSelected() && (
+							cardNumberTextField.getText().equals("") ||
+							monthComboBox.getSelectedIndex() == 0 ||
+							yearComboBox.getSelectedIndex() == 0 ||
+							cvcTextField.getText().equals("") ||
+							nameTextField.getText().equals(""))) {
+					cardErrorLabel.setVisible(true);
+					internetBankErrorLabel.setVisible(false);
+					inoviceErrorLabel.setVisible(false);
+					paypalErrorLabel.setVisible(false);
+					invalidInputFlag = true;
+				} else
+					cardErrorLabel.setVisible(false);
+				
+				if ( !invalidInputFlag ) {
+					NewUserFrame.this.dispose();
+					if ( cardRadioButton.isSelected() )
+						loginFrame.createAccount();
+					else
+						loginFrame.createAccount();
+				}
+			}
+		});
+		
+		KeyAdapter enterKeyListener = new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					switch (tabbedPane.getSelectedIndex()) {
+					case 0:
+						nextButton.doClick();
+						break;
+					case 1:
+						doneButton.doClick();
+						break;
+					}
+				}
+			}
+		};
+		for (JTextField input : accountDeliveryInputs) {
+			input.addKeyListener(enterKeyListener);
+		}
+		for (JRadioButton input : paymentInputs) {
+			input.addKeyListener(enterKeyListener);
+		}
+		cardNumberTextField.addKeyListener(enterKeyListener);
+		monthComboBox.addKeyListener(enterKeyListener);
+		yearComboBox.addKeyListener(enterKeyListener);
+		cvcTextField.addKeyListener(enterKeyListener);
+		nameTextField.addKeyListener(enterKeyListener);
+		
 		
 		setVisible(true);
 	}
