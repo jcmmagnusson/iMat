@@ -2,11 +2,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.text.NumberFormat;
@@ -66,11 +67,12 @@ public class ShoppingProductDetailView extends JPanel {
 		panel_2.add(lblKg, "4, 8");
 		
 		final Dimension iconDimension = new Dimension(100, 100);
-		JLabel lblNewLabel = new JLabel(IMatDataHandler.getInstance().getImageIcon(product, iconDimension));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setSize(iconDimension);
-		lblNewLabel.setPreferredSize(iconDimension);
-		panel.add(lblNewLabel, BorderLayout.WEST);
+		JLabel iconLabel = new ProductIconView(product);
+		iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		iconLabel.setSize(iconDimension);
+		iconLabel.setPreferredSize(iconDimension);
+		iconLabel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		panel.add(iconLabel, BorderLayout.WEST);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
