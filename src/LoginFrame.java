@@ -35,7 +35,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 public class LoginFrame extends JFrame {
 
-  private JPanel contentPane;
+	private JPanel contentPane;
 	private JPasswordField passwordTextField;
 	private NewUserFrame newUserFrame;
 
@@ -165,11 +165,7 @@ public class LoginFrame extends JFrame {
 		KeyAdapter loginKeyPresses = new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				JComponent source = (JComponent) e.getSource();
-				if(e.getKeyCode() == KeyEvent.VK_TAB) {
-					//source.transferFocus();
-					//e.consume();
-				} else if (e.getKeyCode() == KeyEvent.VK_ENTER)
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
 					loginButton.doClick();
 			}
 		};
