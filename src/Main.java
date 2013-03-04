@@ -34,6 +34,7 @@ public class Main {
 		mainView = new MainView();
 		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainView.pack();
+		mainView.setResizable(false);
 		mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);
 	}
