@@ -39,9 +39,7 @@ public class ShoppingProductView extends JPanel {
 	
 	public static final Color FAVORITE_INACTIVE_COLOR = new Color(255, 255, 0, 150);
 
-	/**
-	 * Create the panel.
-	 */
+
 	public ShoppingProductView(final Product product) {
 		this.product = product;
 		
@@ -192,7 +190,8 @@ public class ShoppingProductView extends JPanel {
 		titleLabel.setBounds(0, 124, 155, 29);
 		panel_1.add(titleLabel);
 		
-		JLabel iconLabel = new JLabel(""){
+		@SuppressWarnings("serial")
+		JLabel iconLabel = new JLabel(){
 			@Override
 			public void paintComponent(Graphics g) {
 				// draw image of product
