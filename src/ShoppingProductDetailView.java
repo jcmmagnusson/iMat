@@ -18,6 +18,7 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 
 
+@SuppressWarnings("serial")
 public class ShoppingProductDetailView extends JPanel {
 	public ShoppingProductDetailView(final Product product) {
 		setLayout(new BorderLayout(0, 0));
