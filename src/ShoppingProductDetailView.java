@@ -66,13 +66,12 @@ public class ShoppingProductDetailView extends JPanel {
 		JLabel lblKg = new JLabel("0 kg");
 		panel_2.add(lblKg, "4, 8");
 		
+		ProductIconView productIconView = new ProductIconView(product);
 		final Dimension iconDimension = new Dimension(100, 100);
-		JLabel iconLabel = new ProductIconView(product);
-		iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		iconLabel.setSize(iconDimension);
-		iconLabel.setPreferredSize(iconDimension);
-		iconLabel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
-		panel.add(iconLabel, BorderLayout.WEST);
+		productIconView.setSize(iconDimension);
+		productIconView.setPreferredSize(iconDimension);
+		productIconView.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		panel.add(productIconView, BorderLayout.WEST);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
