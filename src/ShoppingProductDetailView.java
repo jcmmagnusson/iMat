@@ -105,7 +105,7 @@ public class ShoppingProductDetailView extends JPanel {
 		panel_4.setLayout(new BorderLayout(0, 0));
 		panel_4.setBorder(BorderFactory.createTitledBorder("Inneh\u00E5llsf\u00F6rteckning"));
 		
-		JLabel lblLoremIpsumDolor = new JLabel("<html><body style=\"width:200px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin magna id tellus auctor a mollis felis fermentum. Mauris nec nunc nisl. Etiam eget est eu augue rutrum iaculis id ut odio. Nunc sit amet justo purus, sed vehicula elit. Pellentesque auctor tellus lacus, quis lacinia eros. Nam vitae nulla sed enim auctor sagittis. Nam id tempus lacus. Morbi scelerisque hendrerit erat non auctor.");
+		JLabel lblLoremIpsumDolor = new JLabel("<html><body style=\"width:"+getPreferredSize().width+"px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin magna id tellus auctor a mollis felis fermentum. Mauris nec nunc nisl. Etiam eget est eu augue rutrum iaculis id ut odio. Nunc sit amet justo purus, sed vehicula elit. Pellentesque auctor tellus lacus, quis lacinia eros. Nam vitae nulla sed enim auctor sagittis. Nam id tempus lacus. Morbi scelerisque hendrerit erat non auctor.");
 		panel_4.add(lblLoremIpsumDolor, BorderLayout.CENTER);
 	}
 
