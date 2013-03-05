@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
@@ -74,6 +75,7 @@ public class ShoppingProductView extends JPanel {
 		panel.setLayout(null);
 		
 		numberOfItemsSpinner = new JSpinner();
+		numberOfItemsSpinner.setModel(new SpinnerNumberModel(1, 1, 99, 1));
 		numberOfItemsSpinner.setBounds(6, 165, 45, 28);
 		panel.add(numberOfItemsSpinner);
 		
