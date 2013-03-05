@@ -272,10 +272,9 @@ public class MainView extends JFrame {
 		panel_4.setLayout(new BorderLayout(0, 0));
 		panel_4.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setOpaque(false);
-		panel_5.setBackground(UIManager.getColor("List.background"));
-		panel_5.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		ProductsGridView panel_5 = new ProductsGridView("Startsida");
+		for(int i=1; i<=4*5; i++)
+			panel_5.addProduct(IMatDataHandler.getInstance().getProduct(i));
 
 		JScrollPane scrollPane_2 = new JScrollPane(panel_5);
 		
@@ -305,17 +304,8 @@ public class MainView extends JFrame {
 		panel_24.add(lblStartsida);
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
-		panel_5.setLayout(new GridLayout(0, 4));
 		scrollPane_2.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*3+10+panel_24.getPreferredSize().height+5));
 		panel_4.add(scrollPane_2, BorderLayout.CENTER);
-		
-		for(int i=1; i<=4*5; i++){
-			Product product = IMatDataHandler.getInstance().getProduct(i);
-			JPanel p = new JPanel();
-			p.setOpaque(false);
-			p.add(new ShoppingProductView(product));
-			panel_5.add(p);
-		}
 		
 		JPanel panel_28 = new JPanel();
 		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
