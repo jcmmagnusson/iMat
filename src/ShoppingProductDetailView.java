@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
+import javax.swing.JButton;
+import java.awt.FlowLayout;
+import javax.swing.JSpinner;
 
 
 @SuppressWarnings("serial")
@@ -37,10 +40,12 @@ public class ShoppingProductDetailView extends JPanel {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(51dlu;default)"),},
+				ColumnSpec.decode("max(51dlu;default):grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(10dlu;default)"),},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -48,34 +53,63 @@ public class ShoppingProductDetailView extends JPanel {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
+		JPanel panel_7 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_7.getLayout();
+		flowLayout_1.setAlignment(FlowLayout.LEFT);
+		panel_2.add(panel_7, "2, 2, 3, 1, fill, fill");
+		
 		JLabel lblProdukt_3 = new JLabel(product.getName());
+		panel_7.add(lblProdukt_3);
 		lblProdukt_3.setFont(new Font("Lucida Grande", Font.BOLD, 24));
-		panel_2.add(lblProdukt_3, "2, 2, 3, 1, fill, default");
+		
+		JPanel panel_6 = new JPanel();
+		panel_2.add(panel_6, "6, 2");
+		panel_6.setPreferredSize(new Dimension(20, 20));
+		panel_6.setSize(new Dimension(20, 20));
+		panel_6.setLayout(null);
+		
+		JButton button = new JButton("\u2606");
+		button.setBounds(0, 0, 20, 20);
+		panel_6.add(button);
+		button.setToolTipText("Favorisera");
+		button.setOpaque(false);
+		button.setForeground(new Color(255, 210, 0, 255));
 		
 		JLabel lblPris = new JLabel("Pris:");
 		panel_2.add(lblPris, "2, 4");
 		
 		JLabel lblKr = new JLabel(NumberFormat.getInstance().format(product.getPrice())+" "+product.getUnit());
-		panel_2.add(lblKr, "4, 4");
+		panel_2.add(lblKr, "4, 4, 3, 1");
 		
 		JLabel lblTillverkare = new JLabel("Tillverkare:");
 		panel_2.add(lblTillverkare, "2, 6");
 		
 		JLabel lblFretagAb = new JLabel("F\u00F6retag AB");
-		panel_2.add(lblFretagAb, "4, 6");
+		panel_2.add(lblFretagAb, "4, 6, 3, 1");
 		
 		JLabel lblVolym = new JLabel("Volym:");
 		panel_2.add(lblVolym, "2, 8");
 		
 		JLabel lblKg = new JLabel("0 kg");
-		panel_2.add(lblKg, "4, 8");
+		panel_2.add(lblKg, "4, 8, 3, 1");
 		
 		ProductIconView productIconView = new ProductIconView(product);
-		final Dimension iconDimension = new Dimension(100, 100);
+		/*final Dimension iconDimension = new Dimension(100, 100);
 		productIconView.setSize(iconDimension);
 		productIconView.setPreferredSize(iconDimension);
-		productIconView.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		productIconView.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));*/
 		panel.add(productIconView, BorderLayout.WEST);
+		
+		JPanel panel_5 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_5.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
+		panel.add(panel_5, BorderLayout.SOUTH);
+		
+		JSpinner spinner = new JSpinner();
+		panel_5.add(spinner);
+		
+		JButton btnNewButton = new JButton("L\u00E4gg till");
+		panel_5.add(btnNewButton);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
