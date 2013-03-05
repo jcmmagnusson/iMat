@@ -34,6 +34,8 @@ public class ShoppingProductView extends JPanel {
 	
 	private Product product;
 	
+	private JSpinner numberOfItemsSpinner;
+	
 	public static final String FAVORITE_STAR_CHARACTER_FILLED = "\u2605";
 	public static final String FAVORITE_STAR_CHARACTER_HOLLOW = "\u2606";
 	
@@ -50,13 +52,28 @@ public class ShoppingProductView extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
 		JButton addButton = new JButton("L\u00E4gg till");
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShoppingItem productShoppingItem = null;
+				for(ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()){
+					if(shoppingItem.getProduct().equals(product)){
+						shoppingItem.setAmount(shoppingItem.getAmount() + Double.parseDouble(numberOfItemsSpinner.getValue().toString()));
+						productShoppingItem = shoppingItem;
+						break;
+					}
+				}
+				
+				if(productShoppingItem==null)
+					IMatDataHandler.getInstance().getShoppingCart().addProduct(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString()));
+			}
+		});
 		add(addButton, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JSpinner numberOfItemsSpinner = new JSpinner();
+		numberOfItemsSpinner = new JSpinner();
 		numberOfItemsSpinner.setBounds(6, 165, 45, 28);
 		panel.add(numberOfItemsSpinner);
 		
@@ -99,7 +116,7 @@ public class ShoppingProductView extends JPanel {
 				JDialog dialog = new JDialog(Main.getMainFrame());
 				dialog.setTitle("Detailjer");
 				dialog.setModal(true);
-				dialog.add(new ShoppingProductDetailView(product));
+				dialog.getContentPane().add(new ShoppingProductDetailView(product));
 				dialog.pack();
 				dialog.setLocationRelativeTo(Main.getMainFrame());
 				dialog.setVisible(true);
