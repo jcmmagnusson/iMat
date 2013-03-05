@@ -30,6 +30,8 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.ListSelectionModel;
 import java.awt.Rectangle;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class MainView extends JFrame {
 	
@@ -99,6 +101,13 @@ public class MainView extends JFrame {
 			    }
 			}
 		};
+		txtSk.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent event) {
+				JTextField field = (JTextField)event.getSource();
+				field.selectAll();
+			}
+		});
 		panel_25.add(txtSk);
 		txtSk.setColumns(15);
 		
