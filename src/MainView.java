@@ -36,6 +36,8 @@ import java.util.List;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MainView extends JFrame {
 	
@@ -109,6 +111,31 @@ public class MainView extends JFrame {
 			    }
 			}
 		};
+		txtSk.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				final JTextField field = (JTextField)e.getSource();
+				final String searchText = field.getText();
+				
+				new Thread(new Runnable(){
+					public void run(){
+						// add a short delay to reduce lag
+						try{
+							Thread.currentThread().sleep(50);
+						}catch(InterruptedException e){}
+						
+						// perform search only if search text has not been changed
+						if(field.getText().equals(searchText)){
+							List<Product> matchingProducts = IMatDataHandler.getInstance().findProducts(searchText);
+							ProductsGridView gridView = new ProductsGridView("S\u00F6kresultat");
+							for(Product product : matchingProducts)
+								gridView.addProduct(product);
+							setCenterView(gridView);
+						}
+					}
+				}).start();
+			}
+		});
 		txtSk.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent event) {
