@@ -29,6 +29,7 @@ import java.awt.Insets;
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.ListSelectionModel;
+import java.awt.Rectangle;
 
 public class MainView extends JFrame {
 	
@@ -43,37 +44,26 @@ public class MainView extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_2 = new JPanel();
-		panel_1.add(panel_2, BorderLayout.WEST);
+		JPanel panel_30 = new JPanel();
+		panel.add(panel_30, BorderLayout.SOUTH);
+		panel_30.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_31 = new JPanel();
+		panel_30.add(panel_31, BorderLayout.WEST);
 		
 		JLabel lblImat = new JLabel("<html><font color=\"#33CC33\">i</font>Mat");
+		panel_31.add(lblImat);
+		lblImat.setBounds(new Rectangle(0, 0, 100, 50));
 		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 50));
-		panel_2.add(lblImat);
 		
-		Component rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
-		panel_2.add(rigidArea_4);
+		JButton btnFavoriter = new JButton("Favoriter");
+		panel_31.add(btnFavoriter);
 		
-		JPanel panel_23 = new JPanel();
-		panel_23.setSize(new Dimension(74, 40));
-		panel_23.setPreferredSize(new Dimension(74, 40));
-		panel_2.add(panel_23);
-		panel_23.setLayout(null);
-		
-		JButton button = new JButton("\u21FD");
-		button.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		button.setBounds(6, 5, 29, 29);
-		panel_23.add(button);
-		
-		JButton button_1 = new JButton("\u21FE");
-		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		button_1.setBounds(39, 5, 29, 29);
-		panel_23.add(button_1);
+		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga kassar");
+		panel_31.add(btnFrdigaKassar);
 		
 		JPanel panel_3 = new JPanel();
-		panel_1.add(panel_3, BorderLayout.EAST);
-		
-		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 60));
-		panel_3.add(rigidArea_2);
+		panel_30.add(panel_3, BorderLayout.EAST);
 		
 		JPanel panel_26 = new JPanel();
 		panel_3.add(panel_26);
@@ -84,14 +74,20 @@ public class MainView extends JFrame {
 		JPanel panel_27 = new JPanel();
 		panel_3.add(panel_27);
 		
+		JButton btnTidigareKp = new JButton("Tidigare k\u00F6p");
+		panel_27.add(btnTidigareKp);
+		
 		JButton btnNewButton = new JButton("Konto");
 		panel_27.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Logga ut");
 		panel_27.add(btnNewButton_1);
 		
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 60));
+		panel_3.add(rigidArea_2);
+		
 		JPanel panel_25 = new JPanel();
-		panel_1.add(panel_25, BorderLayout.CENTER);
+		panel_30.add(panel_25, BorderLayout.CENTER);
 		
 		JTextField txtSk = new JTextField(){
 			public void paint(Graphics g){
@@ -271,24 +267,46 @@ public class MainView extends JFrame {
 		panel_5.setOpaque(false);
 		panel_5.setBackground(UIManager.getColor("List.background"));
 		panel_5.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		panel_5.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10, (ShoppingProductView.SIZE.height+10)*3+10));
 
 		JScrollPane scrollPane_2 = new JScrollPane(panel_5);
-		panel_4.add(scrollPane_2, BorderLayout.CENTER);
-		
-		for(int i=1; i<=12; i++){
-			Product p = IMatDataHandler.getInstance().getProduct(i);
-			panel_5.add(new ShoppingProductView(p));
-		}
 		
 		JPanel panel_24 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panel_24.setBackground(UIManager.getColor("List.background"));
 		scrollPane_2.setColumnHeaderView(panel_24);
 		
+		JPanel panel_23 = new JPanel();
+		panel_23.setOpaque(false);
+		panel_24.add(panel_23);
+		panel_23.setSize(new Dimension(74, 40));
+		panel_23.setPreferredSize(new Dimension(74, 40));
+		panel_23.setLayout(null);
+		
+		JButton button = new JButton("\u21FD");
+		button.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		button.setBounds(6, 5, 29, 29);
+		panel_23.add(button);
+		
+		JButton button_1 = new JButton("\u21FE");
+		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		button_1.setBounds(39, 5, 29, 29);
+		panel_23.add(button_1);
+		
 		JLabel lblStartsida = new JLabel("Startsida");
 		lblStartsida.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		panel_24.add(lblStartsida);
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+		
+		panel_5.setLayout(new GridLayout(0, 4));
+		scrollPane_2.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*3+10+panel_24.getPreferredSize().height+5));
+		panel_4.add(scrollPane_2, BorderLayout.CENTER);
+		
+		for(int i=1; i<=12; i++){
+			Product product = IMatDataHandler.getInstance().getProduct(i);
+			JPanel p = new JPanel();
+			p.setOpaque(false);
+			p.add(new ShoppingProductView(product));
+			panel_5.add(p);
+		}
 		
 		JPanel panel_28 = new JPanel();
 		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
@@ -299,7 +317,7 @@ public class MainView extends JFrame {
 		panel_28.add(new JScrollPane(list));
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Favoriter", "F\u00E4rdiga kassar", "Tidigare k\u00F6p", " ", "S\u00F6tsaker", "Dryck >", " - Varma", " - Kalla", "Mejeri", "K\u00F6tt", "Fisk", "Br\u00F6d", "Skafferi >", " - Potatis & ris", " - Pasta", " - Mj\u00F6l, socker & salt", " - Kryddor", "Frukt >", " - Citrusfrukter", " - Exotiska frukter", " - Meloner", " - B\u00E4r", " - Stenfrukter", "Gr\u00F6nsaker >", " - Baljv\u00E4xter", " - Gr\u00F6nsaksfrukter", " - K\u00E5l", " - Rotfrukter", " - N\u00F6tter & fr\u00F6n"};
+			String[] values = new String[] {"S\u00F6tsaker", "Dryck >", " - Varma", " - Kalla", "Mejeri", "K\u00F6tt", "Fisk", "Br\u00F6d", "Skafferi >", " - Potatis & ris", " - Pasta", " - Mj\u00F6l, socker & salt", " - Kryddor", "Frukt >", " - Citrusfrukter", " - Exotiska frukter", " - Meloner", " - B\u00E4r", " - Stenfrukter", "Gr\u00F6nsaker >", " - Baljv\u00E4xter", " - Gr\u00F6nsaksfrukter", " - K\u00E5l", " - Rotfrukter", " - N\u00F6tter & fr\u00F6n"};
 			public int getSize() {
 				return values.length;
 			}
