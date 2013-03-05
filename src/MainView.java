@@ -32,6 +32,10 @@ import javax.swing.ListSelectionModel;
 import java.awt.Rectangle;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
+
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class MainView extends JFrame {
 	
@@ -313,6 +317,18 @@ public class MainView extends JFrame {
 		panel_28.setLayout(new BorderLayout(0, 0));
 		
 		JList list = new JList();
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent event) {
+				JList list = (JList)event.getSource();
+				int selectedIndex = list.getSelectedIndex();
+				
+				List<Product> products = IMatDataHandler.getInstance().getProducts(ProductCategory.BERRY);
+				ProductsGridView grid = new ProductsGridView(list.getSelectedValue().toString());
+				for(Product product : products)
+					grid.addProduct(product);
+				setCenterView(grid);
+			}
+		});
 		JScrollPane scrollPane = new JScrollPane(list);
 		panel_28.add(scrollPane);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -340,7 +356,7 @@ public class MainView extends JFrame {
 	}
 	
 	public void setCenterView(ProductsGridView gridView){
-		centerViewScrollPane.setViewportView(homeView);
+		centerViewScrollPane.setViewportView(gridView);
 	}
 
 }
