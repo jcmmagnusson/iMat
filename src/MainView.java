@@ -314,7 +314,8 @@ public class MainView extends JFrame {
 		panel_28.setLayout(new BorderLayout(0, 0));
 		
 		JList list = new JList();
-		panel_28.add(new JScrollPane(list));
+		JScrollPane scrollPane = new JScrollPane(list);
+		panel_28.add(scrollPane);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(new AbstractListModel() {
 			String[] values = new String[] {"S\u00F6tsaker", "Dryck >", " - Varma", " - Kalla", "Mejeri", "K\u00F6tt", "Fisk", "Br\u00F6d", "Skafferi >", " - Potatis & ris", " - Pasta", " - Mj\u00F6l, socker & salt", " - Kryddor", "Frukt >", " - Citrusfrukter", " - Exotiska frukter", " - Meloner", " - B\u00E4r", " - Stenfrukter", "Gr\u00F6nsaker >", " - Baljv\u00E4xter", " - Gr\u00F6nsaksfrukter", " - K\u00E5l", " - Rotfrukter", " - N\u00F6tter & fr\u00F6n"};
@@ -325,6 +326,10 @@ public class MainView extends JFrame {
 				return values[index];
 			}
 		});
+		
+		JLabel lblKategorier = new JLabel("Kategorier");
+		lblKategorier.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		scrollPane.setColumnHeaderView(lblKategorier);
 		
 	}
 
