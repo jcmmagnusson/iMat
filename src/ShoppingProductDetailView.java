@@ -94,10 +94,12 @@ public class ShoppingProductDetailView extends JPanel {
 		panel_2.add(lblKg, "4, 8, 3, 1");
 		
 		ProductIconView productIconView = new ProductIconView(product);
-		/*final Dimension iconDimension = new Dimension(100, 100);
-		productIconView.setSize(iconDimension);
-		productIconView.setPreferredSize(iconDimension);
-		productIconView.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));*/
+		if(this!=null){ // workaround for WindowBuilder
+			final Dimension iconDimension = new Dimension(100, 100);
+			productIconView.setSize(iconDimension);
+			productIconView.setPreferredSize(iconDimension);
+			productIconView.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		}
 		panel.add(productIconView, BorderLayout.WEST);
 		
 		JPanel panel_5 = new JPanel();
