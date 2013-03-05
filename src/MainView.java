@@ -35,6 +35,10 @@ import java.awt.event.FocusEvent;
 
 public class MainView extends JFrame {
 	
+	private ProductsGridView homeView = new ProductsGridView("Startsida");
+	
+	private JScrollPane centerViewScrollPane;
+	
 	public MainView() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -271,16 +275,12 @@ public class MainView extends JFrame {
 		getContentPane().add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		panel_4.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-		
-		ProductsGridView panel_5 = new ProductsGridView("Startsida");
-		for(int i=1; i<=4*5; i++)
-			panel_5.addProduct(IMatDataHandler.getInstance().getProduct(i));
 
-		JScrollPane scrollPane_2 = new JScrollPane(panel_5);
+		centerViewScrollPane = new JScrollPane();
 		
 		JPanel panel_24 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panel_24.setBackground(UIManager.getColor("List.background"));
-		scrollPane_2.setColumnHeaderView(panel_24);
+		centerViewScrollPane.setColumnHeaderView(panel_24);
 		
 		JPanel panel_23 = new JPanel();
 		panel_23.setOpaque(false);
@@ -304,8 +304,8 @@ public class MainView extends JFrame {
 		panel_24.add(lblStartsida);
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
-		scrollPane_2.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*3+10+panel_24.getPreferredSize().height+5));
-		panel_4.add(scrollPane_2, BorderLayout.CENTER);
+		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*3+10+panel_24.getPreferredSize().height+5));
+		panel_4.add(centerViewScrollPane, BorderLayout.CENTER);
 		
 		JPanel panel_28 = new JPanel();
 		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
@@ -330,6 +330,17 @@ public class MainView extends JFrame {
 		lblKategorier.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 		scrollPane.setColumnHeaderView(lblKategorier);
 		
+
+		// set up sub views
+		for(int i=1; i<=4*5; i++)
+			homeView.addProduct(IMatDataHandler.getInstance().getProduct(i));
+		
+		setCenterView(homeView);
+		
+	}
+	
+	public void setCenterView(ProductsGridView gridView){
+		centerViewScrollPane.setViewportView(homeView);
 	}
 
 }
