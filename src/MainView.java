@@ -300,7 +300,7 @@ public class MainView extends JFrame {
 		scrollPane_2.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*3+10+panel_24.getPreferredSize().height+5));
 		panel_4.add(scrollPane_2, BorderLayout.CENTER);
 		
-		for(int i=1; i<=12; i++){
+		for(int i=1; i<=4*5; i++){
 			Product product = IMatDataHandler.getInstance().getProduct(i);
 			JPanel p = new JPanel();
 			p.setOpaque(false);
