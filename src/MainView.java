@@ -322,7 +322,7 @@ public class MainView extends JFrame {
 				JList list = (JList)event.getSource();
 				int selectedIndex = list.getSelectedIndex();
 				
-				List<Product> products = IMatDataHandler.getInstance().getProducts(ProductCategory.BERRY);
+				List<Product> products = IMatDataHandler.getInstance().getProducts(getProductCategoryForString(list.getSelectedValue().toString()));
 				ProductsGridView grid = new ProductsGridView(list.getSelectedValue().toString());
 				for(Product product : products)
 					grid.addProduct(product);
@@ -357,6 +357,61 @@ public class MainView extends JFrame {
 	
 	public void setCenterView(ProductsGridView gridView){
 		centerViewScrollPane.setViewportView(gridView);
+	}
+	
+	public ProductCategory getProductCategoryForString(String string){
+		if(string.contains("S\u00F6tsaker"))
+			return ProductCategory.SWEET;
+		
+		else if(string.contains("Varma"))
+			return ProductCategory.HOT_DRINKS;
+		else if(string.contains("Kalla"))
+			return ProductCategory.COLD_DRINKS;
+		
+		else if(string.contains("Mejeri"))
+			return ProductCategory.DAIRIES;
+		
+		else if(string.contains("K\u00F6tt"))
+			return ProductCategory.MEAT;
+		
+		else if(string.contains("Fisk"))
+			return ProductCategory.FISH;
+		
+		else if(string.contains("Br\u00F6d"))
+			return ProductCategory.BREAD;
+		
+		else if(string.contains("Potatis & ris"))
+			return ProductCategory.POTATO_RICE;
+		else if(string.contains("Pasta"))
+			return ProductCategory.PASTA;
+		else if(string.contains("Mj\u00F6l, socker & salt"))
+			return ProductCategory.FLOUR_SUGAR_SALT;
+		else if(string.contains("Kryddor"))
+			return ProductCategory.HERB;
+		
+		else if(string.contains("Citrusfrukter"))
+			return ProductCategory.CITRUS_FRUIT;
+		else if(string.contains("Exotiska frukter"))
+			return ProductCategory.EXOTIC_FRUIT;
+		else if(string.contains("Meloner"))
+			return ProductCategory.MELONS;
+		else if(string.contains("B\u00E4r"))
+			return ProductCategory.BERRY;
+		else if(string.contains("Stenfrukter"))
+			return ProductCategory.FRUIT;
+		
+		else if(string.contains("Baljv\u00E4xter"))
+			return ProductCategory.POD;
+		else if(string.contains("Gr\u00F6nsaksfrukter"))
+			return ProductCategory.VEGETABLE_FRUIT;
+		else if(string.contains("K\u00E5l"))
+			return ProductCategory.CABBAGE;
+		else if(string.contains("Rotfrukter"))
+			return ProductCategory.ROOT_VEGETABLE;
+		else if(string.contains("N\u00F6tter & fr\u00F6n"))
+			return ProductCategory.NUTS_AND_SEEDS;
+			
+		return null;
 	}
 
 }
