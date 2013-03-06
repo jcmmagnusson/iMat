@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import se.chalmers.ait.dat215.project.*;
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -32,6 +33,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.Rectangle;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.text.NumberFormat;
 import java.util.List;
 
 import javax.swing.event.ListSelectionListener;
@@ -41,13 +43,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MainView extends JFrame {
+public class MainView extends JFrame implements ShoppingCartListener {
 	
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
 	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
 	
 	private JScrollPane centerViewScrollPane;
 	private JLabel centerViewTitleLabel;
+	
+	private JLabel lblKr;
+	private JLabel lblSt;
 	
 	public MainView() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -241,7 +246,7 @@ public class MainView extends JFrame {
 		lblTotalt.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		panel_14.add(lblTotalt);
 		
-		JLabel lblKr = new JLabel("0 kr");
+		lblKr = new JLabel("0 kr");
 		panel_14.add(lblKr);
 		
 		JPanel panel_15 = new JPanel();
@@ -253,7 +258,7 @@ public class MainView extends JFrame {
 		lblAntalVaror.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		panel_15.add(lblAntalVaror);
 		
-		JLabel lblSt = new JLabel("0 st");
+		lblSt = new JLabel("0 st");
 		panel_15.add(lblSt);
 		
 		JPanel panel_16 = new JPanel();
@@ -394,6 +399,9 @@ public class MainView extends JFrame {
 		
 		setCenterView(homeView);
 		
+		IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
+		updateShoppingTotals();
+		
 	}
 	
 	public void setCenterView(ProductsGridView gridView){
@@ -462,6 +470,20 @@ public class MainView extends JFrame {
 		for(Product product : matchingProducts)
 			gridView.addProduct(product);
 		setCenterView(gridView);
+	}
+
+	@Override
+	public void shoppingCartChanged(CartEvent evt) {
+		updateShoppingTotals();
+	}
+	
+	private void updateShoppingTotals(){
+		lblKr.setText(NumberFormat.getInstance().format(IMatDataHandler.getInstance().getShoppingCart().getTotal())+" kr");
+		
+		double count = 0;
+		for(ShoppingItem item : IMatDataHandler.getInstance().getShoppingCart().getItems())
+			count += item.getAmount();
+		lblSt.setText(Integer.toString((int)count));
 	}
 
 }
