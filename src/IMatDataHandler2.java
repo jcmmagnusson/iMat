@@ -5,6 +5,9 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 
 public class IMatDataHandler2 {
 	
+	public static boolean isLoggedInAsUser = false;
+	
+	
 	public static void addProduct(Product product){
 		addProduct(product, 1);
 	}
