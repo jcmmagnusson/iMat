@@ -101,7 +101,7 @@ public class LoginFrame extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				 * Skicka email och l��sen vidare
+				 * Skicka email och lösen vidare
 				 */
 				execute_login();
 			}
@@ -123,7 +123,7 @@ public class LoginFrame extends JFrame {
 		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				 * ��ppna kontoinfof��nster
+				 * Öppna kontoinfofönster
 				 */
 				newUserFrame = new NewUserFrame(LoginFrame.this);
 			}
@@ -150,7 +150,7 @@ public class LoginFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				/*
-				 * G�� vidare till huvudf��nstret
+				 * Gå vidare till huvudfönstret
 				 */
 				execute_noUser();
 			}
@@ -170,7 +170,8 @@ public class LoginFrame extends JFrame {
 		passwordTextField.addKeyListener(loginKeyPresses);
 		emailTextField.addKeyListener(loginKeyPresses);
 		
-	}
+		pack();
+	}//end constructor
 	
 	public void createAccount() {
 		System.out.println("Creating account...");
@@ -190,4 +191,5 @@ public class LoginFrame extends JFrame {
 		INOVICE,
 		PAYPAL
 	}
+	
 }

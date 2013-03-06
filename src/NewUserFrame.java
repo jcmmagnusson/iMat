@@ -63,163 +63,190 @@ public class NewUserFrame extends JFrame {
 		contentPane.setBackground(UIManager.getColor("Panel.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("365px"),},
+			new RowSpec[] {
+				RowSpec.decode("292px"),}));
 		
 		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setEnabled(false);
-		tabbedPane.setBounds(12, 0, 365, 292);
-		contentPane.add(tabbedPane);
+		contentPane.add(tabbedPane, "2, 1, fill, fill");
 		
 		JPanel accountAndDeliveryPanel = new JPanel();
 		tabbedPane.addTab("Konto och leverans", null, accountAndDeliveryPanel, null);
-		accountAndDeliveryPanel.setLayout(null);
+		accountAndDeliveryPanel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("139px"),
+				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+				ColumnSpec.decode("7px"),
+				ColumnSpec.decode("47px"),
+				ColumnSpec.decode("117px"),
+				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+				ColumnSpec.decode("15px"),},
+			new RowSpec[] {
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("15px"),
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("19px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("19px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("19px"),
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("15px"),
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("19px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("19px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("19px"),
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("25px"),}));
 		
 		JLabel accountInfoLabel = new JLabel("<html><span style=\"text-decoration: underline;\">Kontoinformation</span>");
-		accountInfoLabel.setBounds(12, 12, 151, 15);
-		accountAndDeliveryPanel.add(accountInfoLabel);
+		accountAndDeliveryPanel.add(accountInfoLabel, "2, 2, 3, 1, fill, top");
 		
 		JLabel emailLabel = new JLabel("Epost:");
-		emailLabel.setBounds(106, 41, 45, 15);
-		accountAndDeliveryPanel.add(emailLabel);
+		accountAndDeliveryPanel.add(emailLabel, "2, 4, right, center");
 		emailLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		emailTextField = new JTextField();
-		emailTextField.setBounds(156, 39, 171, 19);
-		accountAndDeliveryPanel.add(emailTextField);
+		accountAndDeliveryPanel.add(emailTextField, "4, 4, 3, 1, fill, top");
 		emailTextField.setColumns(10);
 		
-		JLabel passwordLabel = new JLabel("L��senord:");
-		passwordLabel.setBounds(79, 68, 72, 15);
-		accountAndDeliveryPanel.add(passwordLabel);
+		JLabel passwordLabel = new JLabel("Lösenord:");
+		accountAndDeliveryPanel.add(passwordLabel, "2, 6, right, center");
 		passwordLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		passwordTextField = new JPasswordField();
-		passwordTextField.setBounds(156, 66, 171, 19);
-		accountAndDeliveryPanel.add(passwordTextField);
+		accountAndDeliveryPanel.add(passwordTextField, "4, 6, 3, 1, fill, top");
 		passwordTextField.setEchoChar('*');
 		passwordTextField.setColumns(10);
 		
 		JLabel repeatPasswordLabel = new JLabel("Lösenord igen:");
-		repeatPasswordLabel.setBounds(44, 95, 107, 15);
-		accountAndDeliveryPanel.add(repeatPasswordLabel);
+		accountAndDeliveryPanel.add(repeatPasswordLabel, "2, 8, right, center");
 		repeatPasswordLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		repeatPasswordTextField = new JPasswordField();
-		repeatPasswordTextField.setBounds(156, 93, 171, 19);
-		accountAndDeliveryPanel.add(repeatPasswordTextField);
+		accountAndDeliveryPanel.add(repeatPasswordTextField, "4, 8, 3, 1, fill, top");
 		repeatPasswordTextField.setEchoChar('*');
 		repeatPasswordTextField.setColumns(10);
 		
 		JLabel deliveryInfoLabel = new JLabel("<html><span style=\"text-decoration: underline;\">Leveransinformation</span>");
-		deliveryInfoLabel.setBounds(12, 122, 147, 15);
-		accountAndDeliveryPanel.add(deliveryInfoLabel);
+		accountAndDeliveryPanel.add(deliveryInfoLabel, "2, 10, 3, 1, left, top");
 		
 		JLabel adressLabel = new JLabel("Adress:");
-		adressLabel.setBounds(97, 149, 54, 15);
-		accountAndDeliveryPanel.add(adressLabel);
+		accountAndDeliveryPanel.add(adressLabel, "2, 12, right, center");
 		adressLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		JLabel postalCodeLabel = new JLabel("Postnummer:");
-		postalCodeLabel.setBounds(57, 176, 94, 15);
-		accountAndDeliveryPanel.add(postalCodeLabel);
+		accountAndDeliveryPanel.add(postalCodeLabel, "2, 14, right, center");
 		postalCodeLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		JLabel cityLabel = new JLabel("Stad:");
-		cityLabel.setBounds(113, 203, 38, 15);
-		accountAndDeliveryPanel.add(cityLabel);
+		accountAndDeliveryPanel.add(cityLabel, "2, 16, right, center");
 		cityLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		adressTextField = new JTextField();
-		adressTextField.setBounds(156, 147, 171, 19);
-		accountAndDeliveryPanel.add(adressTextField);
+		accountAndDeliveryPanel.add(adressTextField, "4, 12, 3, 1, fill, top");
 		adressTextField.setColumns(10);
 		
 		postalCodeTextField = new JTextField();
-		postalCodeTextField.setBounds(156, 174, 171, 19);
-		accountAndDeliveryPanel.add(postalCodeTextField);
+		accountAndDeliveryPanel.add(postalCodeTextField, "4, 14, 3, 1, fill, top");
 		postalCodeTextField.setColumns(10);
 		
 		cityTextField = new JTextField();
-		cityTextField.setBounds(156, 201, 171, 19);
-		accountAndDeliveryPanel.add(cityTextField);
+		accountAndDeliveryPanel.add(cityTextField, "4, 16, 3, 1, fill, top");
 		cityTextField.setColumns(10);
 		
 		final JButton nextButton = new JButton("Nästa");
-		nextButton.setBounds(210, 233, 117, 25);
-		accountAndDeliveryPanel.add(nextButton);
+		accountAndDeliveryPanel.add(nextButton, "6, 18, fill, top");
 		
 		final JButton firstCancelButton = new JButton("Avbryt");
-		firstCancelButton.setBounds(12, 233, 117, 25);
-		accountAndDeliveryPanel.add(firstCancelButton);
+		accountAndDeliveryPanel.add(firstCancelButton, "2, 18, fill, top");
 		
 		final JLabel emailErrorLabel = new JLabel("*");
 		emailErrorLabel.setForeground(Color.RED);
 		emailErrorLabel.setVisible(false);
-		emailErrorLabel.setBounds(333, 41, 15, 15);
-		accountAndDeliveryPanel.add(emailErrorLabel);
+		accountAndDeliveryPanel.add(emailErrorLabel, "8, 4, fill, center");
 		
 		final JLabel passwordErrorLabel = new JLabel("*");
 		passwordErrorLabel.setForeground(Color.RED);
 		passwordErrorLabel.setVisible(false);
-		passwordErrorLabel.setBounds(333, 68, 15, 15);
-		accountAndDeliveryPanel.add(passwordErrorLabel);
+		accountAndDeliveryPanel.add(passwordErrorLabel, "8, 6, fill, center");
 		
 		final JLabel repeatPasswordErrorLabel = new JLabel("*");
 		repeatPasswordErrorLabel.setForeground(Color.RED);
 		repeatPasswordErrorLabel.setVisible(false);
-		repeatPasswordErrorLabel.setBounds(333, 95, 15, 15);
-		accountAndDeliveryPanel.add(repeatPasswordErrorLabel);
+		accountAndDeliveryPanel.add(repeatPasswordErrorLabel, "8, 8, fill, center");
 		
 		final JLabel adressErrorLabel = new JLabel("*");
 		adressErrorLabel.setForeground(Color.RED);
 		adressErrorLabel.setVisible(false);
-		adressErrorLabel.setBounds(333, 149, 15, 15);
-		accountAndDeliveryPanel.add(adressErrorLabel);
+		accountAndDeliveryPanel.add(adressErrorLabel, "8, 12, fill, center");
 		
 		final JLabel postalCodeErrorLabel = new JLabel("*");
 		postalCodeErrorLabel.setForeground(Color.RED);
 		postalCodeErrorLabel.setVisible(false);
-		postalCodeErrorLabel.setBounds(333, 176, 15, 15);
-		accountAndDeliveryPanel.add(postalCodeErrorLabel);
+		accountAndDeliveryPanel.add(postalCodeErrorLabel, "8, 14, fill, center");
 		
 		final JLabel cityErrorLabel = new JLabel("*");
 		cityErrorLabel.setForeground(Color.RED);
 		cityErrorLabel.setVisible(false);
-		cityErrorLabel.setBounds(333, 203, 15, 15);
-		accountAndDeliveryPanel.add(cityErrorLabel);
+		accountAndDeliveryPanel.add(cityErrorLabel, "8, 16, fill, center");
 		
 		JPanel paymentPanel = new JPanel();
 		tabbedPane.addTab("Betalning", null, paymentPanel, null);
-		paymentPanel.setLayout(null);
+		paymentPanel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("11px"),
+				ColumnSpec.decode("46px"),
+				ColumnSpec.decode("73px"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("16px"),
+				ColumnSpec.decode("40px"),
+				ColumnSpec.decode("138px"),},
+			new RowSpec[] {
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("15px"),
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("15px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("23px"),
+				FormFactory.NARROW_LINE_GAP_ROWSPEC,
+				RowSpec.decode("23px"),
+				FormFactory.NARROW_LINE_GAP_ROWSPEC,
+				RowSpec.decode("23px"),
+				FormFactory.NARROW_LINE_GAP_ROWSPEC,
+				RowSpec.decode("23px"),
+				RowSpec.decode("25px"),
+				RowSpec.decode("25px"),
+				FormFactory.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("25px"),}));
 		
 		JLabel paymentInfoLabel = new JLabel("<html><span style=\"text-decoration: underline;\">Betalningsinformation</span>");
-		paymentInfoLabel.setBounds(12, 12, 158, 15);
-		paymentPanel.add(paymentInfoLabel);
+		paymentPanel.add(paymentInfoLabel, "2, 2, 5, 1, left, top");
 		
 		JLabel paymentOptionLabel = new JLabel("Välj betalsätt:");
 		paymentOptionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		paymentOptionLabel.setBounds(69, 39, 101, 15);
-		paymentPanel.add(paymentOptionLabel);
+		paymentPanel.add(paymentOptionLabel, "4, 4, 3, 1, left, top");
 		
 		final JRadioButton cardRadioButton = new JRadioButton("Kortbetalning");
 		buttonGroup.add(cardRadioButton);
-		cardRadioButton.setBounds(19, 62, 123, 23);
-		paymentPanel.add(cardRadioButton);
+		paymentPanel.add(cardRadioButton, "2, 6, 3, 1, right, top");
 		
 		JRadioButton internetBankRadioButton = new JRadioButton("Internetbank");
 		buttonGroup.add(internetBankRadioButton);
-		internetBankRadioButton.setBounds(19, 89, 123, 23);
-		paymentPanel.add(internetBankRadioButton);
+		paymentPanel.add(internetBankRadioButton, "2, 8, 3, 1, right, top");
 		
 		JRadioButton inoviceRadioButton = new JRadioButton("Faktura");
 		buttonGroup.add(inoviceRadioButton);
-		inoviceRadioButton.setBounds(19, 116, 123, 23);
-		paymentPanel.add(inoviceRadioButton);
+		paymentPanel.add(inoviceRadioButton, "2, 10, 3, 1, fill, top");
 		
 		JRadioButton paypalRadioButton = new JRadioButton("PayPal");
 		buttonGroup.add(paypalRadioButton);
-		paypalRadioButton.setBounds(19, 143, 123, 23);
-		paymentPanel.add(paypalRadioButton);
+		paymentPanel.add(paypalRadioButton, "2, 12, 3, 1, fill, top");
 		
 		JButton previousButton = new JButton("Föregående");
 		previousButton.addActionListener(new ActionListener() {
@@ -227,21 +254,17 @@ public class NewUserFrame extends JFrame {
 				tabbedPane.setSelectedIndex(0);
 			}
 		});
-		previousButton.setBounds(12, 228, 130, 25);
-		paymentPanel.add(previousButton);
+		paymentPanel.add(previousButton, "2, 16, 3, 1, fill, top");
 		
 		final JButton doneButton = new JButton("Klar");
-		doneButton.setBounds(210, 228, 117, 25);
-		paymentPanel.add(doneButton);
+		paymentPanel.add(doneButton, "8, 16, fill, top");
 		
 		JButton secondCancelButton = new JButton("Avbryt");
-		secondCancelButton.setBounds(12, 191, 130, 25);
-		paymentPanel.add(secondCancelButton);
+		paymentPanel.add(secondCancelButton, "2, 14, 3, 1, fill, top");
 		
 		final JPanel cardPaymentPanel = new JPanel();
 		cardPaymentPanel.setVisible(false);
-		cardPaymentPanel.setBounds(154, 66, 194, 150);
-		paymentPanel.add(cardPaymentPanel);
+		paymentPanel.add(cardPaymentPanel, "6, 6, 3, 9, fill, fill");
 		cardPaymentPanel.setLayout(null);
 		
 		JLabel cardNumberLabel = new JLabel("Kortnummer");
@@ -295,26 +318,22 @@ public class NewUserFrame extends JFrame {
 		final JLabel cardErrorLabel = new JLabel("*");
 		cardErrorLabel.setForeground(Color.RED);
 		cardErrorLabel.setVisible(false);
-		cardErrorLabel.setBounds(12, 66, 11, 15);
-		paymentPanel.add(cardErrorLabel);
+		paymentPanel.add(cardErrorLabel, "2, 6, fill, center");
 		
 		final JLabel internetBankErrorLabel = new JLabel("*");
 		internetBankErrorLabel.setForeground(Color.RED);
 		internetBankErrorLabel.setVisible(false);
-		internetBankErrorLabel.setBounds(12, 93, 11, 15);
-		paymentPanel.add(internetBankErrorLabel);
+		paymentPanel.add(internetBankErrorLabel, "2, 8, fill, center");
 		
 		final JLabel inoviceErrorLabel = new JLabel("*");
 		inoviceErrorLabel.setForeground(Color.RED);
 		inoviceErrorLabel.setVisible(false);
-		inoviceErrorLabel.setBounds(12, 120, 11, 15);
-		paymentPanel.add(inoviceErrorLabel);
+		paymentPanel.add(inoviceErrorLabel, "2, 10, fill, center");
 		
 		final JLabel paypalErrorLabel = new JLabel("*");
 		paypalErrorLabel.setForeground(Color.RED);
 		paypalErrorLabel.setVisible(false);
-		paypalErrorLabel.setBounds(12, 147, 11, 15);
-		paymentPanel.add(paypalErrorLabel);
+		paymentPanel.add(paypalErrorLabel, "2, 12, fill, center");
 		
 		final JTextField[] accountDeliveryInputs = { 	emailTextField,
 														passwordTextField,
@@ -460,7 +479,7 @@ public class NewUserFrame extends JFrame {
 		cvcTextField.addKeyListener(actionKeyListener);
 		nameTextField.addKeyListener(actionKeyListener);
 		
-		
+		pack();
 		setVisible(true);
 	}
 }
