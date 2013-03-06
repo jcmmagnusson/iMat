@@ -634,6 +634,9 @@ public class CheckOut extends JDialog {
 	
 	
 	public void stekActionPerformed(ActionEvent e) {
+		if (counter % 4 == 3) {
+			this.dispose();
+		}
 		btnBakt.setVisible(true);
 		CardLayout cl = (CardLayout)panel_5.getLayout();
 		cl.next(panel_5);
@@ -680,22 +683,33 @@ public class CheckOut extends JDialog {
 	public void backActionPerformed(ActionEvent e) {
 		counter--;
 		CardLayout cl = (CardLayout)panel_5.getLayout();
-		cl.previous(panel_5);
 		
+		//if (counter % 4 != 0) {
+			cl.previous(panel_5);
+		//}
 		onCardSwitch();
 	}
 	
 	private void onCardSwitch() {
 		if (counter % 4 == 0) {
+			btnBakt.setVisible(false);
 			panel.setBackground(Color.GRAY);
+			panel_1.setBackground(new Color(240, 240, 240));
+			panel_2.setBackground(new Color(240, 240, 240));
+			panel_3.setBackground(new Color(240, 240, 240));
+			btnNsta.setText("Nästa");
 		}
 		if (counter % 4 == 1) {
 			panel.setBackground(Color.LIGHT_GRAY);
 			panel_1.setBackground(Color.GRAY);
+			panel_2.setBackground(new Color(240, 240, 240));
+			panel_3.setBackground(new Color(240, 240, 240));
+			btnNsta.setText("Nästa");
 		}
 		if (counter % 4 == 2) {
 			panel_1.setBackground(Color.LIGHT_GRAY);
 			panel_2.setBackground(Color.GRAY);
+			panel_3.setBackground(new Color(240, 240, 240));
 			btnNsta.setText("Betala");
 		}
 		else if (counter % 4 == 3) {
@@ -703,8 +717,13 @@ public class CheckOut extends JDialog {
 			panel_3.setBackground(Color.GRAY);
 			btnNsta.setText("Close");
 			btnBakt.setVisible(false);
-			StringBuilder stringBuilder = new StringBuilder(txtCardNumber.getText());
-			lblCardNumberCensored.setText("************" + stringBuilder.substring(12));
+			try {
+				StringBuilder stringBuilder = new StringBuilder(txtCardNumber.getText());
+				lblCardNumberCensored.setText("************" + stringBuilder.substring(12));
+			} catch (Exception e) {
+				lblCardNumberCensored.setText("");
+			}
+			
 		}
 	}
 }
