@@ -38,6 +38,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainView extends JFrame {
 	
@@ -65,6 +67,12 @@ public class MainView extends JFrame {
 		panel_30.add(panel_31, BorderLayout.WEST);
 		
 		JLabel lblImat = new JLabel("<html><font color=\"#33CC33\">i</font>Mat");
+		lblImat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				setCenterView(homeView);
+			}
+		});
 		panel_31.add(lblImat);
 		lblImat.setBounds(new Rectangle(0, 0, 100, 50));
 		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 50));
