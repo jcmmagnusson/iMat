@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -6,6 +9,9 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 public class IMatDataHandler2 {
 	
 	public static boolean isLoggedInAsUser = false;
+	
+	private static List<ProductFavoriteListener> productFavoriteListeners = new ArrayList<ProductFavoriteListener>();
+	private static List<Product> productFavoriteListenersProducts = new ArrayList<Product>();
 	
 	
 	public static void addProduct(Product product){
@@ -28,6 +34,23 @@ public class IMatDataHandler2 {
 			IMatDataHandler.getInstance().getShoppingCart().addItem(productShoppingItem);
 			IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(productShoppingItem, true);
 		}
+	}
+	
+	
+	public static void setFavorite(Product product, boolean favorite){
+		if(favorite)
+			IMatDataHandler.getInstance().addFavorite(product);
+		else
+			IMatDataHandler.getInstance().removeFavorite(product);
+		
+		int listenerIndex = productFavoriteListenersProducts.indexOf(product);
+		if(listenerIndex!=-1)
+			productFavoriteListeners.get(listenerIndex).productFavorisationChanged();
+	}
+	
+	public void addProductFavoriteListener(ProductFavoriteListener listener, Product product){
+		productFavoriteListeners.add(listener);
+		productFavoriteListenersProducts.add(product);
 	}
 
 }
