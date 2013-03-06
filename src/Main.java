@@ -32,6 +32,7 @@ public class Main {
 	    }));
 		
 		mainView = new MainView();
+		mainView.setTitle("iMat");
 		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainView.pack();
 		mainView.setResizable(false);
