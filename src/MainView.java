@@ -81,6 +81,14 @@ public class MainView extends JFrame {
 		panel_3.add(panel_26);
 		
 		JButton btnBliMedlem = new JButton("Bli medlem");
+		btnBliMedlem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				NewUserFrame newUserFrame = new NewUserFrame(null);
+				newUserFrame.pack();
+				newUserFrame.setLocationRelativeTo(Main.getMainFrame());
+				newUserFrame.setVisible(true);
+			}
+		});
 		panel_26.add(btnBliMedlem);
 		
 		JPanel panel_27 = new JPanel();
