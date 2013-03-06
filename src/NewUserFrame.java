@@ -1,7 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
@@ -33,7 +33,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 
-public class NewUserFrame extends JFrame {
+public class NewUserFrame extends JDialog {
 	
 	private JPanel contentPane;
 	
@@ -53,12 +53,12 @@ public class NewUserFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public NewUserFrame(final LoginFrame loginFrame) {
+		super(loginFrame, "Skapa konto", true);
 		setResizable(false);
-		setTitle("Skapa konto");
 		this.loginFrame = loginFrame;
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 391, 340);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("Panel.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -480,6 +480,7 @@ public class NewUserFrame extends JFrame {
 		nameTextField.addKeyListener(actionKeyListener);
 		
 		pack();
+		setLocationRelativeTo(loginFrame);
 		setVisible(true);
 	}
 }

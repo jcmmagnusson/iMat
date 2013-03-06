@@ -36,7 +36,15 @@ public class Main {
 		mainView.pack();
 		mainView.setResizable(false);
 		mainView.setLocationRelativeTo(null);
-		mainView.setVisible(true);
+		
+		LoginFrame loginFrame = new LoginFrame(mainView);
+		loginFrame.setLocationRelativeTo(null);
+		loginFrame.setVisible(true);
+		loginFrame.addWindowListener(new WindowAdapter(){
+			public void windowClosed(WindowEvent e){
+				mainView.setVisible(true);
+			}
+		});
 	}
 	
 	protected static JFrame getMainFrame(){

@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
@@ -31,7 +32,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class LoginFrame extends JFrame {
+public class LoginFrame extends JDialog {
 
 	private JPanel contentPane;
 	private JPasswordField passwordTextField;
@@ -40,10 +41,10 @@ public class LoginFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginFrame() {
-		setTitle("Välkommen!");
+	public LoginFrame(JFrame parentFrame) {
+		super(parentFrame, "Välkommen!", true);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 571, 314);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("Panel.background"));
@@ -174,15 +175,14 @@ public class LoginFrame extends JFrame {
 	}//end constructor
 	
 	public void createAccount() {
-		System.out.println("Creating account...");
 	}
 	
 	public void execute_noUser() {
-		System.out.println("Running without logging in...");
+		setVisible(false);
+		this.dispose();
 	}
 	
 	public void execute_login() {
-		System.out.println("Running with user logged in...");
 	}
 	
 	public enum PaymentMethod {
