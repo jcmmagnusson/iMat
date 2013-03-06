@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
@@ -29,6 +31,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import javax.swing.JSeparator;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.ShoppingCart;
 
 
 public class CheckOut extends JDialog {
@@ -62,6 +70,7 @@ public class CheckOut extends JDialog {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
+	private JTextField txtHoldersName;
 
 	/**
 	 * Launch the application.
@@ -215,7 +224,7 @@ public class CheckOut extends JDialog {
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "name_10081260351632");
 		
-		JPanel panel_7 = new JPanel();
+		ShoppingListView panel_7 = new ShoppingListView();
 		panel_7.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_7.setBackground(Color.WHITE);
 		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
@@ -232,6 +241,7 @@ public class CheckOut extends JDialog {
 					.addComponent(panel_7, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
 					.addContainerGap())
 		);
+		panel_7.setLayout(new BorderLayout(0, 0));
 		panel_6.setLayout(gl_panel_6);
 		
 		JPanel panel_8 = new JPanel();
@@ -267,7 +277,7 @@ public class CheckOut extends JDialog {
 		rdbtnHmtaIButik = new JRadioButton("H\u00E4mta i butik");
 		rdbtnHmtaIButik.setSelected(true);
 		
-		rdbtnNormalLeverans = new JRadioButton("Normal leverans, 1-2 dagar (+29 kr)");
+		rdbtnNormalLeverans = new JRadioButton("Normal leverans (+29 kr)");
 		
 		rdbtnExpressleveransKr = new JRadioButton("Expressleverans (+59 kr)");
 		GroupLayout gl_panel_11 = new GroupLayout(panel_11);
@@ -299,26 +309,28 @@ public class CheckOut extends JDialog {
 		
 		JLabel lblFrnamn = new JLabel("F\u00F6rnamn:");
 		
-		txtFirstName = new JTextField();
+		Customer customer = IMatDataHandler.getInstance().getCustomer();
+		
+		txtFirstName = new JTextField(customer.getFirstName());
 		txtFirstName.setColumns(10);
 		
 		JLabel lblEfternamn = new JLabel("Efternamn:");
 		
-		txtSurname = new JTextField();
+		txtSurname = new JTextField(customer.getLastName());
 		txtSurname.setColumns(10);
 		
 		JLabel lblAdress = new JLabel("Adress:");
 		
-		txtAddress = new JTextField();
+		txtAddress = new JTextField(customer.getAddress());
 		txtAddress.setColumns(10);
 		
-		txtPostalCode = new JTextField();
+		txtPostalCode = new JTextField(customer.getPostCode());
 		txtPostalCode.setColumns(10);
 		txtPostalCode.setDocument(new JTextFieldLimit(6));
 		
 		JLabel lblPostort = new JLabel("Postort:");
 		
-		txtPostTown = new JTextField();
+		txtPostTown = new JTextField(customer.getPostAddress());
 		txtPostTown.setColumns(10);
 		
 		JLabel lblPostnummer = new JLabel("Postnummer:");
@@ -327,31 +339,30 @@ public class CheckOut extends JDialog {
 			gl_panel_9.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_9.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_panel_9.createSequentialGroup()
-							.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFrnamn)
+								.addComponent(txtFirstName, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_panel_9.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panel_9.createSequentialGroup()
-									.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblFrnamn)
-										.addComponent(txtFirstName, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+									.addGap(30)
+									.addComponent(lblEfternamn)
+									.addGap(76))
+								.addGroup(Alignment.LEADING, gl_panel_9.createSequentialGroup()
 									.addGap(18)
-									.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtSurname, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblEfternamn)))
-								.addComponent(lblAdress)
-								.addComponent(txtAddress)
-								.addGroup(gl_panel_9.createSequentialGroup()
-									.addGap(44)
-									.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPostnummer)
-										.addGroup(gl_panel_9.createSequentialGroup()
-											.addComponent(txtPostalCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(18)
-											.addComponent(txtPostTown)))))
-							.addGap(16))
-						.addGroup(Alignment.TRAILING, gl_panel_9.createSequentialGroup()
-							.addComponent(lblPostort)
-							.addGap(107))))
+									.addComponent(txtSurname, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(lblAdress)
+						.addComponent(txtAddress)
+						.addGroup(gl_panel_9.createSequentialGroup()
+							.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtPostalCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblPostnummer))
+							.addGap(18)
+							.addGroup(gl_panel_9.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPostort)
+								.addComponent(txtPostTown))))
+					.addGap(16))
 		);
 		gl_panel_9.setVerticalGroup(
 			gl_panel_9.createParallelGroup(Alignment.LEADING)
@@ -370,13 +381,13 @@ public class CheckOut extends JDialog {
 					.addComponent(txtAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_9.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPostort)
-						.addComponent(lblPostnummer))
+						.addComponent(lblPostnummer)
+						.addComponent(lblPostort))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_9.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtPostTown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtPostalCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(19, Short.MAX_VALUE))
+						.addComponent(txtPostalCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtPostTown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(15, Short.MAX_VALUE))
 		);
 		panel_9.setLayout(gl_panel_9);
 		panel_8.setLayout(gl_panel_8);
@@ -394,9 +405,9 @@ public class CheckOut extends JDialog {
 			gl_panel_10.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_10.createSequentialGroup()
 					.addGap(149)
-					.addGroup(gl_panel_10.createParallelGroup(Alignment.TRAILING, false)
+					.addGroup(gl_panel_10.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panel_13, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-						.addComponent(panel_12, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+						.addComponent(panel_12, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(138, Short.MAX_VALUE))
 		);
 		gl_panel_10.setVerticalGroup(
@@ -405,13 +416,13 @@ public class CheckOut extends JDialog {
 					.addContainerGap()
 					.addComponent(panel_12, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_13, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(55, Short.MAX_VALUE))
+					.addComponent(panel_13, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		
 		JLabel lblKortnummer = new JLabel("Kortnummer:");
 		
-		txtCardNumber = new JTextField();
+		txtCardNumber = new JTextField(IMatDataHandler.getInstance().getCreditCard().getCardNumber());
 		txtCardNumber.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		txtCardNumber.setColumns(10);
 		txtCardNumber.setDocument(new JTextFieldLimit(16));
@@ -420,11 +431,13 @@ public class CheckOut extends JDialog {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		comboBox.setSelectedItem(IMatDataHandler.getInstance().getCreditCard().getValidMonth());
 		
 		JLabel label_4 = new JLabel("/");
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"12", "13", "14", "15", "16", "17", "18", "19", "20"}));
+		comboBox_1.setSelectedItem(IMatDataHandler.getInstance().getCreditCard().getValidYear());
 		
 		txtCvc = new JTextField();
 		txtCvc.setFont(new Font("Monospaced", Font.PLAIN, 11));
@@ -432,6 +445,11 @@ public class CheckOut extends JDialog {
 		txtCvc.setDocument(new JTextFieldLimit(3));
 		
 		JLabel lblCvc = new JLabel("CVC:");
+		
+		JLabel lblHoldersName = new JLabel("Holders name:");
+		
+		txtHoldersName = new JTextField(IMatDataHandler.getInstance().getCreditCard().getHoldersName());
+		txtHoldersName.setColumns(10);
 		GroupLayout gl_panel_13 = new GroupLayout(panel_13);
 		gl_panel_13.setHorizontalGroup(
 			gl_panel_13.createParallelGroup(Alignment.LEADING)
@@ -452,7 +470,9 @@ public class CheckOut extends JDialog {
 							.addGroup(gl_panel_13.createParallelGroup(Alignment.LEADING)
 								.addComponent(txtCvc, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblCvc)))
-						.addComponent(txtCardNumber))
+						.addComponent(txtCardNumber)
+						.addComponent(lblHoldersName)
+						.addComponent(txtHoldersName))
 					.addContainerGap(166, Short.MAX_VALUE))
 		);
 		gl_panel_13.setVerticalGroup(
@@ -472,7 +492,11 @@ public class CheckOut extends JDialog {
 						.addComponent(label_4)
 						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtCvc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(17, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblHoldersName)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtHoldersName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_13.setLayout(gl_panel_13);
 		
@@ -544,6 +568,7 @@ public class CheckOut extends JDialog {
 		lblTotalt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		JLabel lblKr = new JLabel("1337 kr");
+		lblKr.setText(IMatDataHandler.getInstance().getShoppingCart().getTotal() + " kr");
 		
 		JLabel lblLeverans_1 = new JLabel("Leveransadress:");
 		
@@ -726,4 +751,15 @@ public class CheckOut extends JDialog {
 			
 		}
 	}
+	
+	class CustomCellRenderer implements ListCellRenderer {
+        public Component getListCellRendererComponent
+        (JList list, Object value, int index, 
+        boolean isSelected,boolean cellHasFocus) {
+            Component component = (Component)value;
+            component.setBackground(isSelected ? new Color(91, 94, 89) : new Color(126, 130, 122));
+            component.setForeground(isSelected ? Color.white : Color.black);
+            return component;
+        }
+    }
 }
