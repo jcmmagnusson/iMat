@@ -105,7 +105,7 @@ public class LoginFrame extends JFrame {
 				/*
 				 * Skicka email och lösen vidare
 				 */
-				System.out.println(emailTextField.getText() + "\n" + passwordTextField.getText());
+				execute_login();
 			}
 		});
 		loginPanel.add(loginButton, "4, 6, right, top");
@@ -154,7 +154,7 @@ public class LoginFrame extends JFrame {
 				/*
 				 * Gå vidare till huvudfönstret
 				 */
-				System.out.println("Move on to main program...");
+				execute_noUser();
 			}
 		});
 		noLoginLabel.setForeground(Color.DARK_GRAY);
@@ -176,5 +176,20 @@ public class LoginFrame extends JFrame {
 	
 	public void createAccount() {
 		System.out.println("Creating account...");
+	}
+	
+	public void execute_noUser() {
+		System.out.println("Running without logging in...");
+	}
+	
+	public void execute_login() {
+		System.out.println("Running with user logged in...");
+	}
+	
+	public enum PaymentMethod {
+		CARD,
+		INTERNET,
+		INOVICE,
+		PAYPAL
 	}
 }
