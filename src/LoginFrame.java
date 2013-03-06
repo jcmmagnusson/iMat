@@ -26,6 +26,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.User;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
@@ -170,22 +175,16 @@ public class LoginFrame extends JFrame {
 		pack();
 	}//end constructor
 	
-	public void createAccount() {
-	}
-	
 	public void execute_noUser() {
+		IMatDataHandler2.isLoggedInAsUser = false;
 		setVisible(false);
 		this.dispose();
 	}
 	
 	public void execute_login() {
-	}
-	
-	public enum PaymentMethod {
-		CARD,
-		INTERNET,
-		INOVICE,
-		PAYPAL
+		IMatDataHandler2.isLoggedInAsUser = true;
+		setVisible(false);
+		this.dispose();
 	}
 	
 }
