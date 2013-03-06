@@ -178,7 +178,11 @@ public class MainView extends JFrame {
 		JButton btnGTillKassan = new JButton("G\u00E5 till kassan");
 		panel_7.add(btnGTillKassan, BorderLayout.EAST);
 		btnGTillKassan.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent event) {
+				CheckOut checkOut = new CheckOut();
+				//checkOut.pack();
+				checkOut.setLocationRelativeTo(Main.getMainFrame());
+				checkOut.setVisible(true);
 			}
 		});
 		
