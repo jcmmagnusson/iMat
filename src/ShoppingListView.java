@@ -42,7 +42,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		
 		
 		IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
-		reloadShoppingCart();
+		reloadShoppingCartItems();
 	}
 	
 	public void addShoppingItem(ShoppingItem shoppingItem){
@@ -79,7 +79,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		panel_21.add(rigidArea_1);
 	}
 	
-	private void reloadShoppingCart(){
+	private void reloadShoppingCartItems(){
 		listPanel.removeAll();
 		
 		List<ShoppingItem> items = IMatDataHandler.getInstance().getShoppingCart().getItems();
@@ -89,8 +89,21 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		listPanel.revalidate();
 	}
 	
+	private void updateShoppingCartAmounts(){
+		for(int i=0; i<listPanel.getComponentCount(); i++){
+			JPanel panel = (JPanel)listPanel.getComponent(i);
+			JPanel leftPanel = (JPanel)panel.getComponent(0);
+			JSpinner spinner = (JSpinner)leftPanel.getComponent(0);
+			spinner.setValue(IMatDataHandler.getInstance().getShoppingCart().getItems().get(i).getAmount());
+		}
+		
+	}
+	
 	public void shoppingCartChanged(CartEvent event){
-		reloadShoppingCart();
+		if(event.isAddEvent())
+			reloadShoppingCartItems();
+		else
+			updateShoppingCartAmounts();
 	}
 
 }
