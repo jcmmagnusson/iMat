@@ -172,7 +172,8 @@ public class LoginFrame extends JFrame {
 		passwordTextField.addKeyListener(loginKeyPresses);
 		emailTextField.addKeyListener(loginKeyPresses);
 		
-	}
+		pack();
+	}//end constructor
 	
 	public void createAccount() {
 		System.out.println("Creating account...");
@@ -192,4 +193,5 @@ public class LoginFrame extends JFrame {
 		INOVICE,
 		PAYPAL
 	}
+	
 }
