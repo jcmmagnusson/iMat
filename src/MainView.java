@@ -54,6 +54,8 @@ public class MainView extends JFrame implements ShoppingCartListener {
 	
 	private JLabel lblKr;
 	private JLabel lblSt;
+	private JButton btnTmKundvagnen;
+	private JButton btnGTillKassan;
 	
 	public MainView() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -218,7 +220,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		lblKundvagn.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		panel_7.add(lblKundvagn, BorderLayout.CENTER);
 		
-		JButton btnGTillKassan = new JButton("G\u00E5 till kassan");
+		btnGTillKassan = new JButton("G\u00E5 till kassan");
 		panel_7.add(btnGTillKassan, BorderLayout.EAST);
 		btnGTillKassan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -265,7 +267,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JPanel panel_16 = new JPanel();
 		panel_8.add(panel_16);
 		
-		JButton btnTmKundvagnen = new JButton("T\u00F6m");
+		btnTmKundvagnen = new JButton("T\u00F6m");
 		btnTmKundvagnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if(JOptionPane.showConfirmDialog(Main.getMainFrame(), "Vill du verkligen t\u00F6mma kundvagnen?", "T\u00F6ma kundvagn", JOptionPane.YES_NO_OPTION)==0)
@@ -486,6 +488,9 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		for(ShoppingItem item : IMatDataHandler.getInstance().getShoppingCart().getItems())
 			count += item.getAmount();
 		lblSt.setText(Integer.toString((int)count));
+		
+		btnGTillKassan.setEnabled(!IMatDataHandler.getInstance().getShoppingCart().getItems().isEmpty());
+		btnTmKundvagnen.setEnabled(!IMatDataHandler.getInstance().getShoppingCart().getItems().isEmpty());
 	}
 
 }
