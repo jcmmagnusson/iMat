@@ -151,6 +151,7 @@ public class MainView extends JFrame {
 			public void focusGained(FocusEvent event) {
 				JTextField field = (JTextField)event.getSource();
 				field.selectAll();
+				searchProducts(field.getText());
 			}
 		});
 		panel_25.add(txtSk);
