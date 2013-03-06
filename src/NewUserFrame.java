@@ -232,21 +232,22 @@ public class NewUserFrame extends JFrame {
 		paymentOptionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		paymentPanel.add(paymentOptionLabel, "4, 4, 3, 1, left, top");
 		
-		final JRadioButton cardRadioButton = new JRadioButton("Kortbetalning");
+		final JRadioButton cardRadioButton = new JRadioButton("Kort");
+		cardRadioButton.setHorizontalAlignment(SwingConstants.TRAILING);
 		buttonGroup.add(cardRadioButton);
-		paymentPanel.add(cardRadioButton, "2, 6, 3, 1, right, top");
+		paymentPanel.add(cardRadioButton, "3, 6, 2, 1, left, top");
 		
 		JRadioButton internetBankRadioButton = new JRadioButton("Internetbank");
 		buttonGroup.add(internetBankRadioButton);
-		paymentPanel.add(internetBankRadioButton, "2, 8, 3, 1, right, top");
+		paymentPanel.add(internetBankRadioButton, "3, 8, 2, 1, left, top");
 		
 		JRadioButton inoviceRadioButton = new JRadioButton("Faktura");
 		buttonGroup.add(inoviceRadioButton);
-		paymentPanel.add(inoviceRadioButton, "2, 10, 3, 1, fill, top");
+		paymentPanel.add(inoviceRadioButton, "3, 10, 2, 1, left, top");
 		
 		JRadioButton paypalRadioButton = new JRadioButton("PayPal");
 		buttonGroup.add(paypalRadioButton);
-		paymentPanel.add(paypalRadioButton, "2, 12, 3, 1, fill, top");
+		paymentPanel.add(paypalRadioButton, "3, 12, 2, 1, left, top");
 		
 		JButton previousButton = new JButton("Föregående");
 		previousButton.addActionListener(new ActionListener() {
