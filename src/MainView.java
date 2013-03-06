@@ -134,14 +134,16 @@ public class MainView extends JFrame {
 						
 						// perform search only if search text has not been changed
 						if(field.getText().equals(searchText)){
-							List<Product> matchingProducts = IMatDataHandler.getInstance().findProducts(searchText);
-							ProductsGridView gridView = new ProductsGridView("S\u00F6kresultat");
-							for(Product product : matchingProducts)
-								gridView.addProduct(product);
-							setCenterView(gridView);
+							searchProducts(searchText);
 						}
 					}
 				}).start();
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)
+					searchProducts(((JTextField)e.getSource()).getText());
 			}
 		});
 		txtSk.addFocusListener(new FocusAdapter() {
@@ -416,6 +418,14 @@ public class MainView extends JFrame {
 			return ProductCategory.NUTS_AND_SEEDS;
 			
 		return null;
+	}
+	
+	private void searchProducts(String searchText){
+		List<Product> matchingProducts = IMatDataHandler.getInstance().findProducts(searchText);
+		ProductsGridView gridView = new ProductsGridView("S\u00F6kresultat");
+		for(Product product : matchingProducts)
+			gridView.addProduct(product);
+		setCenterView(gridView);
 	}
 
 }
