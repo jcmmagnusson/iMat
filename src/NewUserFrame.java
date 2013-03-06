@@ -32,6 +32,10 @@ import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+import se.chalmers.ait.dat215.project.CreditCard;
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.User;
 
 public class NewUserFrame extends JDialog {
 	
@@ -46,6 +50,8 @@ public class NewUserFrame extends JDialog {
 	private JTextField cityTextField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField cardNumberTextField;
+	private final JComboBox monthComboBox;
+	private final JComboBox yearComboBox;
 	private JTextField cvcTextField;
 	private JTextField nameTextField;
 
@@ -285,7 +291,7 @@ public class NewUserFrame extends JDialog {
 		cvcLabel.setBounds(148, 53, 34, 15);
 		cardPaymentPanel.add(cvcLabel);
 		
-		final JComboBox monthComboBox = new JComboBox();
+		monthComboBox = new JComboBox();
 		monthComboBox.setModel(new DefaultComboBoxModel(new String[] {"m", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
 		monthComboBox.setSelectedIndex(0);
 		monthComboBox.setBounds(10, 80, 43, 24);
@@ -295,7 +301,7 @@ public class NewUserFrame extends JDialog {
 		dividerLabel.setBounds(55, 85, 11, 15);
 		cardPaymentPanel.add(dividerLabel);
 		
-		final JComboBox yearComboBox = new JComboBox();
+		yearComboBox = new JComboBox();
 		yearComboBox.setModel(new DefaultComboBoxModel(new String[] {"y", "13", "14", "15", "16", "17", "18"}));
 		yearComboBox.setSelectedIndex(0);
 		yearComboBox.setBounds(65, 80, 43, 24);
@@ -443,9 +449,9 @@ public class NewUserFrame extends JDialog {
 				if ( !invalidInputFlag ) {
 					NewUserFrame.this.dispose();
 					if ( cardRadioButton.isSelected() )
-						loginFrame.createAccount();
+						NewUserFrame.this.createAccount();
 					else
-						loginFrame.createAccount();
+						NewUserFrame.this.createAccount();
 				}
 			}
 		});
@@ -483,4 +489,29 @@ public class NewUserFrame extends JDialog {
 		setLocationRelativeTo(loginFrame);
 		setVisible(true);
 	}
+	
+	
+	
+	public void createAccount() {
+		IMatDataHandler2.isLoggedInAsUser = true;
+		IMatDataHandler handler = IMatDataHandler.getInstance();
+
+		User user = handler.getUser();
+		user.setUserName(emailTextField.getText());
+		user.setPassword(passwordTextField.getText());
+		
+		Customer customer = handler.getCustomer();
+		customer.setAddress(adressTextField.getText());
+		customer.setPostCode(postalCodeTextField.getText());
+		customer.setPostAddress(cityTextField.getText());
+		
+		CreditCard card = handler.getCreditCard();
+		card.setCardNumber(cardNumberTextField.getText());
+		card.setValidMonth(Integer.parseInt((String)monthComboBox.getSelectedItem()));
+		card.setValidYear(Integer.parseInt((String)yearComboBox.getSelectedItem()));
+		card.setVerificationCode(Integer.parseInt(cvcTextField.getText()));
+		card.setHoldersName(nameTextField.getText());
+	}
 }
+
+
