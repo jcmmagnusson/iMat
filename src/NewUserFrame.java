@@ -150,11 +150,7 @@ public class NewUserFrame extends JFrame {
 		nextButton.setBounds(210, 233, 117, 25);
 		accountAndDeliveryPanel.add(nextButton);
 		
-		JButton firstCancelButton = new JButton("Avbryt");
-		firstCancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		final JButton firstCancelButton = new JButton("Avbryt");
 		firstCancelButton.setBounds(12, 233, 117, 25);
 		accountAndDeliveryPanel.add(firstCancelButton);
 		
@@ -437,7 +433,7 @@ public class NewUserFrame extends JFrame {
 			}
 		});
 		
-		KeyAdapter enterKeyListener = new KeyAdapter() {
+		KeyAdapter actionKeyListener = new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					switch (tabbedPane.getSelectedIndex()) {
@@ -449,19 +445,22 @@ public class NewUserFrame extends JFrame {
 						break;
 					}
 				}
+				else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					firstCancelButton.doClick();
+				}
 			}
 		};
 		for (JTextField input : accountDeliveryInputs) {
-			input.addKeyListener(enterKeyListener);
+			input.addKeyListener(actionKeyListener);
 		}
 		for (JRadioButton input : paymentInputs) {
-			input.addKeyListener(enterKeyListener);
+			input.addKeyListener(actionKeyListener);
 		}
-		cardNumberTextField.addKeyListener(enterKeyListener);
-		monthComboBox.addKeyListener(enterKeyListener);
-		yearComboBox.addKeyListener(enterKeyListener);
-		cvcTextField.addKeyListener(enterKeyListener);
-		nameTextField.addKeyListener(enterKeyListener);
+		cardNumberTextField.addKeyListener(actionKeyListener);
+		monthComboBox.addKeyListener(actionKeyListener);
+		yearComboBox.addKeyListener(actionKeyListener);
+		cvcTextField.addKeyListener(actionKeyListener);
+		nameTextField.addKeyListener(actionKeyListener);
 		
 		
 		setVisible(true);
