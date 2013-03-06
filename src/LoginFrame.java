@@ -1,5 +1,3 @@
-package v1;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
