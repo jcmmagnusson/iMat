@@ -1,4 +1,5 @@
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
@@ -21,12 +22,19 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JSpinner;
 
 
 @SuppressWarnings("serial")
 public class ShoppingProductDetailView extends JPanel {
+	
+	private JDialog dialog;
+	
 	public ShoppingProductDetailView(final Product product) {
+		
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -74,6 +82,7 @@ public class ShoppingProductDetailView extends JPanel {
 		button.setToolTipText("Favorisera");
 		button.setOpaque(false);
 		button.setForeground(new Color(255, 210, 0, 255));
+		button.addKeyListener(escapeListener);
 		
 		JLabel lblPris = new JLabel("Pris:");
 		panel_2.add(lblPris, "2, 4");
@@ -108,10 +117,12 @@ public class ShoppingProductDetailView extends JPanel {
 		panel.add(panel_5, BorderLayout.SOUTH);
 		
 		JSpinner spinner = new JSpinner();
+		spinner.addKeyListener(escapeListener);
 		panel_5.add(spinner);
 		
 		JButton btnNewButton = new JButton("L\u00E4gg till");
 		panel_5.add(btnNewButton);
+		btnNewButton.addKeyListener(escapeListener);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
@@ -151,7 +162,21 @@ public class ShoppingProductDetailView extends JPanel {
 		lblLoremIpsumDolor.setRows(10);
 		lblLoremIpsumDolor.setBackground(UIManager.getColor("Label.background"));
 		lblLoremIpsumDolor.setEditable(false);
+		lblLoremIpsumDolor.setFocusable(false);
 		panel_4.add(lblLoremIpsumDolor, BorderLayout.CENTER);
 	}
+	
+	public void setPanelDialog(JDialog dialog){
+		this.dialog = dialog;
+	}
+	
+	
+	KeyAdapter escapeListener = new KeyAdapter(){
+		public void keyPressed(KeyEvent e){
+			if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+				dialog.setVisible(false);
+			}
+		}
+	};
 
 }
