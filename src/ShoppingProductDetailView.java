@@ -220,14 +220,12 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 	};
 	
 	public void productFavorisationChanged(Product productChanged){
-		if(!IMatDataHandler.getInstance().isFavorite(productChanged)){
-			// favorite product
-			IMatDataHandler.getInstance().addFavorite(productChanged);
+		if(IMatDataHandler.getInstance().isFavorite(productChanged)){
+			// make product look favorited
 			favoriteButton.setText(FAVORITE_STAR_CHARACTER_FILLED);
 			favoriteButton.setToolTipText("Ta bort favorisering");
 		}else{
-			// un-favorite product
-			IMatDataHandler.getInstance().removeFavorite(productChanged);
+			// make product look not favorited
 			favoriteButton.setText(FAVORITE_STAR_CHARACTER_HOLLOW);
 			favoriteButton.setToolTipText("Favorisera");
 		}
