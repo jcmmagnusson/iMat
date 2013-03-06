@@ -638,24 +638,8 @@ public class CheckOut extends JDialog {
 		CardLayout cl = (CardLayout)panel_5.getLayout();
 		cl.next(panel_5);
 		counter++;
-		if (counter % 4 == 0) {
-			panel.setBackground(Color.GRAY);
-		}
-		if (counter % 4 == 1) {
-			panel.setBackground(Color.LIGHT_GRAY);
-			panel_1.setBackground(Color.GRAY);
-		}
-		if (counter % 4 == 2) {
-			panel_1.setBackground(Color.LIGHT_GRAY);
-			panel_2.setBackground(Color.GRAY);
-			btnNsta.setText("Betala");
-		}
-		else if (counter % 4 == 3) {
-			panel_2.setBackground(Color.LIGHT_GRAY);
-			panel_3.setBackground(Color.GRAY);
-			btnNsta.setText("Close");
-			btnBakt.setVisible(false);
-		}
+		
+		onCardSwitch();
 		
 		lblJohan.setText(txtFirstName.getText());
 		lblMagnusson.setText(txtSurname.getText());
@@ -675,6 +659,22 @@ public class CheckOut extends JDialog {
 		}
 		
 		lblVanligLeverans.setText(deliveryMethod);
+		
+		String paymentMethod = "";
+		if (rdbtnVisa.isSelected()) {
+			paymentMethod = rdbtnVisa.getText();
+		}
+		else if (rdbtnMastercard.isSelected()) {
+			paymentMethod = rdbtnMastercard.getText();
+		}
+		else if (rdbtnInternetbank.isSelected()) {
+			paymentMethod = rdbtnInternetbank.getText();
+		}
+		else if (rdbtnPaypal.isSelected()) {
+			paymentMethod = rdbtnPaypal.getText();
+		}
+		lblVisa.setText(paymentMethod);
+		
 	}
 	
 	public void backActionPerformed(ActionEvent e) {
@@ -682,6 +682,10 @@ public class CheckOut extends JDialog {
 		CardLayout cl = (CardLayout)panel_5.getLayout();
 		cl.previous(panel_5);
 		
+		onCardSwitch();
+	}
+	
+	private void onCardSwitch() {
 		if (counter % 4 == 0) {
 			panel.setBackground(Color.GRAY);
 		}
