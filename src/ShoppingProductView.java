@@ -31,7 +31,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 
-public class ShoppingProductView extends JPanel {
+public class ShoppingProductView extends JPanel implements ProductFavoriteListener {
 	
 	private Product product;
 	
@@ -229,5 +229,11 @@ public class ShoppingProductView extends JPanel {
 		iconLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		panel_1.add(iconLabel);
 
+		
+		IMatDataHandler2.addProductFavoriteListener(this, product);
+	}
+	
+	public void productFavorisationChanged(){
+		
 	}
 }

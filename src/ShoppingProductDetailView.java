@@ -32,7 +32,7 @@ import java.awt.event.ActionEvent;
 
 
 @SuppressWarnings("serial")
-public class ShoppingProductDetailView extends JPanel {
+public class ShoppingProductDetailView extends JPanel implements ProductFavoriteListener{
 	
 	private JDialog dialog;
 	
@@ -200,6 +200,9 @@ public class ShoppingProductDetailView extends JPanel {
 		lblProdukt_2.setVerticalTextPosition(JLabel.BOTTOM);
 		lblProdukt_2.setHorizontalTextPosition(JLabel.CENTER);
 		panel_1.add(lblProdukt_2);
+		
+		
+		IMatDataHandler2.addProductFavoriteListener(this, product);
 	}
 	
 	public void setPanelDialog(JDialog dialog){
@@ -214,5 +217,9 @@ public class ShoppingProductDetailView extends JPanel {
 			}
 		}
 	};
+	
+	public void productFavorisationChanged(){
+		
+	}
 
 }

@@ -48,7 +48,7 @@ public class IMatDataHandler2 {
 			productFavoriteListeners.get(listenerIndex).productFavorisationChanged();
 	}
 	
-	public void addProductFavoriteListener(ProductFavoriteListener listener, Product product){
+	public static void addProductFavoriteListener(ProductFavoriteListener listener, Product product){
 		productFavoriteListeners.add(listener);
 		productFavoriteListenersProducts.add(product);
 	}
