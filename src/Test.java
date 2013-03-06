@@ -30,6 +30,7 @@ public class Test extends JFrame {
 				}
 			}
 		});
+		System.out.println("test");
 	}
 
 	/**
