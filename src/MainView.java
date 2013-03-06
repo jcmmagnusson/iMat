@@ -47,6 +47,7 @@ public class MainView extends JFrame {
 	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
 	
 	private JScrollPane centerViewScrollPane;
+	private JLabel centerViewTitleLabel;
 	
 	public MainView() {
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -343,9 +344,9 @@ public class MainView extends JFrame {
 		button_1.setBounds(39, 5, 29, 29);
 		panel_23.add(button_1);
 		
-		JLabel lblStartsida = new JLabel("Startsida");
-		lblStartsida.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
-		panel_24.add(lblStartsida);
+		centerViewTitleLabel = new JLabel("Startsida");
+		centerViewTitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		panel_24.add(centerViewTitleLabel);
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
 		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*3+10+panel_24.getPreferredSize().height+5));
@@ -397,6 +398,7 @@ public class MainView extends JFrame {
 	
 	public void setCenterView(ProductsGridView gridView){
 		centerViewScrollPane.setViewportView(gridView);
+		centerViewTitleLabel.setText(gridView.getTitle());
 	}
 	
 	public ProductCategory getProductCategoryForString(String string){
