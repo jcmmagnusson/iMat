@@ -118,6 +118,12 @@ public class MainView extends JFrame {
 		JButton btnNewButton_1 = new JButton("Logga ut");
 		panel_27.add(btnNewButton_1);
 		
+		if(IMatDataHandler2.isLoggedInAsUser)
+			panel_26.setVisible(false);
+		else
+			panel_27.setVisible(false);
+		
+		
 		Component rigidArea_2 = Box.createRigidArea(new Dimension(1, 60));
 		panel_3.add(rigidArea_2);
 		
