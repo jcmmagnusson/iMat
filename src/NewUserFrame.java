@@ -1,5 +1,3 @@
-package v1;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -90,7 +88,7 @@ public class NewUserFrame extends JFrame {
 		accountAndDeliveryPanel.add(emailTextField);
 		emailTextField.setColumns(10);
 		
-		JLabel passwordLabel = new JLabel("Lösenord:");
+		JLabel passwordLabel = new JLabel("L��senord:");
 		passwordLabel.setBounds(79, 68, 72, 15);
 		accountAndDeliveryPanel.add(passwordLabel);
 		passwordLabel.setHorizontalAlignment(SwingConstants.TRAILING);

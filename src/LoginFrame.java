@@ -1,5 +1,3 @@
-package v1;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -103,7 +101,7 @@ public class LoginFrame extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				 * Skicka email och lösen vidare
+				 * Skicka email och l��sen vidare
 				 */
 				execute_login();
 			}
@@ -125,7 +123,7 @@ public class LoginFrame extends JFrame {
 		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				 * Öppna kontoinfofönster
+				 * ��ppna kontoinfof��nster
 				 */
 				newUserFrame = new NewUserFrame(LoginFrame.this);
 			}
@@ -152,7 +150,7 @@ public class LoginFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				/*
-				 * Gå vidare till huvudfönstret
+				 * G�� vidare till huvudf��nstret
 				 */
 				execute_noUser();
 			}
