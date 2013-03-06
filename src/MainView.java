@@ -42,6 +42,7 @@ import java.awt.event.KeyEvent;
 public class MainView extends JFrame {
 	
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
+	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
 	
 	private JScrollPane centerViewScrollPane;
 	
@@ -69,6 +70,15 @@ public class MainView extends JFrame {
 		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 50));
 		
 		JButton btnFavoriter = new JButton("Favoriter");
+		btnFavoriter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// refresh/initialize favorites view
+				favoritesView.removeAllProducts();
+				for(Product product : IMatDataHandler.getInstance().favorites())
+					favoritesView.addProduct(product);
+				setCenterView(favoritesView);
+			}
+		});
 		panel_31.add(btnFavoriter);
 		
 		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga kassar");
