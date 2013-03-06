@@ -87,6 +87,9 @@ public class MainView extends JFrame {
 				setCenterView(favoritesView);
 			}
 		});
+		
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
+		panel_31.add(rigidArea_1);
 		panel_31.add(btnFavoriter);
 		
 		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga kassar");
@@ -104,10 +107,16 @@ public class MainView extends JFrame {
 				NewUserFrame newUserFrame = new NewUserFrame(null);
 			}
 		});
+		
+		Component rigidArea = Box.createRigidArea(new Dimension(220, 20));
+		panel_26.add(rigidArea);
 		panel_26.add(btnBliMedlem);
 		
 		JPanel panel_27 = new JPanel();
 		panel_3.add(panel_27);
+		
+		JLabel lblExamplefoobar = new JLabel("example@foo.bar");
+		panel_27.add(lblExamplefoobar);
 		
 		JButton btnTidigareKp = new JButton("Tidigare k\u00F6p");
 		panel_27.add(btnTidigareKp);
