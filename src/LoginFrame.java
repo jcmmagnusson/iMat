@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
@@ -32,7 +31,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class LoginFrame extends JDialog {
+public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordTextField;
@@ -42,9 +41,9 @@ public class LoginFrame extends JDialog {
 	 * Create the frame.
 	 */
 	public LoginFrame(JFrame parentFrame) {
-		super(parentFrame, "Välkommen!", true);
+		setTitle("iMat");
 		setResizable(false);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 571, 314);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("Panel.background"));
@@ -63,7 +62,7 @@ public class LoginFrame extends JDialog {
 				FormFactory.UNRELATED_GAP_ROWSPEC,
 				RowSpec.decode("37px"),}));
 		
-		JLabel titleLabel = new JLabel("iMat");
+		JLabel titleLabel = new JLabel("Välkommen!");
 		titleLabel.setForeground(Color.DARK_GRAY);
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
 		contentPane.add(titleLabel, "2, 2, left, fill");
@@ -79,19 +78,18 @@ public class LoginFrame extends JDialog {
 				ColumnSpec.decode("219px"),},
 			new RowSpec[] {
 				RowSpec.decode("27px"),
-				RowSpec.decode("21px"),
-				RowSpec.decode("25px"),
-				RowSpec.decode("19px"),
+				RowSpec.decode("30px"),
+				RowSpec.decode("10px"),
+				RowSpec.decode("30px"),
 				RowSpec.decode("49px"),
 				RowSpec.decode("25px"),}));
 		
 		JLabel emailLabel = new JLabel("E-post");
 		emailLabel.setForeground(Color.DARK_GRAY);
-		loginPanel.add(emailLabel, "2, 2, fill, bottom");
+		loginPanel.add(emailLabel, "2, 2, fill, center");
 		
 		final JTextField emailTextField = new JTextField();
 		emailTextField.setFont(new Font("Dialog", Font.PLAIN, 12));
-		emailTextField.setBorder(null);
 		loginPanel.add(emailTextField, "4, 2, fill, fill");
 		
 		JLabel passwordLabel = new JLabel("Lösenord");
@@ -110,13 +108,11 @@ public class LoginFrame extends JDialog {
 		loginPanel.add(loginButton, "4, 6, right, top");
 		
 		passwordTextField = new JPasswordField();
-		passwordTextField.setEchoChar('*');
-		passwordTextField.setBorder(null); //Ingen standard-border
 		loginPanel.add(passwordTextField, "4, 4, fill, fill");
 		
 		JPanel newUserPanel = new JPanel();
 		newUserPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		newUserPanel.setBackground(Color.GRAY);
+		newUserPanel.setBackground(UIManager.getColor("Panel.background"));
 		contentPane.add(newUserPanel, "4, 4, fill, fill");
 		newUserPanel.setLayout(new BorderLayout(0, 0));
 		
