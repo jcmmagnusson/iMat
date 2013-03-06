@@ -38,6 +38,9 @@ public class ShoppingProductDetailView extends JPanel {
 	
 	private JSpinner spinner;
 	
+	public static final String FAVORITE_STAR_CHARACTER_FILLED = "\u2605";
+	public static final String FAVORITE_STAR_CHARACTER_HOLLOW = "\u2606";
+	
 	public ShoppingProductDetailView(final Product product) {
 		
 		setLayout(new BorderLayout(0, 0));
@@ -81,7 +84,26 @@ public class ShoppingProductDetailView extends JPanel {
 		panel_6.setSize(new Dimension(20, 20));
 		panel_6.setLayout(null);
 		
-		JButton button = new JButton("\u2606");
+		JButton button = new JButton(FAVORITE_STAR_CHARACTER_HOLLOW);
+		if(IMatDataHandler.getInstance().isFavorite(product))
+			button.setText(FAVORITE_STAR_CHARACTER_FILLED);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event){
+				JButton button = (JButton)event.getSource();
+				
+				if(!IMatDataHandler.getInstance().isFavorite(product)){
+					// favorite product
+					IMatDataHandler.getInstance().addFavorite(product);
+					button.setText(FAVORITE_STAR_CHARACTER_FILLED);
+					button.setToolTipText("Ta bort favorisering");
+				}else{
+					// un-favorite product
+					IMatDataHandler.getInstance().removeFavorite(product);
+					button.setText(FAVORITE_STAR_CHARACTER_HOLLOW);
+					button.setToolTipText("Favorisera");
+				}
+			}
+		});
 		button.setBounds(0, 0, 20, 20);
 		panel_6.add(button);
 		button.setToolTipText("Favorisera");
