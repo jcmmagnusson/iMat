@@ -58,14 +58,18 @@ public class ShoppingProductView extends JPanel {
 				ShoppingItem productShoppingItem = null;
 				for(ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()){
 					if(shoppingItem.getProduct().equals(product)){
-						shoppingItem.setAmount(shoppingItem.getAmount() + Double.parseDouble(numberOfItemsSpinner.getValue().toString()));
+						System.out.println(shoppingItem.getAmount());
+						IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(shoppingItem, false);
 						productShoppingItem = shoppingItem;
 						break;
 					}
 				}
 				
-				if(productShoppingItem==null)
-					IMatDataHandler.getInstance().getShoppingCart().addProduct(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString()));
+				if(productShoppingItem==null){
+					productShoppingItem = new ShoppingItem(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString()));
+					IMatDataHandler.getInstance().getShoppingCart().addItem(productShoppingItem);
+					IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(productShoppingItem, true);
+				}
 			}
 		});
 		add(addButton, BorderLayout.SOUTH);
