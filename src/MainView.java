@@ -223,6 +223,11 @@ public class MainView extends JFrame {
 		panel_8.add(panel_16);
 		
 		JButton btnTmKundvagnen = new JButton("T\u00F6m");
+		btnTmKundvagnen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				IMatDataHandler.getInstance().getShoppingCart().clear();
+			}
+		});
 		panel_16.add(btnTmKundvagnen);
 		
 		ShoppingListView panel_9 = new ShoppingListView();

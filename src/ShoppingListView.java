@@ -102,8 +102,12 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 	public void shoppingCartChanged(CartEvent event){
 		if(event.isAddEvent())
 			reloadShoppingCartItems();
-		else
+		else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()>0)
 			updateShoppingCartAmounts();
+		else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()==0){
+			listPanel.removeAll();
+			listPanel.revalidate();
+		}
 	}
 
 }
