@@ -97,7 +97,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 			}
 		});
 		
-		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(35, 20));
 		panel_31.add(rigidArea_1);
 		panel_31.add(btnFavoriter);
 		
@@ -117,15 +117,16 @@ public class MainView extends JFrame implements ShoppingCartListener {
 			}
 		});
 		
-		Component rigidArea = Box.createRigidArea(new Dimension(220, 20));
+		Component rigidArea = Box.createRigidArea(new Dimension(235, 20));
 		panel_26.add(rigidArea);
 		panel_26.add(btnBliMedlem);
 		
 		JPanel panel_27 = new JPanel();
 		panel_3.add(panel_27);
 		
-		JLabel lblExamplefoobar = new JLabel("example@foo.bar");
 		panel_27.add(lblExamplefoobar);
+		Component rigidArea_4 = Box.createRigidArea(new Dimension(35, 20));
+		panel_27.add(rigidArea_4);
 		
 		JButton btnTidigareKp = new JButton("Tidigare k\u00F6p");
 		panel_27.add(btnTidigareKp);
