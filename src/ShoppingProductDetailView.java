@@ -218,7 +218,7 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 		}
 	};
 	
-	public void productFavorisationChanged(){
+	public void productFavorisationChanged(Product productChanged){
 		
 	}
 

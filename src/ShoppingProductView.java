@@ -233,7 +233,7 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 		IMatDataHandler2.addProductFavoriteListener(this, product);
 	}
 	
-	public void productFavorisationChanged(){
+	public void productFavorisationChanged(Product productChanged){
 		
 	}
 }

@@ -1,4 +1,6 @@
+import se.chalmers.ait.dat215.project.Product;
+
 
 public interface ProductFavoriteListener {	
-	public void productFavorisationChanged();
+	public void productFavorisationChanged(Product productChanged);
 }
