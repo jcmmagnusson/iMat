@@ -213,48 +213,8 @@ public class MainView extends JFrame {
 		JButton btnTmKundvagnen = new JButton("T\u00F6m");
 		panel_16.add(btnTmKundvagnen);
 		
-		JPanel panel_9 = new JPanel();
+		ShoppingListView panel_9 = new ShoppingListView();
 		panel_6.add(panel_9, BorderLayout.CENTER);
-		panel_9.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel_18 = new JPanel();
-		panel_9.add(new JScrollPane(panel_18));
-		panel_18.setBackground(UIManager.getColor("List.background"));
-		panel_18.setSize(new Dimension(200, 16));
-		panel_18.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JPanel panel_20 = new JPanel();
-		panel_20.setOpaque(false);
-		panel_20.setPreferredSize(new Dimension(225, 37));
-		panel_20.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-		panel_18.add(panel_20);
-		panel_20.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel_17 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		panel_17.setOpaque(false);
-		panel_20.add(panel_17, BorderLayout.CENTER);
-		
-		JSpinner spinner = new JSpinner();
-		panel_17.add(spinner);
-		
-		JLabel lblSt_1 = new JLabel("st");
-		panel_17.add(lblSt_1);
-		
-		Component rigidArea = Box.createRigidArea(new Dimension(7, 28));
-		panel_17.add(rigidArea);
-		
-		JLabel lblMjlk = new JLabel("Mj\u00F6lk");
-		panel_17.add(lblMjlk);
-		
-		JPanel panel_21 = new JPanel();
-		panel_21.setOpaque(false);
-		panel_20.add(panel_21, BorderLayout.EAST);
-		
-		JLabel lblKr_1 = new JLabel("0 kr");
-		panel_21.add(lblKr_1);
-		
-		Component rigidArea_1 = Box.createRigidArea(new Dimension(5, 28));
-		panel_21.add(rigidArea_1);
 		
 		JPanel panel_10 = new JPanel();
 		splitPane.setRightComponent(panel_10);
