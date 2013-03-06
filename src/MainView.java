@@ -124,7 +124,6 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JPanel panel_27 = new JPanel();
 		panel_3.add(panel_27);
 		
-		panel_27.add(lblExamplefoobar);
 		Component rigidArea_4 = Box.createRigidArea(new Dimension(35, 20));
 		panel_27.add(rigidArea_4);
 		
@@ -393,9 +392,13 @@ public class MainView extends JFrame implements ShoppingCartListener {
 			}
 		});
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setOpaque(false);
+		scrollPane.setColumnHeaderView(panel_2);
+		
 		JLabel lblKategorier = new JLabel("Kategorier");
-		lblKategorier.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		scrollPane.setColumnHeaderView(lblKategorier);
+		panel_2.add(lblKategorier);
+		lblKategorier.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		
 
 		// set up sub views
