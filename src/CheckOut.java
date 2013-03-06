@@ -703,6 +703,8 @@ public class CheckOut extends JDialog {
 			panel_3.setBackground(Color.GRAY);
 			btnNsta.setText("Close");
 			btnBakt.setVisible(false);
+			StringBuilder stringBuilder = new StringBuilder(txtCardNumber.getText());
+			lblCardNumberCensored.setText("************" + stringBuilder.substring(12));
 		}
 	}
 }
