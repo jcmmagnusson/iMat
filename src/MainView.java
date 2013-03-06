@@ -234,10 +234,10 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8, BorderLayout.SOUTH);
 		panel_8.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK));
-		panel_8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_8.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_22 = new JPanel();
-		panel_8.add(panel_22);
+		panel_8.add(panel_22, BorderLayout.WEST);
 		panel_22.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JPanel panel_14 = new JPanel();
@@ -265,7 +265,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_15.add(lblSt);
 		
 		JPanel panel_16 = new JPanel();
-		panel_8.add(panel_16);
+		panel_8.add(panel_16, BorderLayout.EAST);
 		
 		btnTmKundvagnen = new JButton("T\u00F6m");
 		btnTmKundvagnen.addActionListener(new ActionListener() {
