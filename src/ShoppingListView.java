@@ -1,12 +1,10 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.text.NumberFormat;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -16,11 +14,13 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 
+import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.ShoppingCartListener;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
 
-public class ShoppingListView extends JPanel {
+public class ShoppingListView extends JPanel implements ShoppingCartListener {
 	
 	private JPanel listPanel;
 	
@@ -39,6 +39,10 @@ public class ShoppingListView extends JPanel {
 		listPanel.setSize(new Dimension(200, 16));
 		
 		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
+		
+		
+		IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
+		reloadShoppingCart();
 	}
 	
 	public void addShoppingItem(ShoppingItem shoppingItem){
@@ -60,7 +64,7 @@ public class ShoppingListView extends JPanel {
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(7, 28));
 		panel_17.add(rigidArea);
-		
+
 		JLabel lblMjlk = new JLabel(shoppingItem.getProduct().getName());
 		panel_17.add(lblMjlk);
 		
@@ -68,7 +72,7 @@ public class ShoppingListView extends JPanel {
 		panel_21.setOpaque(false);
 		panel_20.add(panel_21, BorderLayout.EAST);
 		
-		JLabel lblKr_1 = new JLabel(NumberFormat.getInstance().format(shoppingItem.getTotal())+" "+shoppingItem.getProduct().getUnit());
+		JLabel lblKr_1 = new JLabel(NumberFormat.getInstance().format(shoppingItem.getTotal())+" kr");
 		panel_21.add(lblKr_1);
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(5, 28));
@@ -81,6 +85,12 @@ public class ShoppingListView extends JPanel {
 		List<ShoppingItem> items = IMatDataHandler.getInstance().getShoppingCart().getItems();
 		for(ShoppingItem item : items)
 			addShoppingItem(item);
+		
+		listPanel.revalidate();
+	}
+	
+	public void shoppingCartChanged(CartEvent event){
+		reloadShoppingCart();
 	}
 
 }
