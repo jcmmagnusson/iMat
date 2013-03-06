@@ -2,6 +2,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 
 import java.awt.BorderLayout;
@@ -26,12 +27,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JSpinner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 @SuppressWarnings("serial")
 public class ShoppingProductDetailView extends JPanel {
 	
 	private JDialog dialog;
+	
+	private JSpinner spinner;
 	
 	public ShoppingProductDetailView(final Product product) {
 		
@@ -116,7 +121,7 @@ public class ShoppingProductDetailView extends JPanel {
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		panel.add(panel_5, BorderLayout.SOUTH);
 		
-		JSpinner spinner = new JSpinner();
+		spinner = new JSpinner(new SpinnerNumberModel(1, 1, 99, 1));
 		spinner.addKeyListener(escapeListener);
 		panel_5.add(spinner);
 		
