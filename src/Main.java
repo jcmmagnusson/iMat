@@ -31,18 +31,18 @@ public class Main {
 	        }
 	    }));
 		
-		mainView = new MainView();
-		mainView.setTitle("iMat");
-		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainView.pack();
-		mainView.setResizable(false);
-		mainView.setLocationRelativeTo(null);
 		
 		LoginFrame loginFrame = new LoginFrame(mainView);
 		loginFrame.setLocationRelativeTo(null);
 		loginFrame.setVisible(true);
 		loginFrame.addWindowListener(new WindowAdapter(){
 			public void windowClosed(WindowEvent e){
+				mainView = new MainView();
+				mainView.setTitle("iMat");
+				mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				mainView.pack();
+				mainView.setResizable(false);
+				mainView.setLocationRelativeTo(null);
 				mainView.setVisible(true);
 			}
 		});
