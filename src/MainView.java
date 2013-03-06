@@ -94,9 +94,6 @@ public class MainView extends JFrame {
 		btnBliMedlem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				NewUserFrame newUserFrame = new NewUserFrame(null);
-				newUserFrame.pack();
-				newUserFrame.setLocationRelativeTo(Main.getMainFrame());
-				newUserFrame.setVisible(true);
 			}
 		});
 		panel_26.add(btnBliMedlem);
