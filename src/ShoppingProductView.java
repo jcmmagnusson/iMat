@@ -58,7 +58,7 @@ public class ShoppingProductView extends JPanel {
 				ShoppingItem productShoppingItem = null;
 				for(ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()){
 					if(shoppingItem.getProduct().equals(product)){
-						System.out.println(shoppingItem.getAmount());
+						shoppingItem.setAmount(shoppingItem.getAmount() + Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
 						IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(shoppingItem, false);
 						productShoppingItem = shoppingItem;
 						break;
