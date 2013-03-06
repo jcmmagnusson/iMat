@@ -122,7 +122,9 @@ public class ShoppingProductView extends JPanel {
 				JDialog dialog = new JDialog(Main.getMainFrame());
 				dialog.setTitle("Detailjer");
 				dialog.setModal(true);
-				dialog.getContentPane().add(new ShoppingProductDetailView(product));
+				ShoppingProductDetailView detailView = new ShoppingProductDetailView(product);
+				detailView.setPanelDialog(dialog);
+				dialog.getContentPane().add(detailView);
 				dialog.pack();
 				dialog.setLocationRelativeTo(Main.getMainFrame());
 				dialog.setVisible(true);
