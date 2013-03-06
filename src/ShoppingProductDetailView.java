@@ -37,6 +37,7 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 	private JDialog dialog;
 	
 	private JSpinner spinner;
+	private JButton favoriteButton;
 	
 	public static final String FAVORITE_STAR_CHARACTER_FILLED = "\u2605";
 	public static final String FAVORITE_STAR_CHARACTER_HOLLOW = "\u2606";
@@ -84,32 +85,32 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 		panel_6.setSize(new Dimension(20, 20));
 		panel_6.setLayout(null);
 		
-		JButton button = new JButton(FAVORITE_STAR_CHARACTER_HOLLOW);
+		favoriteButton = new JButton(FAVORITE_STAR_CHARACTER_HOLLOW);
 		if(IMatDataHandler.getInstance().isFavorite(product))
-			button.setText(FAVORITE_STAR_CHARACTER_FILLED);
-		button.addActionListener(new ActionListener() {
+			favoriteButton.setText(FAVORITE_STAR_CHARACTER_FILLED);
+		favoriteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event){
 				JButton button = (JButton)event.getSource();
 				
 				if(!IMatDataHandler.getInstance().isFavorite(product)){
 					// favorite product
-					IMatDataHandler.getInstance().addFavorite(product);
+					IMatDataHandler2.setFavorite(product, true);
 					button.setText(FAVORITE_STAR_CHARACTER_FILLED);
 					button.setToolTipText("Ta bort favorisering");
 				}else{
 					// un-favorite product
-					IMatDataHandler.getInstance().removeFavorite(product);
+					IMatDataHandler2.setFavorite(product, false);
 					button.setText(FAVORITE_STAR_CHARACTER_HOLLOW);
 					button.setToolTipText("Favorisera");
 				}
 			}
 		});
-		button.setBounds(0, 0, 20, 20);
-		panel_6.add(button);
-		button.setToolTipText("Favorisera");
-		button.setOpaque(false);
-		button.setForeground(new Color(255, 210, 0, 255));
-		button.addKeyListener(escapeListener);
+		favoriteButton.setBounds(0, 0, 20, 20);
+		panel_6.add(favoriteButton);
+		favoriteButton.setToolTipText("Favorisera");
+		favoriteButton.setOpaque(false);
+		favoriteButton.setForeground(new Color(255, 210, 0, 255));
+		favoriteButton.addKeyListener(escapeListener);
 		
 		JLabel lblPris = new JLabel("Pris:");
 		panel_2.add(lblPris, "2, 4");
@@ -219,6 +220,17 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 	};
 	
 	public void productFavorisationChanged(Product productChanged){
+		if(!IMatDataHandler.getInstance().isFavorite(productChanged)){
+			// favorite product
+			IMatDataHandler.getInstance().addFavorite(productChanged);
+			favoriteButton.setText(FAVORITE_STAR_CHARACTER_FILLED);
+			favoriteButton.setToolTipText("Ta bort favorisering");
+		}else{
+			// un-favorite product
+			IMatDataHandler.getInstance().removeFavorite(productChanged);
+			favoriteButton.setText(FAVORITE_STAR_CHARACTER_HOLLOW);
+			favoriteButton.setToolTipText("Favorisera");
+		}
 		
 	}
 

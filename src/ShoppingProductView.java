@@ -36,6 +36,7 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 	private Product product;
 	
 	private JSpinner numberOfItemsSpinner;
+	private JButton favoriteToggleButton;
 	
 	public static final String FAVORITE_STAR_CHARACTER_FILLED = "\u2605";
 	public static final String FAVORITE_STAR_CHARACTER_HOLLOW = "\u2606";
@@ -141,7 +142,7 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 		detailsButton.setBorder(null);
 		detailsButton.setBorderPainted(false);
 		
-		JButton favoriteToggleButton = new JButton(FAVORITE_STAR_CHARACTER_HOLLOW);
+		favoriteToggleButton = new JButton(FAVORITE_STAR_CHARACTER_HOLLOW);
 		favoriteToggleButton.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -171,12 +172,12 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 				
 				if(!IMatDataHandler.getInstance().isFavorite(product)){
 					// favorite product
-					IMatDataHandler.getInstance().addFavorite(product);
+					IMatDataHandler2.setFavorite(product, true);
 					button.setText(FAVORITE_STAR_CHARACTER_FILLED);
 					button.setToolTipText("Ta bort favorisering");
 				}else{
 					// un-favorite product
-					IMatDataHandler.getInstance().removeFavorite(product);
+					IMatDataHandler2.setFavorite(product, false);
 					button.setText(FAVORITE_STAR_CHARACTER_HOLLOW);
 					button.setToolTipText("Favorisera");
 				}
@@ -234,6 +235,16 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 	}
 	
 	public void productFavorisationChanged(Product productChanged){
-		
+		if(!IMatDataHandler.getInstance().isFavorite(product)){
+			// favorite product
+			IMatDataHandler.getInstance().addFavorite(product);
+			favoriteToggleButton.setText(FAVORITE_STAR_CHARACTER_FILLED);
+			favoriteToggleButton.setToolTipText("Ta bort favorisering");
+		}else{
+			// un-favorite product
+			IMatDataHandler.getInstance().removeFavorite(product);
+			favoriteToggleButton.setText(FAVORITE_STAR_CHARACTER_HOLLOW);
+			favoriteToggleButton.setToolTipText("Favorisera");
+		}
 	}
 }
