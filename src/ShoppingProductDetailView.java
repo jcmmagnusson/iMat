@@ -126,6 +126,11 @@ public class ShoppingProductDetailView extends JPanel {
 		panel_5.add(spinner);
 		
 		JButton btnNewButton = new JButton("L\u00E4gg till");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				IMatDataHandler2.addProduct(product, Double.parseDouble(spinner.getValue().toString()));
+			}
+		});
 		panel_5.add(btnNewButton);
 		btnNewButton.addKeyListener(escapeListener);
 		

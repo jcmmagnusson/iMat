@@ -55,21 +55,7 @@ public class ShoppingProductView extends JPanel {
 		JButton addButton = new JButton("L\u00E4gg till");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShoppingItem productShoppingItem = null;
-				for(ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()){
-					if(shoppingItem.getProduct().equals(product)){
-						shoppingItem.setAmount(shoppingItem.getAmount() + Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
-						IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(shoppingItem, false);
-						productShoppingItem = shoppingItem;
-						break;
-					}
-				}
-				
-				if(productShoppingItem==null){
-					productShoppingItem = new ShoppingItem(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString()));
-					IMatDataHandler.getInstance().getShoppingCart().addItem(productShoppingItem);
-					IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(productShoppingItem, true);
-				}
+				IMatDataHandler2.addProduct(product, Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
 			}
 		});
 		add(addButton, BorderLayout.SOUTH);
