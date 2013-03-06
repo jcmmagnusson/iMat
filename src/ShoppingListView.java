@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -45,7 +47,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		reloadShoppingCartItems();
 	}
 	
-	public void addShoppingItem(ShoppingItem shoppingItem){
+	public void addShoppingItem(final ShoppingItem shoppingItem){
 		JPanel panel_20 = new JPanel();
 		panel_20.setOpaque(false);
 		panel_20.setPreferredSize(new Dimension(220, 37));
@@ -56,7 +58,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		panel_17.setOpaque(false);
 		panel_20.add(panel_17, BorderLayout.CENTER);
 		
-		JSpinner spinner = new JSpinner(new SpinnerNumberModel(shoppingItem.getAmount(), 1, 99, 1));
+		final JSpinner spinner = new JSpinner(new SpinnerNumberModel(shoppingItem.getAmount(), 1, 99, 1));
 		panel_17.add(spinner);
 		
 		JLabel lblSt_1 = new JLabel("st");
@@ -72,11 +74,21 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		panel_21.setOpaque(false);
 		panel_20.add(panel_21, BorderLayout.EAST);
 		
-		JLabel lblKr_1 = new JLabel(NumberFormat.getInstance().format(shoppingItem.getTotal())+" kr");
+		final JLabel lblKr_1 = new JLabel(NumberFormat.getInstance().format(shoppingItem.getTotal())+" kr");
 		panel_21.add(lblKr_1);
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(5, 28));
 		panel_21.add(rigidArea_1);
+		
+		
+		spinner.addChangeListener(new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent event) {
+				shoppingItem.setAmount(Double.parseDouble(spinner.getValue().toString()));
+				IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(shoppingItem, false);
+				lblKr_1.setText(NumberFormat.getInstance().format(shoppingItem.getTotal())+" kr");
+			}
+		});
 	}
 	
 	private void reloadShoppingCartItems(){
