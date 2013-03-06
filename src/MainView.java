@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -267,7 +268,8 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JButton btnTmKundvagnen = new JButton("T\u00F6m");
 		btnTmKundvagnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				IMatDataHandler.getInstance().getShoppingCart().clear();
+				if(JOptionPane.showConfirmDialog(Main.getMainFrame(), "Vill du verkligen t\u00F6mma kundvagnen?", "T\u00F6ma kundvagn", JOptionPane.YES_NO_OPTION)==0)
+					IMatDataHandler.getInstance().getShoppingCart().clear();
 			}
 		});
 		panel_16.add(btnTmKundvagnen);
