@@ -118,7 +118,7 @@ public class ShoppingProductDetailView extends JPanel {
 		
 		JPanel panel_5 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_5.getLayout();
-		flowLayout.setAlignment(FlowLayout.RIGHT);
+		flowLayout.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_5, BorderLayout.SOUTH);
 		
 		spinner = new JSpinner(new SpinnerNumberModel(1, 1, 99, 1));
@@ -134,11 +134,32 @@ public class ShoppingProductDetailView extends JPanel {
 		panel_5.add(btnNewButton);
 		btnNewButton.addKeyListener(escapeListener);
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.SOUTH);
-		panel_1.setBorder(BorderFactory.createTitledBorder("Andra k\u00F6pte \u00E4ven"));
-		
 		Dimension relatedProductSize = new Dimension(75, 75);
+		
+		JPanel panel_8 = new JPanel();
+		add(panel_8, BorderLayout.CENTER);
+		
+		JPanel panel_3 = new JPanel();
+		panel_8.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_4 = new JPanel();
+		panel_3.add(panel_4, BorderLayout.NORTH);
+		panel_4.setLayout(new BorderLayout(0, 0));
+		panel_4.setBorder(BorderFactory.createTitledBorder("Inneh\u00E5llsf\u00F6rteckning"));
+		
+		JTextArea lblLoremIpsumDolor = new JTextArea("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin magna id tellus auctor a mollis felis fermentum. Mauris nec nunc nisl. Etiam eget est eu augue rutrum iaculis id ut odio. Nunc sit amet justo purus, sed vehicula elit. Pellentesque auctor tellus lacus, quis lacinia eros. Nam vitae nulla sed enim auctor sagittis. Nam id tempus lacus. Morbi scelerisque hendrerit erat non auctor.");
+		lblLoremIpsumDolor.setLineWrap(true);
+		lblLoremIpsumDolor.setColumns(25);
+		lblLoremIpsumDolor.setRows(10);
+		lblLoremIpsumDolor.setBackground(UIManager.getColor("Label.background"));
+		lblLoremIpsumDolor.setEditable(false);
+		lblLoremIpsumDolor.setFocusable(false);
+		panel_4.add(lblLoremIpsumDolor, BorderLayout.CENTER);
+		
+		JPanel panel_1 = new JPanel();
+		panel_3.add(panel_1);
+		panel_1.setBorder(BorderFactory.createTitledBorder("Andra k\u00F6pte \u00E4ven"));
 		
 		JLabel lblProdukt = new JLabel("Produkt 1");
 		lblProdukt.setIcon(IMatDataHandler.getInstance().getImageIcon(IMatDataHandler.getInstance().getProduct(20), relatedProductSize));
@@ -157,23 +178,6 @@ public class ShoppingProductDetailView extends JPanel {
 		lblProdukt_2.setVerticalTextPosition(JLabel.BOTTOM);
 		lblProdukt_2.setHorizontalTextPosition(JLabel.CENTER);
 		panel_1.add(lblProdukt_2);
-		
-		JPanel panel_3 = new JPanel();
-		add(panel_3, BorderLayout.CENTER);
-		
-		JPanel panel_4 = new JPanel();
-		panel_3.add(panel_4);
-		panel_4.setLayout(new BorderLayout(0, 0));
-		panel_4.setBorder(BorderFactory.createTitledBorder("Inneh\u00E5llsf\u00F6rteckning"));
-		
-		JTextArea lblLoremIpsumDolor = new JTextArea("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin magna id tellus auctor a mollis felis fermentum. Mauris nec nunc nisl. Etiam eget est eu augue rutrum iaculis id ut odio. Nunc sit amet justo purus, sed vehicula elit. Pellentesque auctor tellus lacus, quis lacinia eros. Nam vitae nulla sed enim auctor sagittis. Nam id tempus lacus. Morbi scelerisque hendrerit erat non auctor.");
-		lblLoremIpsumDolor.setLineWrap(true);
-		lblLoremIpsumDolor.setColumns(25);
-		lblLoremIpsumDolor.setRows(10);
-		lblLoremIpsumDolor.setBackground(UIManager.getColor("Label.background"));
-		lblLoremIpsumDolor.setEditable(false);
-		lblLoremIpsumDolor.setFocusable(false);
-		panel_4.add(lblLoremIpsumDolor, BorderLayout.CENTER);
 	}
 	
 	public void setPanelDialog(JDialog dialog){

@@ -112,6 +112,7 @@ public class ShoppingProductView extends JPanel {
 				detailView.setPanelDialog(dialog);
 				dialog.getContentPane().add(detailView);
 				dialog.pack();
+				dialog.setResizable(false);
 				dialog.setLocationRelativeTo(Main.getMainFrame());
 				dialog.setVisible(true);
 			}
