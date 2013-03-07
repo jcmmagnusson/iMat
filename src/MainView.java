@@ -50,7 +50,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 	private static final int NUMBER_OF_ROWS_OF_PRODUCTS = 2;
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
 	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
-	private DishGridView dishView = new DishGridView("F\u00E4rdiga kassar");
+	private DishGridView dishView = new DishGridView("F\u00E4rdiga r\u00E4tter");
 	
 	private JScrollPane centerViewScrollPane;
 	private JLabel centerViewTitleLabel;
@@ -104,7 +104,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_31.add(rigidArea_1);
 		panel_31.add(btnFavoriter);
 		
-		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga kassar");
+		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga r\u00E4tter");
 		btnFrdigaKassar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dishView.removeAllProducts();
