@@ -35,7 +35,7 @@ import java.awt.event.ActionEvent;
 
 
 @SuppressWarnings("serial")
-public class CompleteDishDetailView extends JPanel implements ProductFavoriteListener{
+public class CompleteDishDetailView extends JPanel {
 	
 	private JDialog dialog;
 	
@@ -202,8 +202,4 @@ public class CompleteDishDetailView extends JPanel implements ProductFavoriteLis
 		}
 	};
 	
-	public void productFavorisationChanged(){
-		
-	}
-
 }

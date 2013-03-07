@@ -35,6 +35,7 @@ import java.awt.Rectangle;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.event.ListSelectionListener;
@@ -48,6 +49,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 	
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
 	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
+	private DishGridView dishView = new DishGridView("Färdiga kassar");
 	
 	private JScrollPane centerViewScrollPane;
 	private JLabel centerViewTitleLabel;
@@ -102,6 +104,16 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_31.add(btnFavoriter);
 		
 		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga kassar");
+		btnFrdigaKassar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dishView.removeAllProducts();
+				setCenterView(dishView);
+				ArrayList<ShoppingItem> example = new ArrayList<ShoppingItem>();
+				example.add(new ShoppingItem(IMatDataHandler.getInstance().getProduct(112), 2));
+				example.add(new ShoppingItem(IMatDataHandler.getInstance().getProduct(76)));
+				dishView.addItem(example, "Pasta och köttfärssås");
+			}
+		});
 		panel_31.add(btnFrdigaKassar);
 		
 		JPanel panel_3 = new JPanel();
@@ -398,6 +410,11 @@ public class MainView extends JFrame implements ShoppingCartListener {
 	}
 	
 	public void setCenterView(ProductsGridView gridView){
+		centerViewScrollPane.setViewportView(gridView);
+		centerViewTitleLabel.setText(gridView.getTitle());
+	}
+	
+	public void setCenterView(DishGridView gridView){
 		centerViewScrollPane.setViewportView(gridView);
 		centerViewTitleLabel.setText(gridView.getTitle());
 	}
