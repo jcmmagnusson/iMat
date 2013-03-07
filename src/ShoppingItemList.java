@@ -35,6 +35,10 @@ public class ShoppingItemList {
 		list.remove(item);
 	}
 	
+	public List<ShoppingItem> getItems(){
+		return list;
+	}
+	
 	public int size(){
 		return list.size();
 	}
