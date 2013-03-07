@@ -23,7 +23,6 @@ public class IMatDataHandler2 {
 		for(ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()){
 			if(shoppingItem.getProduct().equals(product)){
 				shoppingItem.setAmount(shoppingItem.getAmount() + amount);
-				IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(shoppingItem, false);
 				productShoppingItem = shoppingItem;
 				break;
 			}
@@ -32,7 +31,6 @@ public class IMatDataHandler2 {
 		if(productShoppingItem==null){
 			productShoppingItem = new ShoppingItem(product, amount);
 			IMatDataHandler.getInstance().getShoppingCart().addItem(productShoppingItem);
-			IMatDataHandler.getInstance().getShoppingCart().fireShoppingCartChanged(productShoppingItem, true);
 		}
 	}
 	
