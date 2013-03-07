@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -261,6 +262,19 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JPopupMenu listMenu = new JPopupMenu();
+				JMenuItem newItem = new JMenuItem("Skapa ny lista...");
+				newItem.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						String name = JOptionPane.showInputDialog(Main.getMainFrame(), "Ange namn p\u00E4 ny lista", "Skapa ny lista", JOptionPane.OK_CANCEL_OPTION);
+						if(name!=null){
+							ShoppingItemList list = new ShoppingItemList(name);
+							list.addShoppingItem(new ShoppingItem(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString())));
+							IMatDataHandler2.customLists.add(list);
+						}
+					}
+				});
+				listMenu.add(newItem);
+				listMenu.addSeparator();
 				for(final ShoppingItemList list : IMatDataHandler2.customLists){
 					JMenuItem menuItem = new JMenuItem(list.getName());
 					menuItem.addActionListener(new ActionListener(){
