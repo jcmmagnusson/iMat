@@ -87,6 +87,10 @@ public class CustomListView extends JPanel {
 				header.add(backPanel, BorderLayout.WEST);
 				header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 				scrollPane.setColumnHeaderView(header);
+
+				JPanel panel = (JPanel)event.getSource();
+				panel.setBackground(UIManager.getColor("List.background"));
+				panel.setOpaque(false);
 			}
 			
 			@Override
