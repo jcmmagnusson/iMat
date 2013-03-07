@@ -51,7 +51,7 @@ public class CompleteDishView extends JPanel {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for(int i = 0;i<dishProducts.size();i++){
-					IMatDataHandler2.addProduct(dishProducts.get(i).getProduct(), Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
+					IMatDataHandler2.addProduct(dishProducts.get(i).getProduct(), dishProducts.get(i).getAmount());
 				}	
 			}
 		});
@@ -110,7 +110,7 @@ public class CompleteDishView extends JPanel {
 				JDialog dialog = new JDialog(Main.getMainFrame());
 				dialog.setTitle("Detailjer");
 				dialog.setModal(true);
-				CompleteDishDetailView detailView = new CompleteDishDetailView(p, name);   //<---- Gör ny!
+				CompleteDishDetailView detailView = new CompleteDishDetailView(p, name);
 				detailView.setPanelDialog(dialog);
 				dialog.getContentPane().add(detailView);
 				dialog.pack();

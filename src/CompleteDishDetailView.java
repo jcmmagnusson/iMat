@@ -108,7 +108,7 @@ public class CompleteDishDetailView extends JPanel {
 		
 		String prod = "";
 		for(int i = 0; i<p.size();i++){
-			prod +=" "+p.get(i).getAmount() + "st " + p.get(i).getProduct().getName();
+			prod +=" "+(int)p.get(i).getAmount() + " st " + p.get(i).getProduct().getName();
 		}
 		JLabel lblKg = new JLabel(prod);
 		panel_2.add(lblKg, "4, 8, 3, 1");
