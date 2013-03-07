@@ -362,6 +362,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
 		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*NUMBER_OF_ROWS_OF_PRODUCTS+10+panel_24.getPreferredSize().height+5));
+		centerViewScrollPane.getVerticalScrollBar().setUnitIncrement(7);
 		panel_4.add(centerViewScrollPane, BorderLayout.CENTER);
 		
 		JPanel panel_28 = new JPanel();
