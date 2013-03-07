@@ -96,6 +96,12 @@ public class CustomListView extends JPanel {
 		JPanel rightPanel = new JPanel();
 		rightPanel.setOpaque(false);
 		JButton buyButton = new JButton("K\u00F6p");
+		buyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				for(ShoppingItem item : list.getItems())
+					IMatDataHandler2.addProduct(item.getProduct(), item.getAmount());
+			}
+		});
 		rightPanel.add(buyButton);
 		panel_19.add(rightPanel, BorderLayout.EAST);
 		
