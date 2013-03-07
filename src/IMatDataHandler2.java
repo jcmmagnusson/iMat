@@ -13,6 +13,8 @@ public class IMatDataHandler2 {
 	private static List<ProductFavoriteListener> productFavoriteListeners = new ArrayList<ProductFavoriteListener>();
 	private static List<Product> productFavoriteListenersProducts = new ArrayList<Product>();
 	
+	public static List<ShoppingItemList> customLists = new ArrayList<ShoppingItemList>();
+	
 	
 	public static void addProduct(Product product){
 		addProduct(product, 1);

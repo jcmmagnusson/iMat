@@ -52,6 +52,7 @@ public class CustomListView extends JPanel {
 		carbonara.addShoppingItem(new ShoppingItem(IMatDataHandler.getInstance().getProduct(76), 1));
 		carbonara.addShoppingItem(new ShoppingItem(IMatDataHandler.getInstance().getProduct(85), 1));
 		addList(carbonara);
+		IMatDataHandler2.customLists.add(carbonara);
 
 		ShoppingItemList breakfast = new ShoppingItemList("Frukost");
 		breakfast.addShoppingItem(new ShoppingItem(IMatDataHandler.getInstance().getProduct(12), 1));
@@ -59,6 +60,7 @@ public class CustomListView extends JPanel {
 		breakfast.addShoppingItem(new ShoppingItem(IMatDataHandler.getInstance().getProduct(80), 1));
 		breakfast.addShoppingItem(new ShoppingItem(IMatDataHandler.getInstance().getProduct(82), 1));
 		addList(breakfast);
+		IMatDataHandler2.customLists.add(breakfast);
 	}
 	
 	
