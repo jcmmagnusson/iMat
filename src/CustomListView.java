@@ -97,7 +97,6 @@ public class CustomListView extends JPanel {
 		rightPanel.setOpaque(false);
 		JButton buyButton = new JButton("K\u00F6p");
 		rightPanel.add(buyButton);
-		//rightPanel.add(new JLabel(">"));
 		panel_19.add(rightPanel, BorderLayout.EAST);
 		
 		JLabel lblPastaCarbonara = new JLabel(list.getName()+" ("+list.getTotalCost()+" kr)");
