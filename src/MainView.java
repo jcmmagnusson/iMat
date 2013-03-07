@@ -308,22 +308,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JButton btnRedigera = new JButton("Redigera");
 		panel_12.add(btnRedigera, BorderLayout.EAST);
 		
-		JPanel panel_13 = new JPanel();
-		panel_13.setBackground(UIManager.getColor("List.background"));
-		panel_10.add(new JScrollPane(panel_13), BorderLayout.CENTER);
-		panel_13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JPanel panel_19 = new JPanel();
-		panel_19.setPreferredSize(new Dimension(225, 20));
-		panel_19.setOpaque(false);
-		panel_13.add(panel_19);
-		panel_19.setLayout(new BorderLayout(0, 0));
-		
-		JLabel label = new JLabel(">");
-		panel_19.add(label, BorderLayout.EAST);
-		
-		JLabel lblPastaCarbonara = new JLabel("Pasta carbonara (0 kr)");
-		panel_19.add(lblPastaCarbonara, BorderLayout.CENTER);
+		panel_10.add(new CustomListView(), BorderLayout.CENTER);
 		
 		JPanel panel_4 = new JPanel();
 		getContentPane().add(panel_4, BorderLayout.CENTER);
