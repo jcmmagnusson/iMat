@@ -30,6 +30,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 	private JPanel listPanel;
 
 	public static final Color HIGHLIGHT_COLOR = new Color(200,200,200, 50);
+	public static final Color RECENTLY_ADDED_COLOR = new Color(255,255,50, 50);
 	
 	public ShoppingListView(){
 		setLayout(new BorderLayout(0, 0));
@@ -53,8 +54,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 	}
 	
 	public void addShoppingItem(final ShoppingItem shoppingItem){
-		JPanel panel_20 = new JPanel();
-		panel_20.setOpaque(false);
+		final JPanel panel_20 = new JPanel();
 		panel_20.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseEntered(MouseEvent e){
@@ -69,6 +69,16 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 				panel.setOpaque(false);
 			}
 		});
+		panel_20.setBackground(RECENTLY_ADDED_COLOR);
+		new Thread(new Runnable(){
+			public void run(){
+				try{
+					Thread.currentThread().sleep(500);
+				}catch(InterruptedException e){}
+				panel_20.setBackground(null);
+				panel_20.setOpaque(false);
+			}
+		}).start();
 		panel_20.setPreferredSize(new Dimension(220, 37));
 		listPanel.add(panel_20);
 		panel_20.setLayout(new BorderLayout(0, 0));
@@ -130,9 +140,9 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		
 	}
 	
-	public void shoppingCartChanged(CartEvent event){
+	public void shoppingCartChanged(CartEvent event){		
 		if(event.isAddEvent())
-			reloadShoppingCartItems();
+			addShoppingItem(IMatDataHandler.getInstance().getShoppingCart().getItems().get(IMatDataHandler.getInstance().getShoppingCart().getItems().size()-1));
 		else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()>0)
 			updateShoppingCartAmounts();
 		else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()==0){
