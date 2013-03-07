@@ -41,6 +41,23 @@ public class CompleteDishView extends JPanel {
 
 
 	public CompleteDishView(final ArrayList<ShoppingItem> p, final String name) {
+		addMouseListener(new MouseAdapter() {
+			int diff = 15;
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JPanel view = (JPanel)e.getSource();
+				Color bg = view.getBackground();
+				Color highlightedBG = new Color(bg.getRed()+diff, bg.getGreen()+diff, bg.getRed()+diff);
+				view.setBackground(highlightedBG);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				JPanel view = (JPanel)e.getSource();
+				Color bg = view.getBackground();
+				Color highlightedBG = new Color(bg.getRed()-diff, bg.getGreen()-diff, bg.getRed()-diff);
+				view.setBackground(highlightedBG);
+			}
+		});
 		this.dishProducts = p;
 		
 		setPreferredSize(SIZE);
@@ -58,6 +75,7 @@ public class CompleteDishView extends JPanel {
 		add(addButton, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
+		panel.setOpaque(false);
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		

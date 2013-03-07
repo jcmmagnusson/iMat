@@ -93,6 +93,7 @@ public class CheckOut extends JDialog {
 	 * Create the dialog.
 	 */
 	public CheckOut() {
+		setTitle("Kassan");
 		setResizable(false);
 		setBounds(100, 100, 601, 483);
 		getContentPane().setLayout(new BorderLayout(0, 0));
