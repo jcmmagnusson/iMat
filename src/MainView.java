@@ -47,7 +47,9 @@ import java.awt.event.MouseEvent;
 
 public class MainView extends JFrame implements ShoppingCartListener {
 	
-	private static final int NUMBER_OF_ROWS_OF_PRODUCTS = 2;
+	public static final int NUMBER_OF_ROWS_OF_PRODUCTS = 2;
+	public static final int NUMBER_OF_COLUMNS_OF_PRODUCTS = 4;
+	
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
 	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
 	private DishGridView dishView = new DishGridView("F\u00E4rdiga r\u00E4tter");
@@ -369,7 +371,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_24.add(centerViewTitleLabel);
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
-		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*4+10+10, (ShoppingProductView.SIZE.height+10)*NUMBER_OF_ROWS_OF_PRODUCTS+10+panel_24.getPreferredSize().height+5));
+		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*NUMBER_OF_COLUMNS_OF_PRODUCTS+10+10, (ShoppingProductView.SIZE.height+10)*NUMBER_OF_ROWS_OF_PRODUCTS+10+panel_24.getPreferredSize().height+5));
 		centerViewScrollPane.getVerticalScrollBar().setUnitIncrement(7);
 		panel_4.add(centerViewScrollPane, BorderLayout.CENTER);
 		
