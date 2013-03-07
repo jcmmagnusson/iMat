@@ -22,9 +22,11 @@ import java.awt.event.MouseEvent;
 
 public class CustomListView extends JPanel {
 	
-	JPanel listPanel;
-	JScrollPane scrollPane;
-	JPanel content;
+	private JPanel listPanel;
+	private JScrollPane scrollPane;
+	private JPanel content;
+	
+	public static final Color HIGHLIGHT_COLOR = new Color(200,200,200, 50);
 	
 	public CustomListView(){
 		setLayout(new BorderLayout(0, 0));
@@ -85,6 +87,19 @@ public class CustomListView extends JPanel {
 				header.add(backPanel, BorderLayout.WEST);
 				header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 				scrollPane.setColumnHeaderView(header);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JPanel panel = (JPanel)e.getSource();
+				panel.setBackground(HIGHLIGHT_COLOR);
+				panel.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				JPanel panel = (JPanel)e.getSource();
+				panel.setBackground(UIManager.getColor("List.background"));
+				panel.setOpaque(false);
 			}
 		});
 		panel_19.setOpaque(false);
