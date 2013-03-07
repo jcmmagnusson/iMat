@@ -72,6 +72,7 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
 		JButton addButton = new JButton("L\u00E4gg till");
+		addButton.setToolTipText("L\u00E4gg till i kundvagnen");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IMatDataHandler2.addProduct(product, Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
@@ -85,11 +86,13 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 		panel.setLayout(null);
 		
 		numberOfItemsSpinner = new JSpinner();
+		numberOfItemsSpinner.setToolTipText("\u00C4ndra antal som ska l\u00E4ggas till");
 		numberOfItemsSpinner.setModel(new SpinnerNumberModel(1, 1, 99, 1));
 		numberOfItemsSpinner.setBounds(6, 165, 45, 28);
 		panel.add(numberOfItemsSpinner);
 		
 		JLabel priceLabel = new JLabel(NumberFormat.getInstance().format(product.getPrice())+" "+product.getUnit());
+		priceLabel.setToolTipText("Pris");
 		priceLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		priceLabel.setBounds(63, 171, 99, 16);
 		panel.add(priceLabel);

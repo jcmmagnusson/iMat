@@ -79,6 +79,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_30.add(panel_31, BorderLayout.WEST);
 		
 		JLabel lblImat = new JLabel("<html><font color=\"#33CC33\">i</font>Mat");
+		lblImat.setToolTipText("G\u00E5 till startsidan");
 		lblImat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event) {
@@ -90,6 +91,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		lblImat.setFont(new Font("Lucida Grande", Font.BOLD, 50));
 		
 		JButton btnFavoriter = new JButton("Favoriter");
+		btnFavoriter.setToolTipText("Visa favoriserade varor");
 		btnFavoriter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// refresh/initialize favorites view
@@ -105,6 +107,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_31.add(btnFavoriter);
 		
 		JButton btnFrdigaKassar = new JButton("F\u00E4rdiga r\u00E4tter");
+		btnFrdigaKassar.setToolTipText("Visa iMats f\u00E4rdiga kassar och r\u00E4tter");
 		btnFrdigaKassar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dishView.removeAllProducts();
@@ -141,9 +144,11 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_27.add(rigidArea_4);
 		
 		JButton btnTidigareKp = new JButton("Tidigare k\u00F6p");
+		btnTidigareKp.setToolTipText("Visa en historik \u00F6ver dina tidigare k\u00F6p");
 		panel_27.add(btnTidigareKp);
 		
 		JButton btnNewButton = new JButton("Konto");
+		btnNewButton.setToolTipText("Redigera konto-informationen");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				AccountView accountView = new AccountView(Main.getMainFrame());
@@ -286,6 +291,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_8.add(panel_16, BorderLayout.EAST);
 		
 		btnTmKundvagnen = new JButton("T\u00F6m");
+		btnTmKundvagnen.setToolTipText("T\u00F6m kundvagnen");
 		btnTmKundvagnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if(JOptionPane.showConfirmDialog(Main.getMainFrame(), "Vill du verkligen t\u00F6mma kundvagnen?", "T\u00F6ma kundvagn", JOptionPane.YES_NO_OPTION)==0)
@@ -347,11 +353,13 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_23.setLayout(null);
 		
 		JButton button = new JButton("\u21FD");
+		button.setToolTipText("G\u00E5 tillbaka");
 		button.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		button.setBounds(6, 5, 29, 29);
 		panel_23.add(button);
 		
 		JButton button_1 = new JButton("\u21FE");
+		button_1.setToolTipText("G\u00E5 fram\u00E5t");
 		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		button_1.setBounds(39, 5, 29, 29);
 		panel_23.add(button_1);

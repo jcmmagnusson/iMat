@@ -111,6 +111,7 @@ public class CustomListView extends JPanel {
 		JPanel rightPanel = new JPanel();
 		rightPanel.setOpaque(false);
 		JButton buyButton = new JButton("K\u00F6p");
+		buyButton.setToolTipText("L\u00E4gg till listans varor i kundvagnen");
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				for(ShoppingItem item : list.getItems())
