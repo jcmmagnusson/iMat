@@ -497,8 +497,9 @@ public class NewUserFrame extends JDialog {
 		IMatDataHandler handler = IMatDataHandler.getInstance();
 
 		User user = handler.getUser();
-		user.setUserName(emailTextField.getText());
-		user.setPassword(passwordTextField.getText());
+		handler.getUser().setUserName(emailTextField.getText());
+		handler.getUser().setPassword(passwordTextField.getText());
+		
 		
 		Customer customer = handler.getCustomer();
 		customer.setAddress(adressTextField.getText());
@@ -511,6 +512,9 @@ public class NewUserFrame extends JDialog {
 		card.setValidYear(Integer.parseInt((String)yearComboBox.getSelectedItem()));
 		card.setVerificationCode(Integer.parseInt(cvcTextField.getText()));
 		card.setHoldersName(nameTextField.getText());
+		
+		loginFrame.execute_login();
+		
 	}
 }
 

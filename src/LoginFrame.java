@@ -101,16 +101,25 @@ public class LoginFrame extends JFrame {
 		passwordLabel.setForeground(Color.DARK_GRAY);
 		loginPanel.add(passwordLabel, "2, 4, fill, center");
 		
+		final JLabel errorLabel = new JLabel("Fel e-post eller l\u00F6senord");
+		errorLabel.setForeground(Color.RED);
+		errorLabel.setVisible(false);
+		loginPanel.add(errorLabel, "4, 5");
+		
+		
 		final JButton loginButton = new JButton("Logga in");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * Skicka email och lösen vidare
-				 */
-				execute_login();
+				if(emailTextField.getText().equals(IMatDataHandler.getInstance().getUser().getUserName())  && 
+						passwordTextField.getText().equals(IMatDataHandler.getInstance().getUser().getPassword())){
+					execute_login();
+				}else{
+					errorLabel.setVisible(true);
+				}
 			}
 		});
 		loginPanel.add(loginButton, "4, 6, right, top");
+		
 		
 		passwordTextField = new JPasswordField();
 		loginPanel.add(passwordTextField, "4, 4, fill, fill");
