@@ -38,7 +38,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		content.add(centerFiller, BorderLayout.CENTER);
 		add(new JScrollPane(content));
 		listPanel.setBackground(UIManager.getColor("List.background"));
-		listPanel.setSize(new Dimension(200, 16));
+		setPreferredSize(new Dimension(250, 37*8));
 		
 		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
 		
