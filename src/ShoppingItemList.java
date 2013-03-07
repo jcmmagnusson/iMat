@@ -39,6 +39,13 @@ public class ShoppingItemList {
 		return list.size();
 	}
 	
+	public double getTotalCost(){
+		double totalCost = 0;
+		for(ShoppingItem item : list)
+			totalCost += item.getTotal();
+		return totalCost;
+	}
+	
 	public void delete(){
 		File listFolder = new File(System.getProperty("user.home") + "/.dat215/imat/lists");
 		File listFile = new File(listFolder, name+".list");
