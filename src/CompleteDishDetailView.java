@@ -103,7 +103,7 @@ public class CompleteDishDetailView extends JPanel {
 		JLabel lblFretagAb = new JLabel("F\u00F6retag AB");
 		panel_2.add(lblFretagAb, "4, 6, 3, 1");
 		
-		JLabel lblVolym = new JLabel("Innehåll:");
+		JLabel lblVolym = new JLabel("Inneh\u00E5ll:");
 		panel_2.add(lblVolym, "2, 8");
 		
 		String prod = "";

@@ -49,7 +49,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 	
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
 	private ProductsGridView favoritesView = new ProductsGridView("Favoriter");
-	private DishGridView dishView = new DishGridView("Färdiga kassar");
+	private DishGridView dishView = new DishGridView("F\u00E4rdiga kassar");
 	
 	private JScrollPane centerViewScrollPane;
 	private JLabel centerViewTitleLabel;
@@ -111,7 +111,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 				ArrayList<ShoppingItem> example = new ArrayList<ShoppingItem>();
 				example.add(new ShoppingItem(IMatDataHandler.getInstance().getProduct(112), 2));
 				example.add(new ShoppingItem(IMatDataHandler.getInstance().getProduct(76)));
-				dishView.addItem(example, "Pasta och köttfärssås");
+				dishView.addItem(example, "Pasta och k\u00F6ttf\u00E4rss\u00E5s");
 			}
 		});
 		panel_31.add(btnFrdigaKassar);
