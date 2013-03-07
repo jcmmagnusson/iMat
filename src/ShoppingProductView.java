@@ -6,12 +6,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import java.awt.AlphaComposite;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Color;
@@ -70,15 +73,6 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 		setPreferredSize(SIZE);
 		setLayout(new BorderLayout(0, 0));
 		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-		
-		JButton addButton = new JButton("L\u00E4gg till");
-		addButton.setToolTipText("L\u00E4gg till i kundvagnen");
-		addButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				IMatDataHandler2.addProduct(product, Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
-			}
-		});
-		add(addButton, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
 		panel.setOpaque(false);
@@ -254,6 +248,44 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 
 		
 		IMatDataHandler2.addProductFavoriteListener(this, product);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setOpaque(false);
+		panel_2.setPreferredSize(new Dimension(10, 28));
+		add(panel_2, BorderLayout.SOUTH);
+		panel_2.setLayout(null);
+		
+		JButton button = new JButton("\u25BE");
+		button.setToolTipText("L\u00E4gg till i lista...");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JPopupMenu listMenu = new JPopupMenu();
+				for(final ShoppingItemList list : IMatDataHandler2.customLists){
+					JMenuItem menuItem = new JMenuItem(list.getName());
+					menuItem.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent event){
+							list.addShoppingItem(new ShoppingItem(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString())));
+						}
+					});
+					listMenu.add(menuItem);
+				}
+				listMenu.show((Component) e.getSource(), e.getX(), e.getY());
+			}
+		});
+		button.setBounds(142, 5, 16, 16);
+		button.setBorder(null);
+		panel_2.add(button);
+		
+		JButton addButton = new JButton("L\u00E4gg till");
+		addButton.setBounds(0, 0, 168, 29);
+		panel_2.add(addButton);
+		addButton.setToolTipText("L\u00E4gg till i kundvagnen");
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IMatDataHandler2.addProduct(product, Double.parseDouble((numberOfItemsSpinner.getValue().toString())));
+			}
+		});
 	}
 	
 	public void productFavorisationChanged(Product productChanged){
