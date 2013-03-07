@@ -368,14 +368,14 @@ public class AccountView extends JDialog {
 		firstCancelButton.addActionListener(cancelButtonListener);
 		
 		JPanel passwordPanel = new JPanel();
-		tabbedPane.addTab("Ändra Lösenord", null, passwordPanel, null);
+		tabbedPane.addTab("Ändra lösenord", null, passwordPanel, null);
 		passwordPanel.setLayout(null);
 		
-		JLabel lblndraLsenord = new JLabel("Ändra Lösenord");
+		JLabel lblndraLsenord = new JLabel("Ändra lösenord");
 		lblndraLsenord.setBounds(12, 12, 119, 15);
 		passwordPanel.add(lblndraLsenord);
 		
-		JLabel lblNyttLsenord = new JLabel("Nytt Lösenord:");
+		JLabel lblNyttLsenord = new JLabel("Nytt lösenord:");
 		lblNyttLsenord.setBounds(22, 39, 109, 15);
 		passwordPanel.add(lblNyttLsenord);
 		

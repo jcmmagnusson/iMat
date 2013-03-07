@@ -143,6 +143,11 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_27.add(btnTidigareKp);
 		
 		JButton btnNewButton = new JButton("Konto");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				AccountView accountView = new AccountView(Main.getMainFrame());
+			}
+		});
 		panel_27.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Logga ut");
