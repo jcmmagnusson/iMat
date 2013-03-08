@@ -83,7 +83,7 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 		numberOfItemsSpinner = new JSpinner();
 		numberOfItemsSpinner.setToolTipText("\u00C4ndra antal som ska l\u00E4ggas till");
 		numberOfItemsSpinner.setModel(new SpinnerNumberModel(1, product.getUnitSuffix().equals("kg") ? 0.1 : 1, 99, product.getUnitSuffix().equals("kg") ? 0.1 : 1));
-		numberOfItemsSpinner.setBounds(6, 165, 45, 28);
+		numberOfItemsSpinner.setBounds(6, 165, 53, 28);
 		panel.add(numberOfItemsSpinner);
 		
 		JLabel priceLabel = new JLabel(NumberFormat.getInstance().format(product.getPrice())+" "+product.getUnit());

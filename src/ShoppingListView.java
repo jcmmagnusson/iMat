@@ -89,10 +89,10 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		panel_17.setOpaque(false);
 		panel_20.add(panel_17, BorderLayout.CENTER);
 		
-		final JSpinner spinner = new JSpinner(new SpinnerNumberModel(shoppingItem.getAmount(), 1, 99, 1));
+		final JSpinner spinner = new JSpinner(new SpinnerNumberModel(shoppingItem.getAmount(), shoppingItem.getProduct().getUnitSuffix().equals("kg") ? 0.1: 1, 99, shoppingItem.getProduct().getUnitSuffix().equals("kg") ? 0.1 : 1));
 		panel_17.add(spinner);
 		
-		JLabel lblSt_1 = new JLabel("st");
+		JLabel lblSt_1 = new JLabel(shoppingItem.getProduct().getUnitSuffix().equals("kg") ? "kg": "st");
 		panel_17.add(lblSt_1);
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(7, 28));
