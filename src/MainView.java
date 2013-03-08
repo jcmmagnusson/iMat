@@ -422,6 +422,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		setCenterView(homeView);
 		
 		IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
+		IMatDataHandler.getInstance().getShoppingCart().clear();
 		updateShoppingTotals();
 		
 	}
