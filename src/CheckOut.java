@@ -722,14 +722,14 @@ public class CheckOut extends JDialog {
 			panel_1.setBackground(new Color(240, 240, 240));
 			panel_2.setBackground(new Color(240, 240, 240));
 			panel_3.setBackground(new Color(240, 240, 240));
-			btnNsta.setText("N‰sta");
+			btnNsta.setText("N√§sta");
 		}
 		if (counter % 4 == 1) {
 			panel.setBackground(Color.LIGHT_GRAY);
 			panel_1.setBackground(Color.GRAY);
 			panel_2.setBackground(new Color(240, 240, 240));
 			panel_3.setBackground(new Color(240, 240, 240));
-			btnNsta.setText("N‰sta");
+			btnNsta.setText("N√§sta");
 		}
 		if (counter % 4 == 2) {
 			panel_1.setBackground(Color.LIGHT_GRAY);
@@ -742,7 +742,7 @@ public class CheckOut extends JDialog {
 			
 			panel_2.setBackground(Color.LIGHT_GRAY);
 			panel_3.setBackground(Color.GRAY);
-			btnNsta.setText("Close");
+			btnNsta.setText("St√§ng");
 			btnBakt.setVisible(false);
 			try {
 				StringBuilder stringBuilder = new StringBuilder(txtCardNumber.getText());
