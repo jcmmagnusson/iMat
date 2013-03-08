@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -28,6 +29,7 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 public class ShoppingListView extends JPanel implements ShoppingCartListener {
 	
 	private JPanel listPanel;
+	private JScrollPane scrollPane;
 
 	public static final Color HIGHLIGHT_COLOR = new Color(200,200,200, 50);
 	public static final Color RECENTLY_ADDED_COLOR = new Color(255,255,50, 50);
@@ -42,7 +44,7 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 		JPanel centerFiller = new JPanel();
 		centerFiller.setOpaque(false);
 		content.add(centerFiller, BorderLayout.CENTER);
-		add(new JScrollPane(content));
+		add(scrollPane = new JScrollPane(content));
 		listPanel.setBackground(UIManager.getColor("List.background"));
 		setPreferredSize(new Dimension(250, 37*8));
 		
@@ -141,9 +143,18 @@ public class ShoppingListView extends JPanel implements ShoppingCartListener {
 	}
 	
 	public void shoppingCartChanged(CartEvent event){		
-		if(event.isAddEvent())
+		if(event.isAddEvent()){
 			addShoppingItem(IMatDataHandler.getInstance().getShoppingCart().getItems().get(IMatDataHandler.getInstance().getShoppingCart().getItems().size()-1));
-		else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()>0)
+			new Thread(new Runnable(){
+				public void run(){
+					try{
+						Thread.sleep(100);
+					}catch(InterruptedException e){}
+					scrollPane.revalidate();
+					scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+				}
+			}).start();
+		}else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()>0)
 			updateShoppingCartAmounts();
 		else if(IMatDataHandler.getInstance().getShoppingCart().getItems().size()==0){
 			listPanel.removeAll();
