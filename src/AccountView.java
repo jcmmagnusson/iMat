@@ -143,7 +143,7 @@ public class AccountView extends JDialog {
 		
 		final JPanel cardPaymentPanel = new JPanel();
 		cardPaymentPanel.setVisible(false);
-		paymentPanel.add(cardPaymentPanel, "6, 6, 3, 9, fill, fill");
+		paymentPanel.add(cardPaymentPanel, "5, 6, 4, 9, fill, fill");
 		cardPaymentPanel.setLayout(null);
 		
 		JLabel cardNumberLabel = new JLabel("Kortnummer");
@@ -167,17 +167,17 @@ public class AccountView extends JDialog {
 		monthComboBox = new JComboBox();
 		monthComboBox.setModel(new DefaultComboBoxModel(new String[] {"m", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
 		monthComboBox.setSelectedIndex(0);
-		monthComboBox.setBounds(10, 80, 43, 24);
+		monthComboBox.setBounds(12, 80, 63, 24);
 		cardPaymentPanel.add(monthComboBox);
 		
 		JLabel dividerLabel = new JLabel("/");
-		dividerLabel.setBounds(55, 85, 11, 15);
+		dividerLabel.setBounds(74, 84, 11, 15);
 		cardPaymentPanel.add(dividerLabel);
 		
 		yearComboBox = new JComboBox();
 		yearComboBox.setModel(new DefaultComboBoxModel(new String[] {"y", "13", "14", "15", "16", "17", "18"}));
 		yearComboBox.setSelectedIndex(0);
-		yearComboBox.setBounds(65, 80, 43, 24);
+		yearComboBox.setBounds(80, 80, 58, 24);
 		cardPaymentPanel.add(yearComboBox);
 		
 		cvcTextField = new JTextField();
