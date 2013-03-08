@@ -32,7 +32,10 @@ public class Main {
 	        }
 	    }));
 		
-		
+		showLoginFrame();
+	}
+	
+	public static void showLoginFrame(){
 		LoginFrame loginFrame = new LoginFrame(mainView);
 		loginFrame.setLocationRelativeTo(null);
 		loginFrame.setVisible(true);
@@ -47,6 +50,7 @@ public class Main {
 				mainView.setVisible(true);
 			}
 		});
+		
 	}
 	
 	protected static JFrame getMainFrame(){

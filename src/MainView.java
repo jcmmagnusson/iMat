@@ -171,6 +171,12 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_27.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Logga ut");
+		btnNewButton_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Main.getMainFrame().setVisible(false);
+				Main.showLoginFrame();
+			}
+		});
 		panel_27.add(btnNewButton_1);
 		
 		if(IMatDataHandler2.isLoggedInAsUser)
@@ -409,7 +415,6 @@ public class MainView extends JFrame implements ShoppingCartListener {
 			public void valueChanged(TreeSelectionEvent event) {
 				javax.swing.tree.TreePath path = event.getPath();
 				TreeNode node = (TreeNode)path.getLastPathComponent();
-				System.out.println(node.toString()+" "+node.isLeaf());
 				
 				if(!node.isLeaf()){
 					tree.expandPath(path);
