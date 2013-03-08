@@ -166,7 +166,7 @@ public class HistoryView extends JPanel {
 	}
 	
 	public String getTitle(){
-		return "Tidigare köp";
+		return "Tidigare kÃ¶p";
 		
 	}
 }
