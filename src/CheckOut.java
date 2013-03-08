@@ -454,6 +454,7 @@ public class CheckOut extends JDialog {
 		txtCvc.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		txtCvc.setColumns(10);
 		txtCvc.setDocument(new JTextFieldLimit(3));
+		txtCvc.setText("" + IMatDataHandler.getInstance().getCreditCard().getVerificationCode());
 		
 		JLabel lblCvc = new JLabel("CVC:");
 		
