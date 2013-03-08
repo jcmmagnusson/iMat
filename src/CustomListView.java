@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 
 
 public class CustomListView extends JPanel {
@@ -72,7 +73,7 @@ public class CustomListView extends JPanel {
 				scrollPane.setViewportView(new CustomListProductsView(list));
 				
 				JPanel header = new JPanel(new BorderLayout());
-				header.add(new JLabel("<html><b>"+list.getName(), JLabel.LEFT), BorderLayout.CENTER);
+				header.add(new JLabel("<html><b>"+list.getName()+"</b> ("+NumberFormat.getInstance().format(list.getTotalCost())+" kr)", JLabel.LEFT), BorderLayout.CENTER);
 				JButton backButton = new JButton("<");
 				backButton.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -127,7 +128,7 @@ public class CustomListView extends JPanel {
 		rightPanel.add(buyButton);
 		panel_19.add(rightPanel, BorderLayout.EAST);
 		
-		JLabel lblPastaCarbonara = new JLabel(list.getName()+" ("+list.getTotalCost()+" kr)");
+		JLabel lblPastaCarbonara = new JLabel(list.getName()+" ("+NumberFormat.getInstance().format(list.getTotalCost())+" kr)");
 		panel_19.add(lblPastaCarbonara, BorderLayout.CENTER);
 		panel_19.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
 	}
