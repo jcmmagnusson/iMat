@@ -44,6 +44,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
 
 public class MainView extends JFrame implements ShoppingCartListener {
 	
@@ -385,32 +391,8 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 		getContentPane().add(panel_28, BorderLayout.WEST);
 		panel_28.setLayout(new BorderLayout(0, 0));
-		
-		JList list = new JList();
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent event) {
-				JList list = (JList)event.getSource();
-				int selectedIndex = list.getSelectedIndex();
-				
-				List<Product> products = IMatDataHandler.getInstance().getProducts(getProductCategoryForString(list.getSelectedValue().toString()));
-				ProductsGridView grid = new ProductsGridView(list.getSelectedValue().toString());
-				for(Product product : products)
-					grid.addProduct(product);
-				setCenterView(grid);
-			}
-		});
-		JScrollPane scrollPane = new JScrollPane(list);
+		JScrollPane scrollPane = new JScrollPane();
 		panel_28.add(scrollPane);
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"S\u00F6tsaker", "Dryck >", " - Varma", " - Kalla", "Mejeri", "K\u00F6tt", "Fisk", "Br\u00F6d", "Skafferi >", " - Potatis & ris", " - Pasta", " - Mj\u00F6l, socker & salt", " - Kryddor", "Frukt >", " - Citrusfrukter", " - Exotiska frukter", " - Meloner", " - B\u00E4r", " - Stenfrukter", "Gr\u00F6nsaker >", " - Baljv\u00E4xter", " - Gr\u00F6nsaksfrukter", " - K\u00E5l", " - Rotfrukter", " - N\u00F6tter & fr\u00F6n"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setOpaque(false);
@@ -419,6 +401,64 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JLabel lblKategorier = new JLabel("Kategorier");
 		panel_2.add(lblKategorier);
 		lblKategorier.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		
+		final JTree tree = new JTree();
+		tree.setRootVisible(false);
+		tree.setPreferredSize(new Dimension(135, 500));
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+			public void valueChanged(TreeSelectionEvent event) {
+				javax.swing.tree.TreePath path = event.getPath();
+				TreeNode node = (TreeNode)path.getLastPathComponent();
+				System.out.println(node.toString()+" "+node.isLeaf());
+				
+				if(!node.isLeaf())
+					tree.expandPath(path);
+				else{
+					List<Product> products = IMatDataHandler.getInstance().getProducts(getProductCategoryForString(node.toString()));
+					ProductsGridView grid = new ProductsGridView(node.toString());
+					for(Product product : products)
+						grid.addProduct(product);
+					setCenterView(grid);
+				}
+			}
+		});
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Kategorier") {
+				{
+					DefaultMutableTreeNode node_1;
+					add(new DefaultMutableTreeNode("S\u00F6tsaker"));
+					node_1 = new DefaultMutableTreeNode("Dryck");
+						node_1.add(new DefaultMutableTreeNode("Varma"));
+						node_1.add(new DefaultMutableTreeNode("Kalla"));
+					add(node_1);
+					add(new DefaultMutableTreeNode("Mejeri"));
+					add(new DefaultMutableTreeNode("K\u00F6tt"));
+					add(new DefaultMutableTreeNode("Fisk"));
+					add(new DefaultMutableTreeNode("Br\u00F6d"));
+					node_1 = new DefaultMutableTreeNode("Skafferi");
+						node_1.add(new DefaultMutableTreeNode("Potatis & ris"));
+						node_1.add(new DefaultMutableTreeNode("Pasta"));
+						node_1.add(new DefaultMutableTreeNode("Mj\u00F6l, socker & salt"));
+						node_1.add(new DefaultMutableTreeNode("Kryddor"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Frukt");
+						node_1.add(new DefaultMutableTreeNode("Citrusfrukter"));
+						node_1.add(new DefaultMutableTreeNode("Exotiska frukter"));
+						node_1.add(new DefaultMutableTreeNode("Meloner"));
+						node_1.add(new DefaultMutableTreeNode("B\u00E4r"));
+						node_1.add(new DefaultMutableTreeNode("Stenfrukter"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Gr\u00F6nsaker");
+						node_1.add(new DefaultMutableTreeNode("Baljv\u00E4xter"));
+						node_1.add(new DefaultMutableTreeNode("Gr\u00F6nsaksfrukter"));
+						node_1.add(new DefaultMutableTreeNode("K\u00E5l"));
+						node_1.add(new DefaultMutableTreeNode("Rotfrukter"));
+						node_1.add(new DefaultMutableTreeNode("N\u00F6tter & fr\u00F6n"));
+					add(node_1);
+				}
+			}
+		));
+		scrollPane.setViewportView(tree);
 		
 
 		// set up sub views
