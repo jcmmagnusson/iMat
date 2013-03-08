@@ -22,6 +22,7 @@ public class Main {
 		disableIMatDataHandlerOutput();
 		IMatDataHandler.getInstance(); // initialize
 		enableIMatDataHandlerOutput();
+		IMatDataHandler.getInstance().getShoppingCart().clear();
 		
 		// saves the current state of IMatDataHandler upon application exit
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
