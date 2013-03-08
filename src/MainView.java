@@ -53,7 +53,7 @@ import javax.swing.event.TreeSelectionEvent;
 
 public class MainView extends JFrame implements ShoppingCartListener {
 	
-	public static final int NUMBER_OF_ROWS_OF_PRODUCTS = 2;
+	public static final int NUMBER_OF_ROWS_OF_PRODUCTS = 3;
 	public static final int NUMBER_OF_COLUMNS_OF_PRODUCTS = 4;
 	
 	private ProductsGridView homeView = new ProductsGridView("Startsida");
@@ -110,7 +110,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 			}
 		});
 		
-		Component rigidArea_1 = Box.createRigidArea(new Dimension(35, 20));
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(42, 20));
 		panel_31.add(rigidArea_1);
 		panel_31.add(btnFavoriter);
 		
@@ -141,7 +141,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 			}
 		});
 		
-		Component rigidArea = Box.createRigidArea(new Dimension(235, 20));
+		Component rigidArea = Box.createRigidArea(new Dimension(242, 20));
 		panel_26.add(rigidArea);
 		panel_26.add(btnBliMedlem);
 		
@@ -351,7 +351,7 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		JPanel panel_4 = new JPanel();
 		getContentPane().add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new BorderLayout(0, 0));
-		panel_4.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+		panel_4.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		centerViewScrollPane = new JScrollPane();
 		
@@ -383,12 +383,12 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_24.add(centerViewTitleLabel);
 		panel_24.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
-		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*NUMBER_OF_COLUMNS_OF_PRODUCTS+10+10, (ShoppingProductView.SIZE.height+10)*NUMBER_OF_ROWS_OF_PRODUCTS+10+panel_24.getPreferredSize().height+5));
+		centerViewScrollPane.setPreferredSize(new Dimension((ShoppingProductView.SIZE.width+10)*NUMBER_OF_COLUMNS_OF_PRODUCTS+10+10, (ShoppingProductView.SIZE.height+10)*NUMBER_OF_ROWS_OF_PRODUCTS+5+panel_24.getPreferredSize().height));
 		centerViewScrollPane.getVerticalScrollBar().setUnitIncrement(7);
 		panel_4.add(centerViewScrollPane, BorderLayout.CENTER);
 		
 		JPanel panel_28 = new JPanel();
-		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+		panel_28.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 0));
 		getContentPane().add(panel_28, BorderLayout.WEST);
 		panel_28.setLayout(new BorderLayout(0, 0));
 		JScrollPane scrollPane = new JScrollPane();
