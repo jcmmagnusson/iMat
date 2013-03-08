@@ -161,6 +161,7 @@ public class NewUserFrame extends JDialog {
 		postalCodeTextField = new JTextField();
 		accountAndDeliveryPanel.add(postalCodeTextField, "4, 14, 3, 1, fill, top");
 		postalCodeTextField.setColumns(10);
+		postalCodeTextField.setDocument(new JTextFieldLimit(6));
 		
 		cityTextField = new JTextField();
 		accountAndDeliveryPanel.add(cityTextField, "4, 16, 3, 1, fill, top");
@@ -281,6 +282,7 @@ public class NewUserFrame extends JDialog {
 		cardNumberTextField.setBounds(12, 22, 170, 19);
 		cardPaymentPanel.add(cardNumberTextField);
 		cardNumberTextField.setColumns(10);
+		cardNumberTextField.setDocument(new JTextFieldLimit(16));
 		
 		JLabel expireLabel = new JLabel("Utgångsdatum");
 		expireLabel.setBounds(10, 53, 115, 15);
@@ -311,6 +313,7 @@ public class NewUserFrame extends JDialog {
 		cvcTextField.setBounds(139, 80, 43, 19);
 		cardPaymentPanel.add(cvcTextField);
 		cvcTextField.setColumns(10);
+		cvcTextField.setDocument(new JTextFieldLimit(3));
 		
 		JLabel nameLabel = new JLabel("Namn");
 		nameLabel.setBounds(12, 116, 58, 15);
