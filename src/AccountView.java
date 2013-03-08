@@ -151,7 +151,7 @@ public class AccountView extends JDialog {
 		cardPaymentPanel.add(cardNumberLabel);
 		
 		cardNumberTextField = new JTextField();
-		cardNumberTextField.setBounds(12, 22, 170, 19);
+		cardNumberTextField.setBounds(12, 22, 143, 19);
 		cardPaymentPanel.add(cardNumberTextField);
 		cardNumberTextField.setColumns(10);
 		
@@ -161,7 +161,7 @@ public class AccountView extends JDialog {
 		
 		JLabel cvcLabel = new JLabel("CVC");
 		cvcLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		cvcLabel.setBounds(148, 53, 34, 15);
+		cvcLabel.setBounds(153, 53, 34, 15);
 		cardPaymentPanel.add(cvcLabel);
 		
 		monthComboBox = new JComboBox();
@@ -171,17 +171,17 @@ public class AccountView extends JDialog {
 		cardPaymentPanel.add(monthComboBox);
 		
 		JLabel dividerLabel = new JLabel("/");
-		dividerLabel.setBounds(74, 84, 11, 15);
+		dividerLabel.setBounds(73, 84, 12, 15);
 		cardPaymentPanel.add(dividerLabel);
 		
 		yearComboBox = new JComboBox();
 		yearComboBox.setModel(new DefaultComboBoxModel(new String[] {"y", "13", "14", "15", "16", "17", "18"}));
 		yearComboBox.setSelectedIndex(0);
-		yearComboBox.setBounds(80, 80, 58, 24);
+		yearComboBox.setBounds(83, 80, 72, 24);
 		cardPaymentPanel.add(yearComboBox);
 		
 		cvcTextField = new JTextField();
-		cvcTextField.setBounds(139, 80, 43, 19);
+		cvcTextField.setBounds(153, 81, 43, 19);
 		cardPaymentPanel.add(cvcTextField);
 		cvcTextField.setColumns(10);
 		
