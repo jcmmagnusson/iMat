@@ -146,6 +146,12 @@ public class MainView extends JFrame implements ShoppingCartListener {
 		panel_27.add(rigidArea_4);
 		
 		JButton btnTidigareKp = new JButton("Tidigare k\u00F6p");
+		btnTidigareKp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HistoryView history = new HistoryView();
+				setCenterView(history);
+			}
+		});
 		btnTidigareKp.setToolTipText("Visa en historik \u00F6ver dina tidigare k\u00F6p");
 		panel_27.add(btnTidigareKp);
 		
@@ -435,6 +441,11 @@ public class MainView extends JFrame implements ShoppingCartListener {
 	public void setCenterView(DishGridView gridView){
 		centerViewScrollPane.setViewportView(gridView);
 		centerViewTitleLabel.setText(gridView.getTitle());
+	}
+	
+	public void setCenterView(HistoryView view){
+		centerViewScrollPane.setViewportView(view);
+		centerViewTitleLabel.setText(view.getTitle());
 	}
 	
 	public ProductCategory getProductCategoryForString(String string){

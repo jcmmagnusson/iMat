@@ -115,9 +115,6 @@ public class HistoryView extends JPanel {
 				orderLabel.setText(current.getDate().toString());
 				
 				ArrayList<ShoppingItem> shoppingItems = (ArrayList<ShoppingItem>) current.getItems();
-				for (int i = 0; i < shoppingItems.size(); i++) {
-					System.out.println(shoppingItems.get(i).getProduct().getName());
-				}
 				ShoppingItemPanel[] itemPanelList = new ShoppingItemPanel[shoppingItems.size()];
 				int total = 0;
 				for (int i = 0; i < shoppingItems.size(); i++) {
@@ -166,5 +163,10 @@ public class HistoryView extends JPanel {
 			panel.setMaximumSize(new Dimension(500,20));
 			listPanel.add(panel);
 		}
+	}
+	
+	public String getTitle(){
+		return "Tidigare köp";
+		
 	}
 }
