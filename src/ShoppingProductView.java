@@ -265,7 +265,7 @@ public class ShoppingProductView extends JPanel implements ProductFavoriteListen
 				JMenuItem newItem = new JMenuItem("Skapa ny lista...");
 				newItem.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						String name = JOptionPane.showInputDialog(Main.getMainFrame(), "Ange namn p\u00E4 ny lista", "Skapa ny lista", JOptionPane.OK_CANCEL_OPTION);
+						String name = JOptionPane.showInputDialog(Main.getMainFrame(), "Ange namn på ny lista", "Skapa ny lista", JOptionPane.OK_CANCEL_OPTION);
 						if(name!=null){
 							ShoppingItemList list = new ShoppingItemList(name);
 							list.addShoppingItem(new ShoppingItem(product, Double.parseDouble(numberOfItemsSpinner.getValue().toString())));

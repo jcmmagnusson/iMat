@@ -1,6 +1,9 @@
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
@@ -13,6 +16,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.text.NumberFormat;
@@ -21,10 +25,14 @@ import javax.swing.SwingConstants;
 
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
+import se.chalmers.ait.dat215.project.ShoppingItem;
+
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
@@ -148,13 +156,54 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 		spinner.addKeyListener(escapeListener);
 		panel_5.add(spinner);
 		
+		JPanel panel_9 = new JPanel();
+		panel_5.add(panel_9);
+		panel_9.setLayout(null);
+		panel_9.setPreferredSize(new Dimension(105, 28));
+		
+		JButton button = new JButton("\u25BE");
+		button.setBounds(85, 5, 8, 16);
+		panel_9.add(button);
+		button.setToolTipText("L\u00E4gg till i lista...");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JPopupMenu listMenu = new JPopupMenu();
+				JMenuItem newItem = new JMenuItem("Skapa ny lista...");
+				newItem.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						String name = JOptionPane.showInputDialog(Main.getMainFrame(), "Ange namn på ny lista", "Skapa ny lista", JOptionPane.OK_CANCEL_OPTION);
+						if(name!=null){
+							ShoppingItemList list = new ShoppingItemList(name);
+							list.addShoppingItem(new ShoppingItem(product, Double.parseDouble(spinner.getValue().toString())));
+							IMatDataHandler2.customLists.add(list);
+						}
+					}
+				});
+				listMenu.add(newItem);
+				listMenu.addSeparator();
+				for(final ShoppingItemList list : IMatDataHandler2.customLists){
+					JMenuItem menuItem = new JMenuItem(list.getName());
+					menuItem.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent event){
+							list.addShoppingItem(new ShoppingItem(product, Double.parseDouble(spinner.getValue().toString())));
+						}
+					});
+					listMenu.add(menuItem);
+				}
+				listMenu.show((Component) e.getSource(), e.getX(), e.getY());
+			}
+		});
+		button.setBorder(null);
+		
 		JButton btnNewButton = new JButton("L\u00E4gg till");
+		btnNewButton.setBounds(0, 0, 105, 29);
+		panel_9.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				IMatDataHandler2.addProduct(product, Double.parseDouble(spinner.getValue().toString()));
 			}
 		});
-		panel_5.add(btnNewButton);
 		btnNewButton.addKeyListener(escapeListener);
 		
 		Dimension relatedProductSize = new Dimension(75, 75);
