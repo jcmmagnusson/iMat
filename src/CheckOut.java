@@ -738,6 +738,8 @@ public class CheckOut extends JDialog {
 			btnNsta.setText("Betala");
 		}
 		else if (counter % 4 == 3) {
+			IMatDataHandler.getInstance().placeOrder(true);
+			
 			panel_2.setBackground(Color.LIGHT_GRAY);
 			panel_3.setBackground(Color.GRAY);
 			btnNsta.setText("Close");
