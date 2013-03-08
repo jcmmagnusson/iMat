@@ -411,9 +411,18 @@ public class MainView extends JFrame implements ShoppingCartListener {
 				TreeNode node = (TreeNode)path.getLastPathComponent();
 				System.out.println(node.toString()+" "+node.isLeaf());
 				
-				if(!node.isLeaf())
+				if(!node.isLeaf()){
 					tree.expandPath(path);
-				else{
+					
+					ProductsGridView grid = new ProductsGridView(node.toString());
+					for(int i=0; i<node.getChildCount(); i++){
+						TreeNode child = node.getChildAt(i);
+						List<Product> products = IMatDataHandler.getInstance().getProducts(getProductCategoryForString(child.toString()));
+						for(Product product : products)
+							grid.addProduct(product);
+					}
+					setCenterView(grid);
+				}else{
 					List<Product> products = IMatDataHandler.getInstance().getProducts(getProductCategoryForString(node.toString()));
 					ProductsGridView grid = new ProductsGridView(node.toString());
 					for(Product product : products)
