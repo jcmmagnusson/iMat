@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -27,6 +28,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
@@ -36,7 +39,9 @@ import javax.swing.AbstractListModel;
 
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingCart;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 
 public class CheckOut extends JDialog {
@@ -71,6 +76,7 @@ public class CheckOut extends JDialog {
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JTextField txtHoldersName;
+	private JList list_1;
 
 	/**
 	 * Launch the application.
@@ -559,9 +565,6 @@ public class CheckOut extends JDialog {
 		JLabel lblKvitto_1 = new JLabel("KVITTO");
 		lblKvitto_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		JTextArea txtrBlablablbalbaa = new JTextArea();
-		txtrBlablablbalbaa.setText("blablablbalbaa blalblbabllbalabbalablablablabll");
-		
 		JSeparator separator = new JSeparator();
 		
 		JLabel lblTotalt = new JLabel("Totalt:");
@@ -587,6 +590,8 @@ public class CheckOut extends JDialog {
 		lblVisa = new JLabel("Visa");
 		
 		lblCardNumberCensored = new JLabel("************1789");
+		
+		JPanel panel_15 = new JPanel();
 		GroupLayout gl_panel_14 = new GroupLayout(panel_14);
 		gl_panel_14.setHorizontalGroup(
 			gl_panel_14.createParallelGroup(Alignment.LEADING)
@@ -597,29 +602,32 @@ public class CheckOut extends JDialog {
 							.addComponent(label_5)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblAskim))
-						.addGroup(gl_panel_14.createParallelGroup(Alignment.TRAILING, false)
-							.addGroup(Alignment.LEADING, gl_panel_14.createSequentialGroup()
+						.addGroup(gl_panel_14.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_panel_14.createSequentialGroup()
 								.addComponent(lblSolarvsplan)
 								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblCardNumberCensored))
-							.addGroup(Alignment.LEADING, gl_panel_14.createSequentialGroup()
+							.addGroup(gl_panel_14.createSequentialGroup()
 								.addComponent(lblJohan)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(lblMagnusson)
 								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblVisa))
-							.addGroup(Alignment.LEADING, gl_panel_14.createSequentialGroup()
+							.addGroup(gl_panel_14.createSequentialGroup()
 								.addComponent(lblLeverans_1)
 								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblVanligLeverans))
-							.addGroup(Alignment.LEADING, gl_panel_14.createSequentialGroup()
+							.addGroup(gl_panel_14.createSequentialGroup()
 								.addComponent(lblTotalt)
 								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblKr))
-							.addComponent(txtrBlablablbalbaa, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 276, Short.MAX_VALUE)
-							.addComponent(lblKvitto_1, Alignment.LEADING)
-							.addComponent(separator)))
-					.addContainerGap(153, Short.MAX_VALUE))
+							.addComponent(lblKvitto_1)
+							.addGroup(gl_panel_14.createSequentialGroup()
+								.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED))))
+					.addContainerGap(151, Short.MAX_VALUE))
 		);
 		gl_panel_14.setVerticalGroup(
 			gl_panel_14.createParallelGroup(Alignment.LEADING)
@@ -627,9 +635,9 @@ public class CheckOut extends JDialog {
 					.addContainerGap()
 					.addComponent(lblKvitto_1)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtrBlablablbalbaa, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_panel_14.createParallelGroup(Alignment.TRAILING)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_15, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_14.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTotalt)
@@ -651,8 +659,15 @@ public class CheckOut extends JDialog {
 					.addGroup(gl_panel_14.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_5)
 						.addComponent(lblAskim))
-					.addContainerGap(32, Short.MAX_VALUE))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
+		panel_15.setLayout(new BorderLayout(0, 0));
+		
+		list_1 = new JList();
+		list_1.setCellRenderer(new CustomCellRenderer());
+		
+		
+		panel_15.add(list_1);
 		panel_14.setLayout(gl_panel_14);
 
 	}
@@ -722,14 +737,25 @@ public class CheckOut extends JDialog {
 			panel_1.setBackground(new Color(240, 240, 240));
 			panel_2.setBackground(new Color(240, 240, 240));
 			panel_3.setBackground(new Color(240, 240, 240));
-			btnNsta.setText("N√§sta");
+			btnNsta.setText("N‰sta");
 		}
 		if (counter % 4 == 1) {
 			panel.setBackground(Color.LIGHT_GRAY);
 			panel_1.setBackground(Color.GRAY);
 			panel_2.setBackground(new Color(240, 240, 240));
 			panel_3.setBackground(new Color(240, 240, 240));
-			btnNsta.setText("N√§sta");
+			btnNsta.setText("N‰sta");
+			
+			ArrayList aList = new ArrayList();
+			
+			for (ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()) {
+				JPanel recipePanel = new JPanel(new GridLayout(1,2));
+				Product product = shoppingItem.getProduct();
+				recipePanel.add(new JLabel(product.getName()));
+				recipePanel.add(new JLabel("" + product.getPrice()));
+				aList.add(recipePanel);
+				}
+			list_1.setListData(aList.toArray());
 		}
 		if (counter % 4 == 2) {
 			panel_1.setBackground(Color.LIGHT_GRAY);
@@ -742,7 +768,7 @@ public class CheckOut extends JDialog {
 			
 			panel_2.setBackground(Color.LIGHT_GRAY);
 			panel_3.setBackground(Color.GRAY);
-			btnNsta.setText("St√§ng");
+			btnNsta.setText("St‰ng");
 			btnBakt.setVisible(false);
 			try {
 				StringBuilder stringBuilder = new StringBuilder(txtCardNumber.getText());
