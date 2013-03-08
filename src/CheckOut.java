@@ -751,8 +751,8 @@ public class CheckOut extends JDialog {
 			for (ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()) {
 				JPanel recipePanel = new JPanel(new GridLayout(1,2));
 				Product product = shoppingItem.getProduct();
-				recipePanel.add(new JLabel(product.getName()));
-				recipePanel.add(new JLabel("" + product.getPrice()));
+				recipePanel.add(new JLabel((int)shoppingItem.getAmount() + " st " + product.getName()));
+				recipePanel.add(new JLabel("" + shoppingItem.getTotal(), SwingConstants.RIGHT));
 				aList.add(recipePanel);
 				}
 			list_1.setListData(aList.toArray());
@@ -785,7 +785,7 @@ public class CheckOut extends JDialog {
         (JList list, Object value, int index, 
         boolean isSelected,boolean cellHasFocus) {
             Component component = (Component)value;
-            component.setBackground(isSelected ? new Color(91, 94, 89) : new Color(126, 130, 122));
+            component.setBackground(isSelected ? Color.BLUE : Color.WHITE);
             component.setForeground(isSelected ? Color.white : Color.black);
             return component;
         }
