@@ -152,7 +152,7 @@ public class ShoppingProductDetailView extends JPanel implements ProductFavorite
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_5, BorderLayout.SOUTH);
 		
-		spinner = new JSpinner(new SpinnerNumberModel(1, 1, 99, 1));
+		spinner = new JSpinner(new SpinnerNumberModel(1, product.getUnitSuffix().equals("kg") ? 0.1 : 1, 99, product.getUnitSuffix().equals("kg") ? 0.1 : 1));
 		spinner.addKeyListener(escapeListener);
 		panel_5.add(spinner);
 		
