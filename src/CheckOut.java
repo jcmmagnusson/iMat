@@ -790,6 +790,16 @@ public class CheckOut extends JDialog {
 			aList.add(recipePanel);
 			}
 		list_1.setListData(aList.toArray());
+		
+		aList = new ArrayList();
+		
+		for (ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()) {
+			JPanel recipePanel = new JPanel(new GridLayout(1,3));
+			Product product = shoppingItem.getProduct();
+			recipePanel.add(new JLabel((int)shoppingItem.getAmount() + " st " + product.getName()));
+			recipePanel.add(new JLabel("" + shoppingItem.getTotal() + "  [ta bort]", SwingConstants.RIGHT));
+			aList.add(recipePanel);
+			}
 		list_2.setListData(aList.toArray());
 	}
 	
