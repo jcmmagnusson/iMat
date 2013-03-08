@@ -77,6 +77,7 @@ public class CheckOut extends JDialog {
 	private JPanel panel_3;
 	private JTextField txtHoldersName;
 	private JList list_1;
+	private JList list_2;
 
 	/**
 	 * Launch the application.
@@ -249,7 +250,11 @@ public class CheckOut extends JDialog {
 					.addContainerGap())
 		);
 		panel_7.setLayout(new BorderLayout(0, 0));
+		
+		list_2 = new JList();
+		panel_7.add(list_2, BorderLayout.CENTER);
 		panel_6.setLayout(gl_panel_6);
+		list_2.setCellRenderer(new CustomCellRenderer());
 		
 		JPanel panel_8 = new JPanel();
 		panel_5.add(panel_8, "name_13325310248430");
@@ -666,6 +671,8 @@ public class CheckOut extends JDialog {
 		list_1 = new JList();
 		list_1.setCellRenderer(new CustomCellRenderer());
 		
+		fixStuff();
+		
 		
 		panel_15.add(list_1);
 		panel_14.setLayout(gl_panel_14);
@@ -746,16 +753,7 @@ public class CheckOut extends JDialog {
 			panel_3.setBackground(new Color(240, 240, 240));
 			btnNsta.setText("Nästa");
 			
-			ArrayList aList = new ArrayList();
 			
-			for (ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()) {
-				JPanel recipePanel = new JPanel(new GridLayout(1,2));
-				Product product = shoppingItem.getProduct();
-				recipePanel.add(new JLabel((int)shoppingItem.getAmount() + " st " + product.getName()));
-				recipePanel.add(new JLabel("" + shoppingItem.getTotal(), SwingConstants.RIGHT));
-				aList.add(recipePanel);
-				}
-			list_1.setListData(aList.toArray());
 		}
 		if (counter % 4 == 2) {
 			panel_1.setBackground(Color.LIGHT_GRAY);
@@ -778,6 +776,20 @@ public class CheckOut extends JDialog {
 			}
 			
 		}
+	}
+	
+	private void fixStuff() {
+		ArrayList aList = new ArrayList();
+		
+		for (ShoppingItem shoppingItem : IMatDataHandler.getInstance().getShoppingCart().getItems()) {
+			JPanel recipePanel = new JPanel(new GridLayout(1,2));
+			Product product = shoppingItem.getProduct();
+			recipePanel.add(new JLabel((int)shoppingItem.getAmount() + " st " + product.getName()));
+			recipePanel.add(new JLabel("" + shoppingItem.getTotal(), SwingConstants.RIGHT));
+			aList.add(recipePanel);
+			}
+		list_1.setListData(aList.toArray());
+		list_2.setListData(aList.toArray());
 	}
 	
 	class CustomCellRenderer implements ListCellRenderer {
