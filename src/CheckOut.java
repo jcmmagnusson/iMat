@@ -327,7 +327,6 @@ public class CheckOut extends JDialog {
 		
 		txtPostalCode = new JTextField(customer.getPostCode());
 		txtPostalCode.setColumns(10);
-		txtPostalCode.setDocument(new JTextFieldLimit(6));
 		
 		JLabel lblPostort = new JLabel("Postort:");
 		

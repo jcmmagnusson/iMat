@@ -111,7 +111,7 @@ public class LoginFrame extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(emailTextField.getText().equals(IMatDataHandler.getInstance().getUser().getUserName())  && 
-						passwordTextField.getText().equals(IMatDataHandler.getInstance().getUser().getPassword())){
+					passwordTextField.getText().equals(IMatDataHandler.getInstance().getUser().getPassword())){
 					execute_login();
 				}else{
 					errorLabel.setVisible(true);
